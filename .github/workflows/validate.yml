@@ -1,0 +1,45 @@
+name: Validate schemas and generated files
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install ajv-cli
+        run: npm install -g ajv-cli
+
+      - name: Validate core.json against schema
+        run: ajv validate --spec=draft2020 -s spec/schema/core.schema.json -d spec/core.json
+
+      - name: Validate provenance examples against schema
+        run: |
+          for f in examples/*.json; do
+            echo "Validating $f..."
+            ajv validate --spec=draft2020 -s spec/schema/halos-provenance-v0.1.schema.json -d "$f"
+          done
+
+      - name: Validate manifest.json against schema
+        run: ajv validate --spec=draft2020 -s spec/schema/manifest.schema.json -d spec/manifest.json
+
+      - name: Validate changelog.json against schema
+        run: ajv validate --spec=draft2020 -s spec/schema/changelog.schema.json -d spec/changelog.json
+
+      - name: Check generated principles are up to date
+        run: |
+          node scripts/generate-principles.js
+          if ! git diff --exit-code PRINCIPLES/halos-principles-v1.0.md; then
+            echo "::error::PRINCIPLES/halos-principles-v1.0.md is out of date with spec/core.json. Run: node scripts/generate-principles.js"
+            exit 1
+          fi

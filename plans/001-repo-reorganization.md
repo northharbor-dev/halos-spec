@@ -297,15 +297,15 @@ Point an agent at this file to adopt HALOS in any repository.
 
 ### Phase 3: Agent discovery cleanup (halos repo)
 
-- [ ] Simplify `halos/FOR_AGENTS.md` — pointer only, link to halos-spec for adoption
-- [ ] Rework `halos/docs/for-agents.md` — conceptual page, not a contract copy
-- [ ] Ensure `halos/AGENTS.md` is the single source for in-repo agent behavior
-- [ ] Remove duplicated principle summaries from agent discovery files
+- [x] Simplify `halos/FOR_AGENTS.md` — pointer only, link to halos-spec for adoption
+- [x] Rework `halos/docs/for-agents.md` — conceptual page, not a contract copy
+- [x] Ensure `halos/AGENTS.md` is the single source for in-repo agent behavior (already clean, no changes needed)
+- [x] Remove duplicated principle summaries from agent discovery files
 
 ### Phase 4: Releases and CI
 
-- [ ] Add GitHub Actions workflow for schema validation
-- [ ] Add generation step: CI verifies `PRINCIPLES/*.md` matches `core.json` (no manual drift)
+- [x] Add GitHub Actions workflow for schema validation
+- [x] Add generation step: CI verifies `PRINCIPLES/*.md` matches `core.json` (no manual drift)
 - [ ] Tag first release after reorganization
 - [ ] Document release process in README or CONTRIBUTING
 
