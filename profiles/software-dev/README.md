@@ -35,6 +35,21 @@ HALOS implementation guidance for Git-based software development teams.
 
 See [mappings/cyclonedx-slsa.md](../../mappings/cyclonedx-slsa.md) for technical details.
 
+## Enforcement Tooling
+
+Existing security and policy tools can enforce HALOS provenance requirements at multiple points in the SDLC:
+
+| Tool | Phase | Role |
+|---|---|---|
+| **SonarQube** | CI / merge gate | Quality gate integration for AI disclosure and provenance checks |
+| **Kyverno** | Deploy (Kubernetes) | Admission policy enforcement — require provenance annotations |
+| **OPA Gatekeeper** | Deploy (Kubernetes) | ConstraintTemplates for provenance validation |
+| **OPA / Conftest** | CI / build | Validate `.halos.json` records against provenance schema |
+| **Twistlock / Prisma Cloud** | Image / registry | Compliance checks for HALOS provenance labels on container images |
+| **Kubescape** | Posture / reporting | Cluster-wide reporting on HALOS provenance annotation coverage |
+
+See [mappings/enforcement-tooling.md](../../mappings/enforcement-tooling.md) for value/ease analysis, integration patterns, and the adoption flywheel strategy.
+
 ## Examples
 
 *(To be added — commit trailer conventions, CI workflow snippets, provenance records for releases)*

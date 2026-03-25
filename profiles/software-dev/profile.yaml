@@ -65,9 +65,14 @@ mappings:
         purpose: Agent constraints and trigger conditions
       - name: Command approval policy
         purpose: Blocklist/allowlist for agent-executed commands
+      - name: Kyverno
+        purpose: Admission policy enforcement — block deployments lacking provenance annotations
+      - name: OPA Gatekeeper
+        purpose: ConstraintTemplates enforcing provenance and disclosure requirements
     notes: >
       Agent behavioral constraints should be versioned in the repo,
-      not stored in local machine config.
+      not stored in local machine config. Kyverno and OPA Gatekeeper
+      enforce provenance requirements at the Kubernetes admission layer.
 
   HALOS-CORE-6:
     title: Evolving Standards, Stable Principles
@@ -100,6 +105,21 @@ mappings:
         purpose: Attestation collection and policy enforcement
       - name: Sigstore / cosign
         purpose: Signed artifacts for supply chain verification
+      - name: Kyverno (verify-image)
+        purpose: Enforce co-present HALOS attestation alongside SLSA in attestation bundle
+      - name: OPA / Conftest
+        purpose: CI-time validation of .halos.json records against provenance schema
+      - name: Twistlock / Prisma Cloud
+        purpose: Container image compliance — require HALOS provenance labels on images
+      - name: Kubescape
+        purpose: Cluster posture reporting on HALOS provenance annotation coverage
+      - name: SonarQube
+        purpose: Quality gate integration — block merge when AI-assisted commits lack disclosure
     notes: >
       For published artifacts, provenance should be verifiable. Chainloop
       or similar platforms can enforce HALOS provenance as a release gate.
+      Kyverno and OPA provide Kubernetes-layer enforcement; OPA/Conftest
+      extends enforcement to CI pipelines. Twistlock and SonarQube reach
+      enterprise teams through existing compliance and quality gate workflows.
+      See mappings/enforcement-tooling.md for value/ease analysis and
+      integration patterns for each tool.
