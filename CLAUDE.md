@@ -19,19 +19,17 @@ This is a **specification and documentation repository**, not a software package
 
 ```
 halos-spec/
-├── PRINCIPLES/                              # Human-readable principles (generated)
-│   └── halos-principles-v1.0.md            # DO NOT EDIT — generated from spec/core.json
-│
-├── PROVENANCE/                              # Provenance specification
-│   ├── halos-provenance-spec-v0.1.md        # Active provenance spec
-│   ├── halos-provenance-model-v0.2-draft.md # Graph model (draft)
-│   └── terminology.md                       # Canonical term definitions
-│
-├── spec/                                    # Machine-readable specs
+├── spec/                                    # All specification content
 │   ├── core.json                            # SOURCE OF TRUTH for HALOS principles
 │   ├── manifest.json                        # Spec manifest and metadata
 │   ├── changelog.json                       # Versioning changelog
+│   ├── terminology.md                       # Canonical term definitions
 │   ├── CANONICAL.md                         # Canonicity notes
+│   ├── principles/
+│   │   └── v1.0.md                          # DO NOT EDIT — generated from spec/core.json
+│   ├── provenance/
+│   │   ├── v0.1.md                          # Active provenance spec
+│   │   └── v0.2-draft.md                    # Graph model (draft)
 │   └── schema/                              # JSON Schemas (Draft 2020-12)
 │       ├── core.schema.json                 # Validates spec/core.json
 │       ├── halos-profile.schema.json        # Validates halos.yaml adoption profiles
@@ -40,6 +38,12 @@ halos-spec/
 │       ├── manifest.schema.json
 │       ├── changelog.schema.json
 │       └── extension.schema.json
+│
+├── examples/                                # Provenance record examples
+│   ├── minimal.json                         # Standalone record — validated by CI
+│   └── embedded/                            # Embedded in other standards (not CI-validated)
+│       ├── cyclonedx.json                   # HALOS inside a CycloneDX SBOM
+│       └── slsa.json                        # HALOS as a SLSA predicate
 │
 ├── adopt/                                   # Adoption toolkit
 │   ├── GUIDE.md                             # Step-by-step adoption guide
@@ -55,22 +59,18 @@ halos-spec/
 │       └── profile.yaml
 │
 ├── mappings/                                # Integration with external standards
-│   └── cyclonedx-slsa.md                   # CycloneDX and SLSA integration
-│
-├── examples/                                # Valid provenance record examples
-│   ├── minimal.json
-│   ├── cyclonedx-embedded.json
-│   └── slsa-embedded.json
+│   ├── cyclonedx-slsa.md                   # CycloneDX and SLSA integration
+│   └── enforcement-tooling.md              # Policy enforcement tool analysis
 │
 ├── docs/                                    # Supplementary documentation
 │   ├── explainer.md                         # Plain-language intro
 │   └── migration-notes.md                   # Migration history
 │
 ├── scripts/
-│   └── generate-principles.js              # Generates PRINCIPLES/ from spec/core.json
+│   ├── generate-principles.js              # Generates spec/principles/ from spec/core.json
+│   └── validate.js                         # JSON Schema validator (used by CI)
 │
 ├── plans/                                   # Active work plans
-│   └── 001-repo-reorganization.md
 │
 ├── .github/
 │   ├── workflows/validate.yml               # CI validation pipeline
@@ -87,7 +87,7 @@ halos-spec/
 
 ## Critical Rule: Generated Files
 
-**`PRINCIPLES/halos-principles-v1.0.md` is generated — never edit it directly.**
+**`spec/principles/v1.0.md` is generated — never edit it directly.**
 
 The file is generated from `spec/core.json` by running:
 
@@ -99,7 +99,7 @@ This is enforced by CI. If you modify `spec/core.json`, you must also regenerate
 
 **The source of truth hierarchy:**
 - `spec/core.json` → defines the 8 HALOS principles (normative)
-- `PRINCIPLES/halos-principles-v1.0.md` → generated human-readable rendering
+- `spec/principles/v1.0.md` → generated human-readable rendering
 
 ---
 

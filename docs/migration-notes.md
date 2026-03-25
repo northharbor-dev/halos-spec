@@ -54,6 +54,21 @@ During migration it was clarified that `halos/spec/` contains the **Principles S
 
 ---
 
+## 2026-03-25 — Spec directory consolidation
+
+Reorganized the repository to consolidate all specification content under `spec/` and move embedded examples into a subdirectory.
+
+| Old path | New path | Reason |
+|---|---|---|
+| `PRINCIPLES/halos-principles-v1.0.md` | `spec/principles/v1.0.md` | All-caps directories removed; generated file lives near its source |
+| `PROVENANCE/halos-provenance-spec-v0.1.md` | `spec/provenance/v0.1.md` | Provenance specs consolidated under `spec/` |
+| `PROVENANCE/halos-provenance-model-v0.2-draft.md` | `spec/provenance/v0.2-draft.md` | Same |
+| `PROVENANCE/terminology.md` | `spec/terminology.md` | Terminology is spec content |
+| `examples/cyclonedx-embedded.json` | `examples/embedded/cyclonedx.json` | Embedded examples are envelope documents, not standalone provenance records; separated to clarify CI validation scope |
+| `examples/slsa-embedded.json` | `examples/embedded/slsa.json` | Same |
+
+---
+
 ## Versioning note
 
 The principles spec (`halos/spec/spec.md`) was labeled `v1.0.0` and is preserved as such in `PRINCIPLES/halos-principles-spec-v1.0.md`.

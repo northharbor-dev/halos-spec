@@ -12,7 +12,7 @@ You are adopting HALOS (Human-Agent Lineage and Origin Standard) into a reposito
 
 Fetch these files from the halos-spec repository before starting:
 
-1. **Principles** — `PRINCIPLES/halos-principles-v1.0.md` (read for full context)
+1. **Principles** — `spec/principles/v1.0.md` (read for full context)
 2. **Schema** — `spec/schema/halos-profile.schema.json` (validate your output)
 3. **Templates** — `adopt/templates/` (starting points for each artifact)
 
@@ -107,4 +107,4 @@ Summarize:
 2. Coverage assessment (strong / partial / gap by domain)
 3. Number and severity of conflicts found
 4. What human decisions are needed
-5. Pointer to Phase 2 (provenance) when ready: see `PROVENANCE/halos-provenance-spec-v0.1.md` and `profiles/`
+5. Pointer to Phase 2 (provenance) when ready: see `spec/provenance/v0.1.md` and `profiles/`

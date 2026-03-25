@@ -12,8 +12,8 @@ To adopt HALOS into a repository, read the agent prompt and follow its instructi
 
 ## Spec Resources
 
-- **Principles (readable):** [PRINCIPLES/halos-principles-v1.0.md](PRINCIPLES/halos-principles-v1.0.md)
-- **Provenance spec:** [PROVENANCE/halos-provenance-spec-v0.1.md](PROVENANCE/halos-provenance-spec-v0.1.md)
+- **Principles (readable):** [spec/principles/v1.0.md](spec/principles/v1.0.md)
+- **Provenance spec:** [spec/provenance/v0.1.md](spec/provenance/v0.1.md)
 - **Profile schema:** [spec/schema/halos-profile.schema.json](spec/schema/halos-profile.schema.json)
 - **Provenance schema:** [spec/schema/halos-provenance-v0.1.schema.json](spec/schema/halos-provenance-v0.1.schema.json)
 

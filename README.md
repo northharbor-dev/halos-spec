@@ -34,7 +34,7 @@ The HALOS Principles are the stable, normative foundation. They define the value
 - Transparency of AI involvement
 - Ethical guardrails
 
-See [`PRINCIPLES/halos-principles-v1.0.md`](PRINCIPLES/halos-principles-v1.0.md)
+See [`spec/principles/v1.0.md`](spec/principles/v1.0.md)
 
 ### Provenance
 
@@ -47,7 +47,7 @@ A provenance record captures:
 - Human review steps
 - Governance policy references
 
-See [`PROVENANCE/halos-provenance-spec-v0.1.md`](PROVENANCE/halos-provenance-spec-v0.1.md)
+See [`spec/provenance/v0.1.md`](spec/provenance/v0.1.md)
 
 ---
 
@@ -97,49 +97,65 @@ See [`mappings/cyclonedx-slsa.md`](mappings/cyclonedx-slsa.md) for details.
 
 ```
 halos-spec/
-├── PRINCIPLES/                         # HALOS Principles (stable)
-│   └── halos-principles-v1.0.md        # Human-readable principles
-│
-├── PROVENANCE/                         # HALOS Provenance Spec
-│   ├── halos-provenance-spec-v0.1.md   # Provenance spec (current)
-│   ├── halos-provenance-model-v0.2-draft.md  # Graph model (draft)
-│   └── terminology.md                  # Canonical term definitions
-│
-├── spec/
-│   └── schema/                         # JSON Schemas
-│       ├── halos-profile.schema.json   # Validates halos.yaml adoption profiles
-│       ├── halos-principles-v1.0.schema.json
+├── spec/                                    # All specification content
+│   ├── core.json                            # SOURCE OF TRUTH for HALOS principles
+│   ├── manifest.json                        # Spec manifest and metadata
+│   ├── changelog.json                       # Versioning changelog
+│   ├── terminology.md                       # Canonical term definitions
+│   ├── CANONICAL.md                         # Canonicity notes
+│   ├── principles/
+│   │   └── v1.0.md                          # DO NOT EDIT — generated from core.json
+│   ├── provenance/
+│   │   ├── v0.1.md                          # Active provenance spec
+│   │   └── v0.2-draft.md                    # Graph model (draft)
+│   └── schema/                              # JSON Schemas (Draft 2020-12)
+│       ├── core.schema.json
+│       ├── halos-profile.schema.json
 │       ├── halos-provenance-v0.1.schema.json
-│       └── halos-provenance-v0.2-draft.schema.json
+│       ├── halos-provenance-v0.2-draft.schema.json
+│       ├── manifest.schema.json
+│       ├── changelog.schema.json
+│       └── extension.schema.json
 │
-├── adopt/                              # Adoption toolkit
-│   ├── GUIDE.md                        # Step-by-step adoption guide
-│   ├── AGENT-PROMPT.md                 # Agent-executable adoption prompt
-│   └── templates/                      # Starter files for adopters
+├── examples/                                # Provenance record examples
+│   ├── minimal.json                         # Standalone — validated by CI
+│   └── embedded/                            # Embedded in other standards
+│       ├── cyclonedx.json                   # HALOS inside a CycloneDX SBOM
+│       └── slsa.json                        # HALOS as a SLSA predicate
 │
-├── profiles/                           # Domain-specific implementation guidance
-│   └── software-dev/                   # Git-based development profile
+├── adopt/                                   # Adoption toolkit
+│   ├── GUIDE.md
+│   ├── AGENT-PROMPT.md
+│   └── templates/
+│       ├── halos.yaml
+│       ├── HALOS-ADOPTION.md
+│       └── HALOS-CONFLICT-REGISTER.md
 │
-├── mappings/                           # Standard mappings
-│   └── cyclonedx-slsa.md              # CycloneDX and SLSA integration
+├── profiles/                                # Domain-specific implementation profiles
+│   └── software-dev/
 │
-├── examples/                           # Valid provenance records
-│   ├── minimal.json
-│   ├── cyclonedx-embedded.json
-│   └── slsa-embedded.json
+├── mappings/                                # Integration with external standards
+│   ├── cyclonedx-slsa.md
+│   └── enforcement-tooling.md
 │
-├── docs/                               # Supplementary documentation
-│   ├── explainer.md                    # Plain-language introduction
-│   └── migration-notes.md             # Historical migration record
+├── docs/                                    # Supplementary documentation
+│   ├── explainer.md
+│   └── migration-notes.md
 │
-├── plans/                              # Active work plans
-│   └── 001-repo-reorganization.md     # Current reorganization work
+├── scripts/
+│   ├── generate-principles.js              # Generates spec/principles/ from spec/core.json
+│   └── validate.js                         # JSON Schema validator (used by CI)
 │
-├── FOR_AGENTS.md                       # Agent discovery for adoption
+├── plans/                                   # Active work plans
+│
+├── .github/
+│   └── workflows/validate.yml              # CI validation pipeline
+│
+├── FOR_AGENTS.md
 ├── README.md
 ├── GOVERNANCE.md
 ├── CONTRIBUTING.md
-└── LICENSE
+└── LICENSE                                  # CC-BY-4.0
 ```
 
 ---
