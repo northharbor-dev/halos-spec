@@ -1,5 +1,4 @@
 {
-  "$comment": "Minimal valid HALOS provenance record — no AI assistance, no review",
   "halos_version": "0.1",
   "artifact": {
     "id": "urn:example:my-document-v1",

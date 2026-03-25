@@ -17,24 +17,26 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install ajv-cli and ajv-formats
-        run: npm install -g ajv-cli ajv-formats
+      - name: Install dependencies
+        run: npm install
 
       - name: Validate core.json against schema
-        run: ajv validate --spec=draft2020 -c ajv-formats -s spec/schema/core.schema.json -d spec/core.json
+        run: node scripts/validate.js -s spec/schema/core.schema.json spec/core.json
 
-      - name: Validate provenance examples against schema
+      - name: Validate standalone provenance examples against schema
         run: |
-          for f in examples/*.json; do
-            echo "Validating $f..."
-            ajv validate --spec=draft2020 -c ajv-formats -s spec/schema/halos-provenance-v0.1.schema.json -d "$f"
-          done
+          # Only validate standalone HALOS provenance records.
+          # cyclonedx-embedded.json and slsa-embedded.json are envelope documents
+          # (CycloneDX SBOM, in-toto Statement) — not standalone provenance records.
+          node scripts/validate.js \
+            -s spec/schema/halos-provenance-v0.1.schema.json \
+            examples/minimal.json
 
       - name: Validate manifest.json against schema
-        run: ajv validate --spec=draft2020 -c ajv-formats -s spec/schema/manifest.schema.json -d spec/manifest.json
+        run: node scripts/validate.js -s spec/schema/manifest.schema.json spec/manifest.json
 
       - name: Validate changelog.json against schema
-        run: ajv validate --spec=draft2020 -c ajv-formats -s spec/schema/changelog.schema.json -d spec/changelog.json
+        run: node scripts/validate.js -s spec/schema/changelog.schema.json spec/changelog.json
 
       - name: Check generated principles are up to date
         run: |
