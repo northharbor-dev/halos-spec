@@ -20,3 +20,4 @@ Plans describe the *design and rationale*. Issues track the *work items*. A plan
 | # | Title | Status |
 |---|---|---|
 | 001 | [Repo reorganization and adoption toolkit](001-repo-reorganization.md) | Active |
+| 002 | [Kubernetes enforcement and CI integration](002-kubernetes-enforcement.md) | Draft |
