@@ -1,0 +1,17 @@
+{
+  "$comment": "Minimal valid HALOS provenance record — no AI assistance, no review",
+  "halos_version": "0.1",
+  "artifact": {
+    "id": "urn:example:my-document-v1",
+    "type": "document",
+    "description": "A short report written without AI assistance",
+    "version": "1.0"
+  },
+  "human_author": {
+    "name": "Jane Smith",
+    "identifier": "https://github.com/janesmith",
+    "role": "originator"
+  },
+  "ai_assistance": [],
+  "timestamp": "2026-03-21T00:00:00Z"
+}

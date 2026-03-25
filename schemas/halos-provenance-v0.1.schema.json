@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://halos.northharbor.dev/spec/schemas/halos-provenance-v0.1.schema.json",
+  "title": "HALOS Provenance Record",
+  "description": "A structured declaration of how an artifact was created through human-agent collaboration (v0.1)",
+  "type": "object",
+  "required": ["halos_version", "artifact", "human_author", "ai_assistance", "timestamp"],
+  "properties": {
+    "halos_version": {
+      "type": "string",
+      "const": "0.1",
+      "description": "Version of the HALOS Provenance Spec this record conforms to"
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "A stable identifier for the artifact (URI, content hash, or versioned name)"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["code", "document", "dataset", "model", "design", "build", "other"],
+          "description": "Type of artifact"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of the artifact"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version of the artifact"
+        }
+      },
+      "additionalProperties": false
+    },
+    "human_author": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Display name of the accountable human author"
+        },
+        "identifier": {
+          "type": "string",
+          "description": "URI or handle identifying the author (e.g. GitHub username, ORCID, email)"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["originator", "reviewer", "editor", "contributor", "other"],
+          "description": "Role of the human author relative to this artifact"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ai_assistance": {
+      "type": "array",
+      "description": "AI contributions to this artifact. Empty array if no AI was used.",
+      "items": {
+        "type": "object",
+        "required": ["model", "role"],
+        "properties": {
+          "model": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Name or identifier of the AI model"
+          },
+          "provider": {
+            "type": "string",
+            "description": "Organization that provides the model"
+          },
+          "role": {
+            "type": "string",
+            "enum": ["generation", "drafting", "editing", "review", "assistance"],
+            "description": "How the AI contributed to the artifact"
+          },
+          "description": {
+            "type": "string",
+            "description": "Free-text description of the specific AI contribution"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 datetime when this provenance record was created"
+    },
+    "review": {
+      "type": "array",
+      "description": "Human review steps applied to the artifact",
+      "items": {
+        "type": "object",
+        "required": ["reviewer", "type"],
+        "properties": {
+          "reviewer": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Name or identifier of the reviewer"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["approval", "peer-review", "editorial", "other"],
+            "description": "Type of review performed"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the review occurred"
+          },
+          "notes": {
+            "type": "string",
+            "description": "Summary of review findings or outcome"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "governance": {
+      "type": "object",
+      "required": ["policy"],
+      "description": "Governance policy under which this artifact was produced",
+      "properties": {
+        "policy": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Name or identifier of the governance policy"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version of the policy"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the policy document"
+        }
+      },
+      "additionalProperties": false
+    },
+    "lineage": {
+      "type": "array",
+      "description": "IDs of parent artifacts this artifact was derived from",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-text notes about provenance"
+    }
+  },
+  "additionalProperties": false
+}

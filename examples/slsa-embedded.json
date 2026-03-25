@@ -1,0 +1,67 @@
+{
+  "$comment": "HALOS provenance as a SLSA predicate alongside a standard SLSA provenance document",
+  "_type": "https://in-toto.io/Statement/v0.1",
+  "subject": [
+    {
+      "name": "pkg:npm/my-library@2.1.0",
+      "digest": {
+        "sha256": "abc123def456..."
+      }
+    }
+  ],
+  "predicateType": "https://halos.northharbor.dev/provenance/v0.1",
+  "predicate": {
+    "halos_version": "0.1",
+    "artifact": {
+      "id": "pkg:npm/my-library@2.1.0",
+      "type": "code",
+      "description": "Utility library",
+      "version": "2.1.0"
+    },
+    "human_author": {
+      "name": "Bob Hong",
+      "identifier": "https://github.com/bobhong",
+      "role": "originator"
+    },
+    "ai_assistance": [
+      {
+        "model": "claude-sonnet-4-6",
+        "provider": "Anthropic",
+        "role": "generation",
+        "description": "Generated initial implementation from a human-authored specification"
+      }
+    ],
+    "review": [
+      {
+        "reviewer": "Bob Hong",
+        "type": "approval",
+        "timestamp": "2026-03-21T14:00:00Z",
+        "notes": "Human reviewed and approved AI-generated code before merge"
+      }
+    ],
+    "governance": {
+      "policy": "HALOS",
+      "version": "1.0",
+      "url": "https://halos.northharbor.dev"
+    },
+    "lineage": [],
+    "timestamp": "2026-03-21T14:05:00Z"
+  },
+  "$slsa_context": {
+    "$comment": "A companion SLSA provenance document would typically be included alongside this record",
+    "predicateType": "https://slsa.dev/provenance/v0.2",
+    "predicate": {
+      "builder": {
+        "id": "https://github.com/actions/runner"
+      },
+      "buildType": "https://github.com/slsa-framework/slsa-github-generator/generic@v1",
+      "invocation": {
+        "configSource": {
+          "uri": "git+https://github.com/example/my-library@refs/heads/main",
+          "digest": { "sha1": "abc123" },
+          "entryPoint": ".github/workflows/release.yml"
+        }
+      }
+    }
+  }
+}

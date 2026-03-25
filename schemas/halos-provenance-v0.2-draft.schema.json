@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://halos.northharbor.dev/spec/schemas/halos-provenance-v0.2-draft.schema.json",
+  "title": "HALOS Provenance Record (v0.2 Draft)",
+  "description": "Extends v0.1 with an optional graph model for entity-activity-relationship provenance",
+  "$comment": "This schema is a draft. Do not use in production.",
+  "allOf": [
+    { "$ref": "halos-provenance-v0.1.schema.json" },
+    {
+      "properties": {
+        "halos_version": {
+          "const": "0.2-draft"
+        },
+        "graph": {
+          "type": "object",
+          "description": "Optional graph representation of provenance as entities, activities, and relationships",
+          "properties": {
+            "entities": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["id", "type", "label"],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Stable local identifier for this entity within the record"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": ["artifact", "person", "agent", "organization"]
+                  },
+                  "label": {
+                    "type": "string",
+                    "description": "Human-readable name"
+                  },
+                  "identifier": {
+                    "type": "string",
+                    "description": "External URI or handle"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "activities": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["id", "type"],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Stable local identifier for this activity"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": ["create", "generate", "edit", "review", "approve", "derive", "other"]
+                  },
+                  "startedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "endedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "relationships": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["type", "from", "to"],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "wasGeneratedBy",
+                      "wasAttributedTo",
+                      "used",
+                      "wasAssociatedWith",
+                      "wasDerivedFrom",
+                      "actedOnBehalfOf"
+                    ]
+                  },
+                  "from": {
+                    "type": "string",
+                    "description": "ID of the source entity or activity"
+                  },
+                  "to": {
+                    "type": "string",
+                    "description": "ID of the target entity or activity"
+                  },
+                  "notes": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  ]
+}

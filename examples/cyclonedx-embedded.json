@@ -1,0 +1,61 @@
+{
+  "$comment": "HALOS provenance embedded as a custom property in a CycloneDX component",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "components": [
+    {
+      "type": "library",
+      "name": "my-library",
+      "version": "2.1.0",
+      "description": "A utility library generated with AI assistance and reviewed by a human",
+      "properties": [
+        {
+          "name": "halos:provenance",
+          "value": {
+            "halos_version": "0.1",
+            "artifact": {
+              "id": "urn:pkg:npm/my-library@2.1.0",
+              "type": "code",
+              "description": "Utility library",
+              "version": "2.1.0"
+            },
+            "human_author": {
+              "name": "Bob Hong",
+              "identifier": "https://github.com/bobhong",
+              "role": "originator"
+            },
+            "ai_assistance": [
+              {
+                "model": "claude-sonnet-4-6",
+                "provider": "Anthropic",
+                "role": "generation",
+                "description": "Generated initial implementation of core utility functions"
+              },
+              {
+                "model": "claude-sonnet-4-6",
+                "provider": "Anthropic",
+                "role": "review",
+                "description": "Reviewed for edge cases and suggested error handling improvements"
+              }
+            ],
+            "review": [
+              {
+                "reviewer": "Bob Hong",
+                "type": "approval",
+                "timestamp": "2026-03-21T14:00:00Z",
+                "notes": "Reviewed AI-generated code, confirmed logic correct, merged after minor edits"
+              }
+            ],
+            "governance": {
+              "policy": "HALOS",
+              "version": "1.0",
+              "url": "https://halos.northharbor.dev"
+            },
+            "timestamp": "2026-03-21T14:05:00Z"
+          }
+        }
+      ]
+    }
+  ]
+}
