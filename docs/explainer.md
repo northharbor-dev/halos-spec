@@ -58,7 +58,7 @@ A person uses AI assistance (or doesn't) to create something: code, a document, 
 
 ### Step 2: Author writes a provenance record
 
-Using the [HALOS Provenance Spec](../PROVENANCE/halos-provenance-spec-v0.1.md), they create a `.halos.json` file or embed a `halos:provenance` property in an existing metadata document.
+Using the [HALOS Provenance Spec](../spec/provenance/v0.1.md), they create a `.halos.json` file or embed a `halos:provenance` property in an existing metadata document.
 
 The record states:
 - What the artifact is
@@ -124,7 +124,7 @@ HALOS is designed to complement, not compete with, existing standards:
 - **Agent skills / OSSA** — HALOS principles can govern how agents declare and exercise their capabilities
 - **APAAI** — HALOS provenance can serve as evidence within an APAAI audit trail
 
-See [`mapping-cyclonedx-slsa.md`](mapping-cyclonedx-slsa.md) for technical mapping details.
+See [`cyclonedx-slsa.md`](../mappings/cyclonedx-slsa.md) for technical mapping details.
 
 ---
 

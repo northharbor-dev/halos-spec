@@ -41,7 +41,7 @@ Roles are intentionally lightweight at this stage.
 ## Proposal Process
 
 1. **Draft** — Open an issue describing the change and its motivation
-2. **Review** — Community reviews for alignment with [principles](PRINCIPLES/halos-principles-v1.0.md), clarity, and feasibility
+2. **Review** — Community reviews for alignment with [principles](spec/principles/v1.0.md), clarity, and feasibility
 3. **Revision** — Author incorporates feedback; proposal may go through multiple rounds
 4. **Submit** — Open a pull request with the proposed changes
 5. **Decision** — A maintainer accepts, defers, or rejects with documented rationale
@@ -58,7 +58,7 @@ Proposals may cover:
 - **Process changes** — adjustments to governance itself
 - **Principle changes** — rare; requires exceptional justification
 
-Proposals that conflict with [principles](PRINCIPLES/halos-principles-v1.0.md) should explain why the principle should change rather than why the proposal should override it.
+Proposals that conflict with [principles](spec/principles/v1.0.md) should explain why the principle should change rather than why the proposal should override it.
 
 ---
 

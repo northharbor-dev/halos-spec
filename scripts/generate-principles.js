@@ -17,7 +17,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
 const core = JSON.parse(readFileSync(resolve(root, 'spec/core.json'), 'utf-8'));
-const outputPath = resolve(root, 'PRINCIPLES/halos-principles-v1.0.md');
+const outputPath = resolve(root, 'spec/principles/v1.0.md');
 
 // Map requirement IDs to section numbers
 const sectionNumber = (id) => parseInt(id.replace('HALOS-CORE-', ''), 10);

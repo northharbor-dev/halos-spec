@@ -11,7 +11,7 @@ Thank you for your interest in HALOS. This repository contains the canonical spe
 The primary way to shape this specification is through **proposals**. Proposals follow an RFC-style process:
 
 1. **Draft** — Open an issue describing the change and its motivation
-2. **Discuss** — Community reviews for alignment with [principles](PRINCIPLES/halos-principles-v1.0.md), clarity, and feasibility
+2. **Discuss** — Community reviews for alignment with [principles](spec/principles/v1.0.md), clarity, and feasibility
 3. **Submit** — Open a pull request with the proposed changes
 4. **Review** — Maintainers and reviewers evaluate against [decision criteria](GOVERNANCE.md)
 5. **Decide** — Accepted changes are merged; rejected proposals are documented with rationale

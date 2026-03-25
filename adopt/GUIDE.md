@@ -9,7 +9,7 @@ This guide is designed for both humans and AI agents. For an agent-executable ve
 ## Prerequisites
 
 - A repository you want to adopt HALOS in
-- Familiarity with the [HALOS Principles](../PRINCIPLES/halos-principles-v1.0.md)
+- Familiarity with the [HALOS Principles](../spec/principles/v1.0.md)
 - Access to [spec/core.json](../spec/core.json) for machine-readable requirements (available after Phase 2 spec migration)
 
 ---
@@ -102,7 +102,7 @@ Add provenance tracking for artifacts produced in your repo. This is where HALOS
 
 #### Step 1: Choose a domain profile
 
-Check [profiles/](../profiles/) for a profile matching your domain (e.g., `software-dev` for SLSA/CycloneDX shops). If none fits, you can create provenance records directly using the [HALOS Provenance Spec](../PROVENANCE/halos-provenance-spec-v0.1.md).
+Check [profiles/](../profiles/) for a profile matching your domain (e.g., `software-dev` for SLSA/CycloneDX shops). If none fits, you can create provenance records directly using the [HALOS Provenance Spec](../spec/provenance/v0.1.md).
 
 #### Step 2: Create provenance records
 
@@ -148,8 +148,8 @@ npx ajv-cli validate --spec=draft2020 \
 
 ## References
 
-- [HALOS Principles](../PRINCIPLES/halos-principles-v1.0.md) — the eight core principles
-- [HALOS Provenance Spec](../PROVENANCE/halos-provenance-spec-v0.1.md) — provenance record structure
+- [HALOS Principles](../spec/principles/v1.0.md) — the eight core principles
+- [HALOS Provenance Spec](../spec/provenance/v0.1.md) — provenance record structure
 - [Explainer](../docs/explainer.md) — plain-language introduction to HALOS
 - [Whitepaper](https://github.com/northharbor-dev/halos/blob/main/docs/whitepaper.md) — formal positioning paper on HALOS and supply chain integration
 - [CycloneDX/SLSA Mapping](../mappings/cyclonedx-slsa.md) — how HALOS maps to existing standards

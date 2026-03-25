@@ -41,7 +41,7 @@ jobs:
       - name: Check generated principles are up to date
         run: |
           node scripts/generate-principles.js
-          if ! git diff --exit-code PRINCIPLES/halos-principles-v1.0.md; then
-            echo "::error::PRINCIPLES/halos-principles-v1.0.md is out of date with spec/core.json. Run: node scripts/generate-principles.js"
+          if ! git diff --exit-code spec/principles/v1.0.md; then
+            echo "::error::spec/principles/v1.0.md is out of date with spec/core.json. Run: node scripts/generate-principles.js"
             exit 1
           fi

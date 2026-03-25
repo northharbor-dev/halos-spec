@@ -64,7 +64,7 @@ Or reference it in `component.evidence`:
 }
 ```
 
-See [`../examples/cyclonedx-embedded.json`](../examples/cyclonedx-embedded.json) for a complete example.
+See [`../examples/embedded/cyclonedx.json`](../examples/embedded/cyclonedx.json) for a complete example.
 
 ---
 
@@ -89,7 +89,7 @@ Express HALOS provenance as a SLSA predicate using the `in-toto` attestation env
 
 A HALOS predicate can accompany a standard SLSA provenance predicate in the same attestation bundle.
 
-See [`../examples/slsa-embedded.json`](../examples/slsa-embedded.json) for a complete example.
+See [`../examples/embedded/slsa.json`](../examples/embedded/slsa.json) for a complete example.
 
 ---
 
