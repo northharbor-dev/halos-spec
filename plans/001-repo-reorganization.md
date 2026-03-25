@@ -275,7 +275,7 @@ Point an agent at this file to adopt HALOS in any repository.
 - [x] Create `plans/` directory with README and this plan
 - [x] Delete stale `migration-plan.md` and `actions-plan.md`
 - [x] Create `spec/schema/halos-profile.schema.json` — schema for the `halos.yaml` adoption profile
-- [ ] Create `scripts/generate-principles.js` — renders `core.json` → `PRINCIPLES/halos-principles-v1.0.md`
+- [x] Create `scripts/generate-principles.js` — renders `core.json` → `PRINCIPLES/halos-principles-v1.0.md`
 - [x] Remove `PRINCIPLES/halos-principles-spec-v1.0.md` (redundant with `core.json`)
 - [x] Consolidate `schemas/` → `spec/schema/` (move principles + provenance schemas, reconcile duplicates)
 - [x] Move `docs/mapping-cyclonedx-slsa.md` → `mappings/cyclonedx-slsa.md`
@@ -288,13 +288,12 @@ Point an agent at this file to adopt HALOS in any repository.
 
 ### Phase 2: Spec migration (cross-repo)
 
-- [ ] Copy `halos/spec/manifest.json`, `core.json`, `changelog.json` → `halos-spec/spec/`
-- [ ] Copy `halos/spec/schema/manifest.schema.json`, `extension.schema.json`, `changelog.schema.json` → `halos-spec/spec/schema/`
-- [ ] Reconcile `core.schema.json` — adopt stricter version, discard looser one
-- [ ] Update `spec/manifest.json` URLs to point to halos-spec
-- [ ] Update `spec/core.json` source links to point to halos-spec paths
-- [ ] In `halos`: replace `spec/` content with stubs that redirect to halos-spec
-- [ ] In `halos`: update Jekyll site to reference halos-spec URLs
+- [x] Copy `halos/spec/manifest.json`, `core.json`, `changelog.json` → `halos-spec/spec/`
+- [x] Copy `halos/spec/schema/manifest.schema.json`, `extension.schema.json`, `changelog.schema.json` → `halos-spec/spec/schema/`
+- [x] Reconcile `core.schema.json` — adopt stricter version, discard looser one
+- [x] Update `spec/core.json` source links to point to halos-spec paths
+- [ ] In `halos`: replace `spec/` content with stubs that redirect to halos-spec (deferred — Jekyll site depends on these files; requires separate PR with site testing)
+- [ ] In `halos`: update Jekyll site to reference halos-spec URLs (deferred — same dependency)
 
 ### Phase 3: Agent discovery cleanup (halos repo)
 

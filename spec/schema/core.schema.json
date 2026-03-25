@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://halos.northharbor.dev/spec/schemas/halos-principles-v1.0.schema.json",
-  "title": "HALOS Principles Spec",
+  "$id": "https://halos.northharbor.dev/spec/schema/core.schema.json",
+  "title": "HALOS Core Requirements",
   "description": "Machine-readable requirements for HALOS core alignment (v1.0)",
   "type": "object",
   "required": ["version", "requirements"],
@@ -9,7 +9,7 @@
     "version": {
       "type": "string",
       "pattern": "^\\d+\\.\\d+\\.\\d+(-[a-zA-Z0-9.-]+)?(\\+[a-zA-Z0-9.-]+)?$",
-      "description": "Semantic version of the principles spec"
+      "description": "Semantic version of the core spec"
     },
     "requirements": {
       "type": "array",
