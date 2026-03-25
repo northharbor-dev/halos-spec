@@ -30,16 +30,19 @@ Typos, broken links, and formatting corrections can be submitted as direct pull 
 
 ## What Belongs Here
 
-This repository contains specification-level content only:
+This repository contains specification-level content and adoption tooling:
 
 - Principles documents
 - Provenance and attribution specifications
-- JSON Schemas
+- JSON Schemas (in `spec/schema/`)
 - Canonical examples
 - Terminology definitions
-- Governance of the spec itself
+- Adoption toolkit (`adopt/`) — guide, agent prompt, templates
+- Domain profiles (`profiles/`) — implementation guidance for specific toolchains
+- Standard mappings (`mappings/`) — how HALOS maps to CycloneDX, SLSA, etc.
+- Work plans (`plans/`) — design and rationale for significant work
 
-**Site content, narrative, blog posts, and organizational content belong in the main HALOS repository, not here.**
+**Site content, narrative, blog posts, and organizational content belong in the main [HALOS repository](https://github.com/northharbor-dev/halos), not here.**
 
 ---
 

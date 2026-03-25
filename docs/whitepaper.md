@@ -22,6 +22,8 @@ HALOS (Human–Agent Lineage & Oversight Specification) introduces:
 * A **provenance model** (Provenance Spec)
 * A pathway to **enforcement** through systems like Chainloop
 
+SLSA, CycloneDX, and Chainloop are **example implementations** of the layers that HALOS integrates with — they are not the only options. HALOS is designed to be implementation-agnostic, and alternate systems are expected to fulfill these roles depending on the domain, industry, or organizational context.
+
 This paper outlines how HALOS integrates with modern supply chain frameworks to create a **verifiable, enforceable model for human–AI collaboration**.
 
 ---
@@ -254,12 +256,14 @@ HALOS is not a replacement for existing standards.
 
 It is a **missing semantic layer**.
 
-| Layer     | Responsibility                              |
-| --------- | ------------------------------------------- |
-| CycloneDX | What is in the system                       |
-| SLSA      | How it was built                            |
-| HALOS     | Who contributed and why decisions were made |
-| Chainloop | Whether it is allowed                       |
+The following table illustrates how HALOS relates to complementary systems. The named tools are **representative examples**, not exclusive requirements — alternate implementations are expected based on domain, industry, and organizational needs.
+
+| Layer        | Responsibility                             | Example Implementations  |
+| ------------ | ------------------------------------------ | ------------------------ |
+| Transparency | What is in the system                      | CycloneDX, SPDX, SWID   |
+| Integrity    | How it was built                           | SLSA, in-toto, Sigstore  |
+| **HALOS**    | Who contributed and why decisions were made | —                        |
+| Enforcement  | Whether it is allowed                      | Chainloop, OPA, Kyverno |
 
 ---
 

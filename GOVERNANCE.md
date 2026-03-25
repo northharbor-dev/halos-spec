@@ -4,6 +4,12 @@ How halos-spec evolves through public stewardship, proposals, and review.
 
 ---
 
+## Scope
+
+This document governs the **halos-spec** repository: specifications, schemas, adoption tooling, profiles, and mappings. For community governance (proposals process, signatory registry, and broader framework stewardship), see the [HALOS community repository](https://github.com/northharbor-dev/halos).
+
+---
+
 ## Purpose
 
 Governance exists to keep HALOS credible, coherent, and responsive. It answers: who can propose changes? How are proposals reviewed? Who decides? The process should be lightweight enough to avoid paralysis and rigorous enough to maintain quality.

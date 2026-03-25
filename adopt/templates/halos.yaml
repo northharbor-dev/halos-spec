@@ -1,0 +1,114 @@
+# HALOS Governance Profile
+# See: https://github.com/northharbor-dev/halos-spec/blob/main/adopt/GUIDE.md
+# Schema: spec/schema/halos-profile.schema.json
+
+apiVersion: halos.northharbor.dev/v1alpha1
+kind: HalosProfile
+
+metadata:
+  name: <project-name>
+  description: >
+    HALOS governance profile for <project description>.
+  owner: <organization or individual>
+  maturity: experimental
+  adoptionModel: brownfield  # or greenfield
+
+spec:
+
+  principles:
+    humanPrimacy: required
+    attribution: encouraged
+    provenance: encouraged
+    transparency: required
+    conflictDisclosure: required
+    # Additional principles — set as appropriate:
+    # ideasAsAssets: encouraged
+    # ethicalGuardrails: required
+    # evolvingStandards: recommended
+    # governanceThroughProposal: recommended
+    # innovationWithAccountability: encouraged
+
+  agentModel:
+    existingAgents: []
+    # Example:
+    # - name: AgentName
+    #   role: domain-description
+
+    behavior:
+      overrideExistingRules: forbidden
+      silentConflictResolution: forbidden
+      humanEscalationRequiredFor:
+        - governance_changes
+        - destructive_actions
+        - policy_conflicts
+
+  governance:
+
+    decisionMaking:
+      humanApprovalRequired:
+        - policy_changes
+        - enforcement_changes
+        - workflow_modifications
+
+    conflictHandling:
+      required: true
+      format: structured
+      escalation: human_required
+
+  adoption:
+
+    mode: brownfield  # or greenfield
+
+    phases:
+      - discover
+      - map
+      - flag
+      - propose
+      - escalate
+      - implement
+
+    currentPhase: discover
+
+    allowedActions:
+      additiveChanges: true
+      overlays: true
+      mappingDocs: true
+
+    restrictedActions:
+      breakingChanges: require_human_approval
+      enforcementChanges: require_human_approval
+
+  provenance:
+
+    capture:
+      conversations: disabled  # or enabled, partial
+      artifacts: disabled       # or enabled, partial
+
+    storage:
+      primary: ""    # e.g., mongodb, postgres, filesystem
+      secondary: ""  # e.g., github, s3
+
+    requirements:
+      labelAIInvolvement: recommended
+      distinguishHumanVsAI: recommended
+
+  workflows:
+
+    pullRequests:
+      requireHumanReview: true
+      allowAIGeneratedContent: true
+      requireAttribution: recommended
+
+    ci:
+      halosChecks:
+        enabled: false
+        mode: advisory
+
+  compatibility:
+
+    existingMappings: {}
+    # Example:
+    # CLAUDE.md: agent_behavior_contract
+    # engineering/decisions: decision_provenance
+
+    conflicts: []

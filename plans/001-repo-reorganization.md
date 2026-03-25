@@ -274,17 +274,17 @@ Point an agent at this file to adopt HALOS in any repository.
 
 - [x] Create `plans/` directory with README and this plan
 - [x] Delete stale `migration-plan.md` and `actions-plan.md`
-- [ ] Create `spec/schema/halos-profile.schema.json` — schema for the `halos.yaml` adoption profile
+- [x] Create `spec/schema/halos-profile.schema.json` — schema for the `halos.yaml` adoption profile
 - [ ] Create `scripts/generate-principles.js` — renders `core.json` → `PRINCIPLES/halos-principles-v1.0.md`
-- [ ] Remove `PRINCIPLES/halos-principles-spec-v1.0.md` (redundant with `core.json`)
-- [ ] Consolidate `schemas/` → `spec/schema/` (move principles + provenance schemas, reconcile duplicates)
-- [ ] Move `docs/mapping-cyclonedx-slsa.md` → `mappings/cyclonedx-slsa.md`
-- [ ] Create `adopt/` with GUIDE.md (two-phase), AGENT-PROMPT.md, and templates
-- [ ] Create `profiles/` with README and `software-dev/` stub
-- [ ] Create `FOR_AGENTS.md` (outward-facing adoption discovery)
-- [ ] Update `README.md` to reflect new structure (include whitepaper in docs listing)
-- [ ] Update `CONTRIBUTING.md` to mention plans, profiles, adopt, generation workflow
-- [ ] Clarify `GOVERNANCE.md` scope — spec governance vs community governance (see D11)
+- [x] Remove `PRINCIPLES/halos-principles-spec-v1.0.md` (redundant with `core.json`)
+- [x] Consolidate `schemas/` → `spec/schema/` (move principles + provenance schemas, reconcile duplicates)
+- [x] Move `docs/mapping-cyclonedx-slsa.md` → `mappings/cyclonedx-slsa.md`
+- [x] Create `adopt/` with GUIDE.md (two-phase), AGENT-PROMPT.md, and templates
+- [x] Create `profiles/` with README and `software-dev/` stub
+- [x] Create `FOR_AGENTS.md` (outward-facing adoption discovery)
+- [x] Update `README.md` to reflect new structure (include whitepaper in docs listing)
+- [x] Update `CONTRIBUTING.md` to mention plans, profiles, adopt, generation workflow
+- [x] Clarify `GOVERNANCE.md` scope — spec governance vs community governance (see D11)
 
 ### Phase 2: Spec migration (cross-repo)
 

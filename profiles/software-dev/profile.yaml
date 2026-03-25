@@ -1,0 +1,105 @@
+# HALOS Profile: Software Development
+# Maps HALOS principles to Git-based software development toolchains
+
+specVersion: "1.0.0"
+domain: software-dev
+status: stub
+
+description: >
+  Implementation guidance for teams using Git, pull requests, CI/CD,
+  and package/container artifact publishing.
+
+mappings:
+  HALOS-CORE-1:
+    title: Human Primacy
+    tools:
+      - name: CODEOWNERS
+        purpose: Require human review for governance files
+      - name: Branch protection
+        purpose: Prevent direct pushes to main without review
+    notes: >
+      Governance files (CLAUDE.md, AGENTS.md, halos.yaml, standards/)
+      should require human review via CODEOWNERS or equivalent.
+
+  HALOS-CORE-2:
+    title: Ideas as Assets
+    tools:
+      - name: Git history
+        purpose: Preserve contributor attribution
+      - name: LICENSE
+        purpose: Declare intellectual property terms
+    notes: >
+      Git naturally preserves authorship. Ensure commit author identity
+      is accurate and that AI-assisted commits are distinguished.
+
+  HALOS-CORE-3:
+    title: Attribution and Provenance
+    tools:
+      - name: Commit trailers
+        purpose: "AI-Assisted: <tool>/<model> trailer on AI-assisted commits"
+      - name: CycloneDX
+        purpose: Embed HALOS provenance as component evidence in SBOM
+      - name: SLSA
+        purpose: Supplement SLSA provenance with human-authorship fields
+    notes: >
+      The commit trailer convention is the minimum. CycloneDX and SLSA
+      integration provide artifact-level provenance for published packages.
+
+  HALOS-CORE-4:
+    title: Transparency of AI Involvement
+    tools:
+      - name: PR templates
+        purpose: AI disclosure checkbox in pull request template
+      - name: Advisory CI checks
+        purpose: Non-blocking reminder when governance files change
+    notes: >
+      Transparency at the PR level catches AI involvement before merge.
+      Advisory checks surface it without blocking workflow.
+
+  HALOS-CORE-5:
+    title: Ethical Guardrails
+    tools:
+      - name: CLAUDE.md
+        purpose: Agent behavior contract
+      - name: .cursor/rules/
+        purpose: Agent constraints and trigger conditions
+      - name: Command approval policy
+        purpose: Blocklist/allowlist for agent-executed commands
+    notes: >
+      Agent behavioral constraints should be versioned in the repo,
+      not stored in local machine config.
+
+  HALOS-CORE-6:
+    title: Evolving Standards, Stable Principles
+    tools:
+      - name: ADRs
+        purpose: Architecture Decision Records for structural changes
+      - name: Standards directory
+        purpose: Versioned engineering standards
+    notes: >
+      ADRs capture the "why" of decisions. Standards capture the "what".
+      Both should be repo-versioned and indexed.
+
+  HALOS-CORE-7:
+    title: Governance Through Proposal
+    tools:
+      - name: GOVERNANCE.md
+        purpose: Document decision-making process
+      - name: GitHub Issues / RFCs
+        purpose: Structured proposal and review workflow
+    notes: >
+      Governance process should be documented and followed. Changes to
+      governance itself should go through the same process.
+
+  HALOS-CORE-8:
+    title: Innovation with Accountability
+    tools:
+      - name: SLSA provenance
+        purpose: Verifiable build provenance for published artifacts
+      - name: Chainloop
+        purpose: Attestation collection and policy enforcement
+      - name: Sigstore / cosign
+        purpose: Signed artifacts for supply chain verification
+    notes: >
+      For published artifacts, provenance should be verifiable. Chainloop
+      or similar platforms can enforce HALOS provenance as a release gate.

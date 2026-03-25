@@ -1,0 +1,339 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://halos.northharbor.dev/spec/schema/halos-profile.schema.json",
+  "title": "HALOS Profile",
+  "description": "Schema for halos.yaml — a governance profile declaring how a repository adopts HALOS principles",
+  "type": "object",
+  "required": ["apiVersion", "kind", "metadata", "spec"],
+  "properties": {
+    "apiVersion": {
+      "type": "string",
+      "pattern": "^halos\\.northharbor\\.dev/v[a-zA-Z0-9]+$",
+      "description": "API version of the HALOS profile schema (e.g. halos.northharbor.dev/v1alpha1)"
+    },
+    "kind": {
+      "type": "string",
+      "const": "HalosProfile",
+      "description": "Resource kind — must be HalosProfile"
+    },
+    "metadata": {
+      "$ref": "#/$defs/metadata"
+    },
+    "spec": {
+      "$ref": "#/$defs/spec"
+    }
+  },
+  "additionalProperties": false,
+
+  "$defs": {
+    "adoptionLevel": {
+      "type": "string",
+      "enum": ["required", "encouraged", "recommended", "optional", "not_applicable"],
+      "description": "Level of adoption for a principle or requirement"
+    },
+
+    "actionPolicy": {
+      "type": "string",
+      "enum": ["allowed", "forbidden", "require_human_approval"],
+      "description": "Policy for an agent or workflow action"
+    },
+
+    "enablement": {
+      "type": "string",
+      "enum": ["enabled", "disabled", "partial"],
+      "description": "Whether a capability is enabled"
+    },
+
+    "metadata": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Short identifier for this profile (typically the repo or project name)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of the project and its HALOS adoption"
+        },
+        "owner": {
+          "type": "string",
+          "description": "Organization or individual responsible for this profile"
+        },
+        "maturity": {
+          "type": "string",
+          "enum": ["experimental", "stable", "deprecated"],
+          "description": "Maturity level of this HALOS adoption"
+        },
+        "adoptionModel": {
+          "type": "string",
+          "enum": ["brownfield", "greenfield"],
+          "description": "Whether HALOS is being integrated into an existing system (brownfield) or a new one (greenfield)"
+        },
+        "specVersion": {
+          "type": "string",
+          "description": "Version of the HALOS spec this profile targets (e.g. 1.0.0)"
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "spec": {
+      "type": "object",
+      "properties": {
+        "principles": {
+          "$ref": "#/$defs/principles"
+        },
+        "agentModel": {
+          "$ref": "#/$defs/agentModel"
+        },
+        "governance": {
+          "$ref": "#/$defs/governance"
+        },
+        "adoption": {
+          "$ref": "#/$defs/adoption"
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        },
+        "workflows": {
+          "$ref": "#/$defs/workflows"
+        },
+        "compatibility": {
+          "$ref": "#/$defs/compatibility"
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "principles": {
+      "type": "object",
+      "description": "Adoption level for each HALOS core principle. Keys map to HALOS-CORE requirements.",
+      "properties": {
+        "humanPrimacy": { "$ref": "#/$defs/adoptionLevel" },
+        "ideasAsAssets": { "$ref": "#/$defs/adoptionLevel" },
+        "attribution": { "$ref": "#/$defs/adoptionLevel" },
+        "provenance": { "$ref": "#/$defs/adoptionLevel" },
+        "transparency": { "$ref": "#/$defs/adoptionLevel" },
+        "ethicalGuardrails": { "$ref": "#/$defs/adoptionLevel" },
+        "evolvingStandards": { "$ref": "#/$defs/adoptionLevel" },
+        "governanceThroughProposal": { "$ref": "#/$defs/adoptionLevel" },
+        "innovationWithAccountability": { "$ref": "#/$defs/adoptionLevel" },
+        "conflictDisclosure": { "$ref": "#/$defs/adoptionLevel" }
+      },
+      "additionalProperties": false
+    },
+
+    "agentModel": {
+      "type": "object",
+      "description": "Agent definitions and behavioral constraints",
+      "properties": {
+        "existingAgents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "role"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Agent name"
+              },
+              "role": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Agent role or domain (e.g. platform-engineering, security-analysis)"
+              },
+              "description": {
+                "type": "string",
+                "description": "What this agent does"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "behavior": {
+          "type": "object",
+          "properties": {
+            "overrideExistingRules": { "$ref": "#/$defs/actionPolicy" },
+            "silentConflictResolution": { "$ref": "#/$defs/actionPolicy" },
+            "humanEscalationRequiredFor": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Categories of action that require human escalation"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "governance": {
+      "type": "object",
+      "description": "Decision-making and conflict handling policies",
+      "properties": {
+        "decisionMaking": {
+          "type": "object",
+          "properties": {
+            "humanApprovalRequired": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Categories of decision that require human approval"
+            }
+          },
+          "additionalProperties": false
+        },
+        "conflictHandling": {
+          "type": "object",
+          "properties": {
+            "required": {
+              "type": "boolean",
+              "description": "Whether conflict handling is required"
+            },
+            "format": {
+              "type": "string",
+              "enum": ["structured", "prose", "unspecified"],
+              "description": "Required format for conflict reports"
+            },
+            "escalation": {
+              "type": "string",
+              "enum": ["human_required", "agent_allowed", "unspecified"],
+              "description": "Who resolves conflicts"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "adoption": {
+      "type": "object",
+      "description": "Adoption state and constraints",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["brownfield", "greenfield"],
+          "description": "Adoption model"
+        },
+        "phases": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Ordered list of adoption phases"
+        },
+        "currentPhase": {
+          "type": "string",
+          "description": "Current adoption phase"
+        },
+        "allowedActions": {
+          "type": "object",
+          "additionalProperties": { "type": "boolean" },
+          "description": "Actions permitted during adoption"
+        },
+        "restrictedActions": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/actionPolicy" },
+          "description": "Actions requiring approval during adoption"
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "provenance": {
+      "type": "object",
+      "description": "How provenance and attribution are captured",
+      "properties": {
+        "capture": {
+          "type": "object",
+          "properties": {
+            "conversations": { "$ref": "#/$defs/enablement" },
+            "artifacts": { "$ref": "#/$defs/enablement" }
+          },
+          "additionalProperties": false
+        },
+        "storage": {
+          "type": "object",
+          "properties": {
+            "primary": {
+              "type": "string",
+              "description": "Primary provenance storage system"
+            },
+            "secondary": {
+              "type": "string",
+              "description": "Secondary/backup provenance storage"
+            }
+          },
+          "additionalProperties": false
+        },
+        "requirements": {
+          "type": "object",
+          "properties": {
+            "labelAIInvolvement": { "$ref": "#/$defs/adoptionLevel" },
+            "distinguishHumanVsAI": { "$ref": "#/$defs/adoptionLevel" },
+            "standard": {
+              "type": "string",
+              "description": "Reference to a standard governing provenance (e.g. STD-005)"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "workflows": {
+      "type": "object",
+      "description": "Integration with development workflows",
+      "properties": {
+        "pullRequests": {
+          "type": "object",
+          "properties": {
+            "requireHumanReview": { "type": "boolean" },
+            "allowAIGeneratedContent": { "type": "boolean" },
+            "requireAttribution": { "$ref": "#/$defs/adoptionLevel" }
+          },
+          "additionalProperties": false
+        },
+        "ci": {
+          "type": "object",
+          "properties": {
+            "halosChecks": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "mode": {
+                  "type": "string",
+                  "enum": ["advisory", "blocking"],
+                  "description": "Whether HALOS CI checks block or advise"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "compatibility": {
+      "type": "object",
+      "description": "Mapping of existing repo artifacts to HALOS concepts",
+      "properties": {
+        "existingMappings": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "Map of repo paths/artifacts to HALOS concept names"
+        },
+        "conflicts": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of known conflicts between existing practices and HALOS"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
