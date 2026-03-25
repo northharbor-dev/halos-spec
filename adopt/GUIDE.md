@@ -151,5 +151,5 @@ npx ajv-cli validate --spec=draft2020 \
 - [HALOS Principles](../PRINCIPLES/halos-principles-v1.0.md) — the eight core principles
 - [HALOS Provenance Spec](../PROVENANCE/halos-provenance-spec-v0.1.md) — provenance record structure
 - [Explainer](../docs/explainer.md) — plain-language introduction to HALOS
-- [Whitepaper](../docs/whitepaper.md) — formal positioning paper on HALOS and supply chain integration
+- [Whitepaper](https://github.com/northharbor-dev/halos/blob/main/docs/whitepaper.md) — formal positioning paper on HALOS and supply chain integration
 - [CycloneDX/SLSA Mapping](../mappings/cyclonedx-slsa.md) — how HALOS maps to existing standards

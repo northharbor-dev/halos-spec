@@ -19,7 +19,7 @@ HALOS defines how to describe, record, and verify the origin of work created thr
 
 HALOS does not define how agents work. It defines how the *provenance* of their output is recorded.
 
-For a plain-language introduction, see the [explainer](docs/explainer.md). For a formal positioning paper, see the [whitepaper](docs/whitepaper.md).
+For a plain-language introduction, see the [explainer](docs/explainer.md). For a formal positioning paper, see the [whitepaper](https://github.com/northharbor-dev/halos/blob/main/docs/whitepaper.md) (hosted on the HALOS site).
 
 ---
 
@@ -130,7 +130,6 @@ halos-spec/
 │
 ├── docs/                               # Supplementary documentation
 │   ├── explainer.md                    # Plain-language introduction
-│   ├── whitepaper.md                   # Formal positioning paper
 │   └── migration-notes.md             # Historical migration record
 │
 ├── plans/                              # Active work plans

@@ -24,5 +24,5 @@ To adopt HALOS into a repository, read the agent prompt and follow its instructi
 ## Background
 
 - [Explainer](docs/explainer.md) — plain-language introduction
-- [Whitepaper](docs/whitepaper.md) — formal positioning paper
+- [Whitepaper](https://github.com/northharbor-dev/halos/blob/main/docs/whitepaper.md) — formal positioning paper (hosted on halos site)
 - [CycloneDX/SLSA mapping](mappings/cyclonedx-slsa.md) — integration with supply chain standards

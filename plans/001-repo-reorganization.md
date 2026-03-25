@@ -334,7 +334,7 @@ Point an agent at this file to adopt HALOS in any repository.
 | D9 | Two-phase adoption: governance then provenance | Phase 1 (halos.yaml, compatibility map, conflicts) is the entry point for every adopter. Phase 2 (provenance records, domain profiles) is deeper integration. Separating them lowers the barrier to entry. |
 | D10 | URL serving is not a blocker | DNS CNAMEs provide flexibility to serve from any location. The spec can be served from GitHub raw URLs, GitHub Pages on halos-spec, or the halos Jekyll site. This will be resolved when content is ready, not before. |
 | D11 | Governance is split: community in `halos`, spec in `halos-spec` | `halos` owns the proposals process, signatory registry, and community governance (who can propose, how decisions are made). `halos-spec/GOVERNANCE.md` should narrow its scope to spec-specific concerns (schema changes, versioning, release process) and cross-reference `halos` for the broader governance framework. This avoids drift between two nearly-identical documents. |
-| D12 | Whitepaper stays in `halos-spec/docs/` | The whitepaper is a formal positioning paper that explains how HALOS integrates with supply chain frameworks (CycloneDX, SLSA, Chainloop). It's normative-adjacent — more than narrative, less than spec. It stays in `docs/` and should be referenced from the README and the adoption guide. The `halos` website can link to it. |
+| D12 | Whitepaper moves to `halos` site | The whitepaper is a positioning paper — narrative content, not normative spec. It belongs on the community site where it can be rendered as a Jekyll page. `halos-spec` links to it externally. *Updated 2026-03-25: originally planned to stay in halos-spec, moved to halos for better fit.* |
 
 ---
 
