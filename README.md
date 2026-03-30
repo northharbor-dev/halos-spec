@@ -49,6 +49,18 @@ A provenance record captures:
 
 See [`spec/provenance/v0.1.md`](spec/provenance/v0.1.md)
 
+### v0.2 Draft — Enhanced Provenance Model
+
+The v0.2 draft extends v0.1 with higher-fidelity provenance capabilities while remaining fully backward compatible:
+
+- **Graph model** — represents provenance as Entities, Activities, and Relationships (aligned with W3C PROV concepts)
+- **Decision provenance** — first-class tracking of human decisions, including AI inputs, context, and rationale
+- **Human–AI interaction semantics** — structured recording of how humans respond to AI output (accepted, modified, rejected)
+- **Responsibility modeling** — lightweight roles and delegation on graph entities
+- **Policy evaluation traces** — records of automated or manual policy checks (results only, not enforcement)
+
+All v0.2 fields are optional. A v0.2 record without them is equivalent to v0.1. See [`spec/provenance/v0.2-draft.md`](spec/provenance/v0.2-draft.md).
+
 ---
 
 ## Adopting HALOS
@@ -78,18 +90,21 @@ See [profiles/](profiles/) for details on creating or using profiles.
 
 ---
 
-## Relationship to CycloneDX and SLSA
+## Ecosystem Alignment
 
-HALOS provenance records are designed to be embedded in or alongside existing supply chain standards:
+HALOS is the **human-centered provenance and accountability layer** — complementary to, not competing with, adjacent standards and frameworks.
 
-| Standard | Relationship |
+| Standard / Framework | Relationship |
 |---|---|
-| **CycloneDX** | HALOS provenance can be embedded as a `component.evidence` property within a CycloneDX SBOM |
-| **SLSA** | HALOS provenance can supplement a SLSA provenance document with human-authorship and AI-disclosure fields |
+| **CycloneDX** | HALOS provenance can be embedded as `component.evidence` within a CycloneDX SBOM. CycloneDX answers "what is in this software?" — HALOS adds "who was responsible and what AI contributed." |
+| **SLSA** | HALOS provenance supplements SLSA attestations with human-authorship and AI-disclosure data. SLSA answers "how was it built?" — HALOS adds "what decisions were made and by whom." |
+| **AIVSS** | HALOS provides evidence; AIVSS provides risk scoring. HALOS records can serve as input for AIVSS assessments. |
+| **NIST AI RMF / ISO 42001** | HALOS operates at the artifact level inside governance framework processes. Organizations following NIST or ISO can use HALOS records to demonstrate traceability. |
+| **W3C PROV** | The v0.2 graph model is conceptually aligned with W3C PROV (Entities, Activities, Agents) but uses plain JSON and simplified typing. |
 
-HALOS does not replace these standards. It adds the human-and-AI-specific provenance layer that neither standard currently covers.
+HALOS does not replace these standards. It provides the human-and-AI-specific provenance layer that none of them currently cover.
 
-See [`mappings/cyclonedx-slsa.md`](mappings/cyclonedx-slsa.md) for details.
+See [`mappings/cyclonedx-slsa.md`](mappings/cyclonedx-slsa.md) for embedding details.
 
 ---
 
@@ -118,7 +133,8 @@ halos-spec/
 │       └── extension.schema.json
 │
 ├── examples/                                # Provenance record examples
-│   ├── minimal.json                         # Standalone — validated by CI
+│   ├── minimal.json                         # Standalone v0.1 — validated by CI
+│   ├── v0.2-graph.json                      # v0.2 with graph, decisions, interactions
 │   └── embedded/                            # Embedded in other standards
 │       ├── cyclonedx.json                   # HALOS inside a CycloneDX SBOM
 │       └── slsa.json                        # HALOS as a SLSA predicate
