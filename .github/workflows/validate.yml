@@ -23,7 +23,7 @@ jobs:
       - name: Validate core.json against schema
         run: node scripts/validate.js -s spec/schema/core.schema.json spec/core.json
 
-      - name: Validate standalone provenance examples against schema
+      - name: Validate v0.1 provenance examples against schema
         run: |
           # Only validate standalone HALOS provenance records.
           # cyclonedx-embedded.json and slsa-embedded.json are envelope documents
@@ -31,6 +31,12 @@ jobs:
           node scripts/validate.js \
             -s spec/schema/halos-provenance-v0.1.schema.json \
             examples/minimal.json
+
+      - name: Validate v0.2 provenance examples against schema
+        run: |
+          node scripts/validate.js \
+            -s spec/schema/halos-provenance-v0.2-draft.schema.json \
+            examples/v0.2-graph.json
 
       - name: Validate manifest.json against schema
         run: node scripts/validate.js -s spec/schema/manifest.schema.json spec/manifest.json

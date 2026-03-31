@@ -1,0 +1,180 @@
+{
+  "halos_version": "0.2-draft",
+  "artifact": {
+    "id": "urn:pkg:npm/auth-service@3.0.0",
+    "type": "code",
+    "description": "Authentication service rewrite with JWT support",
+    "version": "3.0.0"
+  },
+  "human_author": {
+    "name": "Bob Hong",
+    "identifier": "https://github.com/bobhong",
+    "role": "originator"
+  },
+  "ai_assistance": [
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "Anthropic",
+      "role": "generation",
+      "description": "Generated initial implementation from architecture specification"
+    }
+  ],
+  "timestamp": "2026-03-25T14:00:00Z",
+  "review": [
+    {
+      "reviewer": "Alice Chen",
+      "type": "peer-review",
+      "timestamp": "2026-03-25T16:00:00Z",
+      "notes": "Approved after verifying token rotation logic"
+    }
+  ],
+  "governance": {
+    "policy": "HALOS",
+    "version": "1.0",
+    "url": "https://halos.northharbor.dev"
+  },
+  "decisions": [
+    {
+      "id": "urn:decision:token-strategy",
+      "description": "Selected short-lived JWTs with refresh tokens over session-based auth",
+      "responsible": "Bob Hong",
+      "responsibleId": "https://github.com/bobhong",
+      "timestamp": "2026-03-24T10:00:00Z",
+      "context": "Migrating from monolith session store to stateless microservices",
+      "aiInputs": [
+        {
+          "model": "claude-sonnet-4-6",
+          "provider": "Anthropic",
+          "contribution": "Analyzed session vs token trade-offs for distributed systems"
+        }
+      ],
+      "rationale": "Stateless tokens align with microservice architecture; refresh tokens limit exposure window",
+      "outcome": "accepted"
+    }
+  ],
+  "graph": {
+    "entities": [
+      {
+        "id": "urn:entity:auth-service",
+        "type": "artifact",
+        "label": "auth-service v3.0.0",
+        "identifier": "urn:pkg:npm/auth-service@3.0.0"
+      },
+      {
+        "id": "urn:entity:bob",
+        "type": "person",
+        "label": "Bob Hong",
+        "identifier": "https://github.com/bobhong",
+        "role": "author"
+      },
+      {
+        "id": "urn:entity:alice",
+        "type": "person",
+        "label": "Alice Chen",
+        "identifier": "https://github.com/alicechen",
+        "role": "reviewer"
+      },
+      {
+        "id": "urn:entity:claude",
+        "type": "agent",
+        "label": "Claude Sonnet 4.6",
+        "identifier": "claude-sonnet-4-6"
+      },
+      {
+        "id": "urn:entity:arch-spec",
+        "type": "artifact",
+        "label": "Architecture specification document"
+      }
+    ],
+    "activities": [
+      {
+        "id": "urn:activity:generate-impl",
+        "type": "generate",
+        "startedAt": "2026-03-25T09:00:00Z",
+        "endedAt": "2026-03-25T11:00:00Z",
+        "description": "AI generated initial implementation from architecture spec",
+        "interaction": {
+          "type": "generation",
+          "humanResponse": "modified",
+          "responseNotes": "Accepted module structure; rewrote token rotation and added rate limiting"
+        }
+      },
+      {
+        "id": "urn:activity:review",
+        "type": "review",
+        "startedAt": "2026-03-25T15:00:00Z",
+        "endedAt": "2026-03-25T16:00:00Z",
+        "description": "Peer review by Alice Chen"
+      },
+      {
+        "id": "urn:activity:token-decision",
+        "type": "decision",
+        "startedAt": "2026-03-24T10:00:00Z",
+        "description": "Selected JWT + refresh token strategy"
+      }
+    ],
+    "relationships": [
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:auth-service",
+        "to": "urn:activity:generate-impl"
+      },
+      {
+        "type": "wasAttributedTo",
+        "from": "urn:entity:auth-service",
+        "to": "urn:entity:bob"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:generate-impl",
+        "to": "urn:entity:arch-spec"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:generate-impl",
+        "to": "urn:entity:claude"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:generate-impl",
+        "to": "urn:entity:bob"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:review",
+        "to": "urn:entity:alice"
+      },
+      {
+        "type": "actedOnBehalfOf",
+        "from": "urn:entity:claude",
+        "to": "urn:entity:bob"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:generate-impl",
+        "to": "urn:activity:token-decision"
+      }
+    ]
+  },
+  "policyEvaluations": [
+    {
+      "id": "urn:eval:owasp-scan",
+      "policy": "OWASP Top 10",
+      "policyVersion": "2025",
+      "evaluator": "snyk",
+      "evaluatorType": "tool",
+      "result": "pass",
+      "timestamp": "2026-03-25T17:00:00Z",
+      "notes": "No critical or high vulnerabilities detected"
+    },
+    {
+      "id": "urn:eval:halos-check",
+      "policy": "HALOS Principles v1.0",
+      "evaluator": "Bob Hong",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-25T17:30:00Z",
+      "notes": "AI assistance disclosed; human authored all security-critical logic"
+    }
+  ]
+}
