@@ -18,5 +18,6 @@ Plans describe the *design and rationale*. Issues track the *work items*. A plan
 ## Current Plans
 
 | # | Title | Status |
-|---|---|---|
+| --- | --- | --- |
 | 001 | [Repo reorganization and adoption toolkit](001-repo-reorganization.md) | Active |
+| 002 | [Site clarity — acronym, two-part structure, ecosystem positioning](002-site-clarity-acronym-two-parts.md) | Draft |

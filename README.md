@@ -25,7 +25,7 @@ For a plain-language introduction, see the [explainer](docs/explainer.md). For a
 
 ## Two Layers
 
-### Principles
+### Principles — v1.0, Stable
 
 The HALOS Principles are the stable, normative foundation. They define the values that all HALOS-conformant implementations must reflect:
 
@@ -36,7 +36,7 @@ The HALOS Principles are the stable, normative foundation. They define the value
 
 See [`spec/principles/v1.0.md`](spec/principles/v1.0.md)
 
-### Provenance
+### Provenance Spec — v0.1, Active
 
 The HALOS Provenance Spec defines the structure for recording *how an artifact was created*. It is the primary mechanism for implementing HALOS-CORE-3 and HALOS-CORE-4.
 
@@ -49,9 +49,9 @@ A provenance record captures:
 
 See [`spec/provenance/v0.1.md`](spec/provenance/v0.1.md)
 
-### v0.2 Draft — Enhanced Provenance Model
+### Provenance Spec — v0.2, Active
 
-The v0.2 draft extends v0.1 with higher-fidelity provenance capabilities while remaining fully backward compatible:
+v0.2 extends v0.1 with higher-fidelity provenance capabilities while remaining fully backward compatible:
 
 - **Graph model** — represents provenance as Entities, Activities, and Relationships (aligned with W3C PROV concepts)
 - **Decision provenance** — first-class tracking of human decisions, including AI inputs, context, and rationale
@@ -59,13 +59,31 @@ The v0.2 draft extends v0.1 with higher-fidelity provenance capabilities while r
 - **Responsibility modeling** — lightweight roles and delegation on graph entities
 - **Policy evaluation traces** — records of automated or manual policy checks (results only, not enforcement)
 
-All v0.2 fields are optional. A v0.2 record without them is equivalent to v0.1. See [`spec/provenance/v0.2-draft.md`](spec/provenance/v0.2-draft.md).
+All v0.2 fields are optional. A v0.2 record without them is equivalent to v0.1. See [`spec/provenance/v0.2.md`](spec/provenance/v0.2.md).
+
+---
+
+## Ecosystem Alignment
+
+HALOS is the **human-centered provenance and accountability layer** — complementary to, not competing with, adjacent standards and frameworks.
+
+| Standard / Framework | Relationship |
+|---|---|
+| **CycloneDX** | HALOS provenance can be embedded as `component.evidence` within a CycloneDX SBOM. CycloneDX answers "what is in this software?" — HALOS adds "who was responsible and what AI contributed." |
+| **SLSA** | HALOS provenance supplements SLSA attestations with human-authorship and AI-disclosure data. SLSA answers "how was it built?" — HALOS adds "what decisions were made and by whom." |
+| **AIVSS** | HALOS provides evidence; AIVSS provides risk scoring. HALOS records can serve as input for AIVSS assessments. |
+| **NIST AI RMF / ISO 42001** | HALOS operates at the artifact level inside governance framework processes. Organizations following NIST or ISO can use HALOS records to demonstrate traceability. |
+| **W3C PROV** | The v0.2 graph model is conceptually aligned with W3C PROV (Entities, Activities, Agents) but uses plain JSON and simplified typing. |
+
+HALOS does not replace these standards. It provides the human-and-AI-specific provenance layer that none of them currently cover.
+
+See [`mappings/cyclonedx-slsa.md`](mappings/cyclonedx-slsa.md) for embedding details.
 
 ---
 
 ## Examples
 
-The [`examples/`](examples/) directory contains provenance records across eight professional domains — education, enterprise software, government policy, journalism, music production, humanitarian aid, critical infrastructure, and scientific research. Each includes a narrative companion explaining the collaboration scenario alongside a machine-readable v0.2-draft provenance record.
+The [`examples/`](examples/) directory contains provenance records across eight professional domains — education, enterprise software, government policy, journalism, music production, humanitarian aid, critical infrastructure, and scientific research. Each includes a narrative companion explaining the collaboration scenario alongside a machine-readable v0.2 provenance record.
 
 See the [examples index](examples/README.md) for the full catalog. To generate a new domain example using an AI assistant, use the [GENERATE-EXAMPLE.md](examples/GENERATE-EXAMPLE.md) agent prompt.
 
@@ -98,24 +116,6 @@ See [profiles/](profiles/) for details on creating or using profiles.
 
 ---
 
-## Ecosystem Alignment
-
-HALOS is the **human-centered provenance and accountability layer** — complementary to, not competing with, adjacent standards and frameworks.
-
-| Standard / Framework | Relationship |
-|---|---|
-| **CycloneDX** | HALOS provenance can be embedded as `component.evidence` within a CycloneDX SBOM. CycloneDX answers "what is in this software?" — HALOS adds "who was responsible and what AI contributed." |
-| **SLSA** | HALOS provenance supplements SLSA attestations with human-authorship and AI-disclosure data. SLSA answers "how was it built?" — HALOS adds "what decisions were made and by whom." |
-| **AIVSS** | HALOS provides evidence; AIVSS provides risk scoring. HALOS records can serve as input for AIVSS assessments. |
-| **NIST AI RMF / ISO 42001** | HALOS operates at the artifact level inside governance framework processes. Organizations following NIST or ISO can use HALOS records to demonstrate traceability. |
-| **W3C PROV** | The v0.2 graph model is conceptually aligned with W3C PROV (Entities, Activities, Agents) but uses plain JSON and simplified typing. |
-
-HALOS does not replace these standards. It provides the human-and-AI-specific provenance layer that none of them currently cover.
-
-See [`mappings/cyclonedx-slsa.md`](mappings/cyclonedx-slsa.md) for embedding details.
-
----
-
 ## Repository Structure
 
 ```
@@ -130,12 +130,12 @@ halos-spec/
 │   │   └── v1.0.md                          # DO NOT EDIT — generated from core.json
 │   ├── provenance/
 │   │   ├── v0.1.md                          # Active provenance spec
-│   │   └── v0.2-draft.md                    # Graph model (draft)
+│   │   └── v0.2.md                          # Graph model (active)
 │   └── schema/                              # JSON Schemas (Draft 2020-12)
 │       ├── core.schema.json
 │       ├── halos-profile.schema.json
 │       ├── halos-provenance-v0.1.schema.json
-│       ├── halos-provenance-v0.2-draft.schema.json
+│       ├── halos-provenance-v0.2.schema.json
 │       ├── manifest.schema.json
 │       ├── changelog.schema.json
 │       └── extension.schema.json
@@ -193,7 +193,7 @@ halos-spec/
 |---|---|---|
 | HALOS Principles | v1.0 | Stable |
 | HALOS Provenance Spec | v0.1 | Active |
-| HALOS Provenance Model (graph) | v0.2 | Draft |
+| HALOS Provenance Model (graph) | v0.2 | Active |
 | HALOS Profile Schema | v1alpha1 | Active |
 
 ---

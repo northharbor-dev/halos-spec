@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://halos.northharbor.dev/spec/schemas/halos-provenance-v0.2-draft.schema.json",
-  "title": "HALOS Provenance Record (v0.2 Draft)",
+  "$id": "https://halos.northharbor.dev/spec/schemas/halos-provenance-v0.2.schema.json",
+  "title": "HALOS Provenance Record (v0.2)",
   "description": "Extends v0.1 with an optional graph model, decision provenance, interaction semantics, and policy evaluation traces",
   "$comment": "This schema is a draft. Do not use in production.",
   "type": "object",

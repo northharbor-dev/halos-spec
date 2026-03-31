@@ -11,7 +11,7 @@ These examples demonstrate specific spec features and are validated by CI.
 | Example | Spec Version | Purpose |
 |---------|-------------|---------|
 | [minimal.json](minimal.json) | v0.1 | Minimal valid provenance record (CI-validated) |
-| [v0.2-graph.json](v0.2-graph.json) | v0.2-draft | Full graph model with decisions, interactions, and policy evaluations |
+| [v0.2-graph.json](v0.2-graph.json) | v0.2 | Full graph model with decisions, interactions, and policy evaluations |
 
 ---
 
@@ -19,7 +19,7 @@ These examples demonstrate specific spec features and are validated by CI.
 
 Each domain example includes a narrative companion (`.md`) explaining the scenario, collaboration process, and HALOS relevance alongside the machine-readable provenance record (`.halos.json`).
 
-All domain examples use the **v0.2-draft** provenance model featuring graph entities, decision provenance, human-AI interaction semantics, and policy evaluation traces.
+All domain examples use the **v0.2** provenance model featuring graph entities, decision provenance, human-AI interaction semantics, and policy evaluation traces.
 
 | Domain | Lead | Key Decision | Files |
 |--------|------|-------------|-------|
@@ -43,7 +43,7 @@ All domain examples use the **v0.2-draft** provenance model featuring graph enti
 6. Framework crosswalk (NIST AI RMF, ISO/IEC 42001, CycloneDX)
 
 **Provenance record (`.halos.json`):**
-- Full v0.2-draft record with graph, decisions, interactions, and policy evaluations
+- Full v0.2 record with graph, decisions, interactions, and policy evaluations
 - Realistic but entirely fictional scenarios, names, and organizations
 - All URLs use RFC 2606 reserved `.example` domains
 
@@ -80,4 +80,4 @@ New domain examples can be contributed via pull request. To generate a new examp
 
 ### CI validation
 
-All `examples/*.json` files are validated against `spec/schema/halos-provenance-v0.1.schema.json` on every push. Files in `examples/embedded/` and `.halos.json` files are excluded from this validation (they use different outer schemas or the v0.2-draft schema).
+All `examples/*.json` files are validated against `spec/schema/halos-provenance-v0.1.schema.json` on every push. Files in `examples/embedded/` and `.halos.json` files are excluded from this validation (they use different outer schemas or the v0.2 schema).

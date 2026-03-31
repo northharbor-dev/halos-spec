@@ -1,5 +1,5 @@
 {
-  "halos_version": "0.2-draft",
+  "halos_version": "0.2",
   "artifact": {
     "id": "urn:pkg:oci/meridian/payment-reconciliation-service@1.0.0",
     "type": "code",

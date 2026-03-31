@@ -12,8 +12,8 @@ You are generating a new domain example for the HALOS specification. Each exampl
 
 Fetch and read the following files before generating:
 
-1. **Provenance spec (v0.2-draft):** `spec/provenance/v0.2-draft.md` — defines the graph model, decisions, interactions, and policy evaluations
-2. **Provenance schema (v0.2-draft):** `spec/schema/halos-provenance-v0.2-draft.schema.json` — your JSON record must validate against this
+1. **Provenance spec (v0.2):** `spec/provenance/v0.2.md` — defines the graph model, decisions, interactions, and policy evaluations
+2. **Provenance schema (v0.2):** `spec/schema/halos-provenance-v0.2.schema.json` — your JSON record must validate against this
 3. **Principles:** `spec/principles/v1.0.md` — understand the eight HALOS principles
 4. **Terminology:** `spec/terminology.md` — use canonical terms
 5. **Reference example (narrative):** `examples/enterprise-software-development.md` — follow this structure
@@ -73,7 +73,7 @@ Structure:
 
 #### 2. Provenance record (`{domain-slug}.halos.json`)
 
-A valid v0.2-draft HALOS provenance record containing:
+A valid v0.2 HALOS provenance record containing:
 
 - **Required v0.1 fields:** `halos_version`, `artifact`, `human_author`, `ai_assistance`, `timestamp`
 - **Review chain:** at least 2 reviewers with different roles
@@ -100,7 +100,7 @@ A valid v0.2-draft HALOS provenance record containing:
 - AI tool names should be realistic — use real tools (Claude, GPT, Copilot) or clearly fictional branded tools (not generic "AI assistant")
 
 **Technical requirements:**
-- The `.halos.json` must validate against `spec/schema/halos-provenance-v0.2-draft.schema.json`
+- The `.halos.json` must validate against `spec/schema/halos-provenance-v0.2.schema.json`
 - Use `halos_version: "0.2-draft"`
 - Graph entity IDs should use `urn:entity:` prefix, activity IDs `urn:activity:`, decision IDs `urn:decision:`
 - Timestamps must be valid ISO 8601

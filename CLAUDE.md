@@ -29,12 +29,12 @@ halos-spec/
 │   │   └── v1.0.md                          # DO NOT EDIT — generated from spec/core.json
 │   ├── provenance/
 │   │   ├── v0.1.md                          # Active provenance spec
-│   │   └── v0.2-draft.md                    # Graph model (draft)
+│   │   └── v0.2.md                    # Graph model (draft)
 │   └── schema/                              # JSON Schemas (Draft 2020-12)
 │       ├── core.schema.json                 # Validates spec/core.json
 │       ├── halos-profile.schema.json        # Validates halos.yaml adoption profiles
 │       ├── halos-provenance-v0.1.schema.json
-│       ├── halos-provenance-v0.2-draft.schema.json
+│       ├── halos-provenance-v0.2.schema.json
 │       ├── manifest.schema.json
 │       ├── changelog.schema.json
 │       └── extension.schema.json
@@ -43,7 +43,7 @@ halos-spec/
 │   ├── README.md                            # Index of all examples
 │   ├── GENERATE-EXAMPLE.md                  # Agent prompt for creating new domain examples
 │   ├── minimal.json                         # v0.1 minimal record — CI-validated
-│   ├── v0.2-graph.json                      # v0.2-draft full graph example
+│   ├── v0.2-graph.json                      # v0.2 full graph example
 │   ├── {domain}.md + {domain}.halos.json    # Domain examples (8 domains, narrative + record)
 │   └── embedded/                            # Embedded in other standards (not CI-validated)
 │       ├── cyclonedx.json                   # HALOS inside a CycloneDX SBOM
@@ -128,7 +128,7 @@ ajv validate --spec=draft2020 -s spec/schema/core.schema.json -d spec/core.json
 ### Making Changes to the Provenance Spec
 
 - Active spec: `PROVENANCE/halos-provenance-spec-v0.1.md`
-- Draft graph model: `PROVENANCE/halos-provenance-model-v0.2-draft.md`
+- Draft graph model: `PROVENANCE/halos-provenance-model-v0.2.md`
 - Validate examples after changes: all files in `examples/` are validated against `spec/schema/halos-provenance-v0.1.schema.json`
 
 ### Adding Examples
