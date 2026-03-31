@@ -8,7 +8,7 @@
   },
   "human_author": {
     "name": "Jane Smith",
-    "identifier": "https://github.com/janesmith",
+    "identifier": "https://github.example.com/janesmith",
     "role": "originator"
   },
   "ai_assistance": [],

@@ -22,7 +22,7 @@
             },
             "human_author": {
               "name": "Bob Hong",
-              "identifier": "https://github.com/bobhong",
+              "identifier": "https://github.example.com/bobhong",
               "role": "originator"
             },
             "ai_assistance": [
