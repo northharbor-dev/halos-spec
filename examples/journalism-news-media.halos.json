@@ -15,13 +15,13 @@
     {
       "model": "docparse-regulatory-v3",
       "provider": "DocParse AI",
-      "role": "analysis",
+      "role": "assistance",
       "description": "Analyzed 4,300 public regulatory filings to categorize violations, identify enforcement gaps, and generate timeline patterns"
     },
     {
       "model": "docparse-regulatory-v3",
       "provider": "DocParse AI",
-      "role": "analysis",
+      "role": "assistance",
       "description": "Cross-referenced facility violation timeline with county health department respiratory complaint data by ZIP code"
     }
   ],
@@ -29,13 +29,13 @@
   "review": [
     {
       "reviewer": "Sarah Kwan",
-      "type": "editorial-review",
+      "type": "editorial",
       "timestamp": "2026-03-15T14:00:00Z",
       "notes": "Editor reviewed all findings; made framing decision on health-data correlation; chose contextualized presentation over omission or unqualified inclusion"
     },
     {
       "reviewer": "Rachel Torres",
-      "type": "legal-review",
+      "type": "other",
       "timestamp": "2026-03-17T11:00:00Z",
       "notes": "Reviewed for defamation risk; requested softened characterization of DEQ enforcement and inclusion of full Meridian statement"
     },

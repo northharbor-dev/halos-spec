@@ -15,7 +15,7 @@
     {
       "model": "polaris-research-v3",
       "provider": "Polaris Analytics",
-      "role": "analysis",
+      "role": "assistance",
       "description": "Synthesized findings from 23 published studies on rent stabilization; ran Monte Carlo simulations modeling housing supply impacts under three scenarios"
     },
     {
@@ -29,7 +29,7 @@
   "review": [
     {
       "reviewer": "David Oluwale",
-      "type": "editorial-review",
+      "type": "editorial",
       "timestamp": "2026-03-18T16:00:00Z",
       "notes": "Division director review; requested sensitivity analysis, strengthened limitations section, moved comparative table to appendix"
     },
