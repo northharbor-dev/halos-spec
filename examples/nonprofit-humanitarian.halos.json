@@ -1,0 +1,361 @@
+{
+  "halos_version": "0.2-draft",
+  "artifact": {
+    "id": "urn:humanitarian:turkey-eq-2026/distribution-plan-cycle-1",
+    "type": "other",
+    "description": "Emergency aid distribution plan — first 72-hour response cycle for 7.4-magnitude earthquake affecting 14 villages in central Turkey",
+    "version": "1.0"
+  },
+  "human_author": {
+    "name": "Amara Diallo",
+    "identifier": "https://roster.ngo-example.org/amara-diallo",
+    "role": "originator"
+  },
+  "ai_assistance": [
+    {
+      "model": "crisismap-analytics-v3",
+      "provider": "CrisisMap AI",
+      "role": "analysis",
+      "description": "Analyzed satellite imagery, social media aggregation, and logistics data to produce ranked village priority list and recommended convoy routing"
+    }
+  ],
+  "timestamp": "2026-03-29T14:30:00Z",
+  "review": [
+    {
+      "reviewer": "Dr. Kerem Aydin",
+      "type": "approval",
+      "timestamp": "2026-03-29T13:45:00Z",
+      "notes": "Country director approved modified plan after confirming mountain track passability and medical supply sufficiency for elderly population"
+    }
+  ],
+  "governance": {
+    "policy": "HALOS",
+    "version": "1.0",
+    "url": "https://halos.northharbor.dev"
+  },
+  "decisions": [
+    {
+      "id": "urn:decision:resource-allocation-override",
+      "description": "Overrode AI recommendation to send both convoys to Karapinar; split convoys to serve both Karapinar and Yayladag, using smaller vehicles on mountain track for Yayladag",
+      "responsible": "Amara Diallo",
+      "responsibleId": "https://roster.ngo-example.org/amara-diallo",
+      "timestamp": "2026-03-29T12:00:00Z",
+      "context": "AI ranked Yayladag as low priority based on moderate satellite damage, near-zero social media activity, and degraded road access. Field coordinator reported that Yayladag has ~400 elderly residents in vulnerable stone construction, no mobile coverage (explaining social media silence), ruptured water main, and a passable secondary mountain track. Two convoys available for first dispatch cycle; overnight temperatures below freezing.",
+      "aiInputs": [
+        {
+          "model": "crisismap-analytics-v3",
+          "provider": "CrisisMap AI",
+          "contribution": "Produced ranked priority list placing Karapinar first (high satellite damage + high social media volume) and Yayladag 12th of 14 (moderate satellite damage + near-zero social media + degraded road)"
+        }
+      ],
+      "rationale": "The AI's ranking reflected data availability, not actual need. Yayladag's low social media score was caused by absence of mobile connectivity, not absence of distress. Field intelligence from a trusted coordinator with 8 years of regional experience indicated severe unmet need among a vulnerable elderly population. Sending nothing to Yayladag would violate the humanitarian principles of impartiality and do-no-harm. Splitting convoys reduces volume to Karapinar but Karapinar has better infrastructure, younger population, and existing mobile-coordinated mutual aid.",
+      "outcome": "accepted"
+    },
+    {
+      "id": "urn:decision:social-media-data-reliability",
+      "description": "Flagged social-media-derived priority scores as unreliable for villages without mobile connectivity; mandated cross-referencing with field coordinator reports before future dispatch cycles rely on AI ranking",
+      "responsible": "Amara Diallo",
+      "responsibleId": "https://roster.ngo-example.org/amara-diallo",
+      "timestamp": "2026-03-29T12:30:00Z",
+      "context": "The AI platform weighted social media activity as a significant factor in village priority ranking. This systematically under-counts populations that are elderly, disabled, rural, or in areas without mobile coverage — populations that are often the most vulnerable in disaster contexts.",
+      "aiInputs": [
+        {
+          "model": "crisismap-analytics-v3",
+          "provider": "CrisisMap AI",
+          "contribution": "Used social media volume and geolocation as a proxy for population distress intensity; produced high-confidence distress scores for connected areas and near-zero scores for unconnected areas"
+        }
+      ],
+      "rationale": "Social media silence is ambiguous — it can indicate low impact or inability to communicate. In disaster contexts, inability to communicate correlates with vulnerability. Using social media volume as a priority signal without cross-referencing field intelligence risks systematically deprioritizing the most vulnerable populations. This annotation applies to all future dispatch cycles, not only the current one.",
+      "outcome": "accepted"
+    }
+  ],
+  "graph": {
+    "entities": [
+      {
+        "id": "urn:entity:distribution-plan",
+        "type": "artifact",
+        "label": "Aid Distribution Plan — Cycle 1",
+        "identifier": "urn:humanitarian:turkey-eq-2026/distribution-plan-cycle-1"
+      },
+      {
+        "id": "urn:entity:amara",
+        "type": "person",
+        "label": "Amara Diallo",
+        "identifier": "https://roster.ngo-example.org/amara-diallo",
+        "role": "author"
+      },
+      {
+        "id": "urn:entity:elif",
+        "type": "person",
+        "label": "Elif Yilmaz",
+        "identifier": "https://roster.ngo-example.org/elif-yilmaz",
+        "role": "contributor"
+      },
+      {
+        "id": "urn:entity:kerem",
+        "type": "person",
+        "label": "Dr. Kerem Aydin",
+        "identifier": "https://roster.ngo-example.org/kerem-aydin",
+        "role": "approver"
+      },
+      {
+        "id": "urn:entity:crisismap",
+        "type": "agent",
+        "label": "CrisisMap Analytics v3",
+        "identifier": "crisismap-analytics-v3"
+      },
+      {
+        "id": "urn:entity:satellite-imagery",
+        "type": "artifact",
+        "label": "UNOSAT post-earthquake satellite imagery (4 hours post-quake)"
+      },
+      {
+        "id": "urn:entity:social-media-feed",
+        "type": "artifact",
+        "label": "Aggregated social media and mobile network activity (first 5 hours)"
+      },
+      {
+        "id": "urn:entity:logistics-data",
+        "type": "artifact",
+        "label": "Road network status, warehouse inventory, and vehicle availability data"
+      },
+      {
+        "id": "urn:entity:ai-priority-ranking",
+        "type": "artifact",
+        "label": "AI-generated village priority ranking and convoy routing recommendation"
+      },
+      {
+        "id": "urn:entity:elif-field-report",
+        "type": "artifact",
+        "label": "Field coordinator report on Yayladag conditions — radio transmission from forward position"
+      },
+      {
+        "id": "urn:entity:ngo",
+        "type": "organization",
+        "label": "International Humanitarian NGO"
+      }
+    ],
+    "activities": [
+      {
+        "id": "urn:activity:data-ingestion",
+        "type": "create",
+        "startedAt": "2026-03-29T08:00:00Z",
+        "endedAt": "2026-03-29T08:45:00Z",
+        "description": "Amara uploaded satellite imagery and connected social media and logistics data feeds to the crisis analytics platform"
+      },
+      {
+        "id": "urn:activity:ai-analysis",
+        "type": "generate",
+        "startedAt": "2026-03-29T08:45:00Z",
+        "endedAt": "2026-03-29T09:30:00Z",
+        "description": "AI platform analyzed three data streams and produced ranked village priority list with recommended convoy routing",
+        "interaction": {
+          "type": "analysis",
+          "humanResponse": "modified",
+          "responseNotes": "Accepted overall damage assessment methodology and routing logic. Rejected village priority ranking for Yayladag and other low-connectivity villages. Overrode convoy allocation to split resources between Karapinar and Yayladag."
+        }
+      },
+      {
+        "id": "urn:activity:field-intelligence",
+        "type": "create",
+        "startedAt": "2026-03-29T10:00:00Z",
+        "endedAt": "2026-03-29T11:00:00Z",
+        "description": "Elif Yilmaz reported ground-truth conditions in Yayladag via radio from a forward position 3km from the village"
+      },
+      {
+        "id": "urn:activity:resource-allocation-decision",
+        "type": "decision",
+        "startedAt": "2026-03-29T11:30:00Z",
+        "endedAt": "2026-03-29T12:00:00Z",
+        "description": "Amara overrode AI recommendation and split convoys between Karapinar and Yayladag based on field intelligence about vulnerable elderly population invisible to AI data sources"
+      },
+      {
+        "id": "urn:activity:data-validation-decision",
+        "type": "decision",
+        "startedAt": "2026-03-29T12:00:00Z",
+        "endedAt": "2026-03-29T12:30:00Z",
+        "description": "Amara flagged social-media-derived priority scores as unreliable for unconnected areas and mandated field cross-referencing for future dispatch cycles"
+      },
+      {
+        "id": "urn:activity:plan-composition",
+        "type": "edit",
+        "startedAt": "2026-03-29T12:30:00Z",
+        "endedAt": "2026-03-29T13:15:00Z",
+        "description": "Amara composed the final distribution plan incorporating AI routing analysis, field intelligence overrides, supply manifests, and annotated rationale"
+      },
+      {
+        "id": "urn:activity:country-director-review",
+        "type": "approve",
+        "startedAt": "2026-03-29T13:15:00Z",
+        "endedAt": "2026-03-29T13:45:00Z",
+        "description": "Dr. Kerem Aydin reviewed modified plan, confirmed mountain track passability and medical supply adequacy, and approved for dispatch"
+      }
+    ],
+    "relationships": [
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:distribution-plan",
+        "to": "urn:activity:plan-composition"
+      },
+      {
+        "type": "wasAttributedTo",
+        "from": "urn:entity:distribution-plan",
+        "to": "urn:entity:amara"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:ai-analysis",
+        "to": "urn:entity:satellite-imagery"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:ai-analysis",
+        "to": "urn:entity:social-media-feed"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:ai-analysis",
+        "to": "urn:entity:logistics-data"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:ai-analysis",
+        "to": "urn:entity:crisismap"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:ai-analysis",
+        "to": "urn:entity:amara",
+        "notes": "Amara configured data inputs and evaluated AI outputs"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:ai-priority-ranking",
+        "to": "urn:activity:ai-analysis"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:field-intelligence",
+        "to": "urn:entity:elif"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:elif-field-report",
+        "to": "urn:activity:field-intelligence"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:resource-allocation-decision",
+        "to": "urn:entity:amara"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:resource-allocation-decision",
+        "to": "urn:activity:ai-analysis",
+        "notes": "AI ranking was reviewed but overridden for Yayladag based on field intelligence"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:resource-allocation-decision",
+        "to": "urn:activity:field-intelligence",
+        "notes": "Elif's ground-truth report was the basis for overriding the AI recommendation"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:data-validation-decision",
+        "to": "urn:entity:amara"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:data-validation-decision",
+        "to": "urn:activity:ai-analysis",
+        "notes": "Decision to flag social media data reliability was prompted by the discrepancy between AI ranking and field reality"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:plan-composition",
+        "to": "urn:entity:ai-priority-ranking",
+        "notes": "AI routing analysis and damage assessments used; village priority ranking was manually overridden"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:plan-composition",
+        "to": "urn:entity:elif-field-report",
+        "notes": "Field intelligence directly shaped Yayladag allocation and supply manifest"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:plan-composition",
+        "to": "urn:entity:amara"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:plan-composition",
+        "to": "urn:activity:resource-allocation-decision"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:plan-composition",
+        "to": "urn:activity:data-validation-decision"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:country-director-review",
+        "to": "urn:entity:kerem"
+      },
+      {
+        "type": "wasDerivedFrom",
+        "from": "urn:entity:distribution-plan",
+        "to": "urn:entity:ai-priority-ranking",
+        "notes": "Partial derivation — routing analysis and damage data used; village priority ranking overridden"
+      },
+      {
+        "type": "wasDerivedFrom",
+        "from": "urn:entity:distribution-plan",
+        "to": "urn:entity:elif-field-report",
+        "notes": "Field intelligence directly informed Yayladag allocation"
+      },
+      {
+        "type": "actedOnBehalfOf",
+        "from": "urn:entity:crisismap",
+        "to": "urn:entity:amara"
+      },
+      {
+        "type": "actedOnBehalfOf",
+        "from": "urn:entity:amara",
+        "to": "urn:entity:ngo"
+      }
+    ]
+  },
+  "policyEvaluations": [
+    {
+      "id": "urn:eval:humanitarian-ai-ethics",
+      "policy": "Humanitarian AI Ethics Policy",
+      "policyVersion": "2025",
+      "evaluator": "Amara Diallo",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-29T13:00:00Z",
+      "notes": "AI-derived resource allocation recommendation was reviewed by qualified program director before implementation. AI recommendation was overridden where data sources were structurally unable to represent vulnerable populations. Override rationale documented. Field intelligence cross-referenced. Human decision-maker accountable for final allocation."
+    },
+    {
+      "id": "urn:eval:donor-accountability",
+      "policy": "Donor Accountability and Reporting Framework",
+      "policyVersion": "2024",
+      "evaluator": "Dr. Kerem Aydin",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-29T13:45:00Z",
+      "notes": "Distribution plan includes documented rationale for resource allocation decisions, named decision-makers, data sources with timestamps and known limitations, and explicit justification for deviation from AI recommendation. Sufficient for donor reporting requirements and after-action review."
+    },
+    {
+      "id": "urn:eval:halos-compliance",
+      "policy": "HALOS Principles v1.0",
+      "evaluator": "Amara Diallo",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-29T14:00:00Z",
+      "notes": "AI assistance disclosed and documented. Human authorship of all critical decisions confirmed. Provenance chain captures data sources, AI contribution, field intelligence, human overrides, and approval chain."
+    }
+  ]
+}

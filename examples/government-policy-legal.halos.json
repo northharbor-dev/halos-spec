@@ -1,0 +1,520 @@
+{
+  "halos_version": "0.2-draft",
+  "artifact": {
+    "id": "urn:gov:state-housing-agency/impact-assessment-sb1247-v1",
+    "type": "document",
+    "description": "Fiscal and Economic Impact Assessment: SB-1247, Rent Stabilization Act — 38-page legislative impact assessment with economic modeling, comparative jurisdiction analysis, and equity impact analysis",
+    "version": "1.0"
+  },
+  "human_author": {
+    "name": "Fatima Al-Rashid",
+    "identifier": "urn:gov:state-housing-agency/staff/falrashid",
+    "role": "originator"
+  },
+  "ai_assistance": [
+    {
+      "model": "polaris-research-v3",
+      "provider": "Polaris Analytics",
+      "role": "analysis",
+      "description": "Synthesized findings from 23 published studies on rent stabilization; ran Monte Carlo simulations modeling housing supply impacts under three scenarios"
+    },
+    {
+      "model": "clarity-writer-2.0",
+      "provider": "ClarityAI",
+      "role": "generation",
+      "description": "Generated initial draft of comparative jurisdiction section from structured data; produced plain-language summaries of technical sections"
+    }
+  ],
+  "timestamp": "2026-03-20T17:00:00Z",
+  "review": [
+    {
+      "reviewer": "David Oluwale",
+      "type": "editorial-review",
+      "timestamp": "2026-03-18T16:00:00Z",
+      "notes": "Division director review; requested sensitivity analysis, strengthened limitations section, moved comparative table to appendix"
+    },
+    {
+      "reviewer": "Margaret Liu",
+      "type": "approval",
+      "timestamp": "2026-03-20T14:00:00Z",
+      "notes": "Deputy Secretary approved for release to legislature; requested AI disclosure cover letter"
+    }
+  ],
+  "governance": {
+    "policy": "State Housing Agency AI Use and Transparency Policy",
+    "version": "2025.1",
+    "url": "https://housing.state.example.gov/policies/ai-transparency"
+  },
+  "decisions": [
+    {
+      "id": "urn:decision:supply-impact-framing",
+      "description": "Selected presentation approach for housing supply impact finding: lead with uncertainty range (1.1%–6.8%), follow with central estimate (3.2%), contextualize against baseline trend (2.1% decline without legislation)",
+      "responsible": "Fatima Al-Rashid",
+      "responsibleId": "urn:gov:state-housing-agency/staff/falrashid",
+      "timestamp": "2026-03-10T15:00:00Z",
+      "context": "The supply impact finding is the most politically consequential number in the assessment. Framing determines whether legislators interpret the bill as moderately or severely affecting housing supply. Three presentation approaches were drafted and compared.",
+      "aiInputs": [
+        {
+          "model": "polaris-research-v3",
+          "provider": "Polaris Analytics",
+          "contribution": "Produced the Monte Carlo simulation results: central estimate of 3.2% reduction with 90% CI of 1.1%–6.8%. AI generated the numbers but had no role in framing or interpretation."
+        }
+      ],
+      "rationale": "Leading with the range communicates genuine uncertainty to legislators without burying the best estimate. Following immediately with the central estimate ensures the most likely outcome is clearly stated. Contextualizing against the baseline trend prevents the finding from being interpreted in isolation. Division director concurred with this approach. Alternative framings (leading with central estimate alone, or leading with baseline comparison) were considered and rejected as either overstating precision or obscuring the finding.",
+      "outcome": "accepted"
+    },
+    {
+      "id": "urn:decision:equity-section-no-ai",
+      "description": "Decided to author the equity impact section entirely without AI assistance",
+      "responsible": "Fatima Al-Rashid",
+      "responsibleId": "urn:gov:state-housing-agency/staff/falrashid",
+      "timestamp": "2026-03-06T09:00:00Z",
+      "context": "The equity impact section examines effects on low-income renters, small landlords, and communities of color using census microdata, tenant surveys, and fair housing enforcement data.",
+      "aiInputs": [],
+      "rationale": "AI-generated analysis of equity impacts carries unacceptable risk of embedding unexamined assumptions about race, income, and housing markets. The section requires close reading of disaggregated data and contextual judgment that cannot be validated by checking AI output against source material — unlike the literature synthesis, there is no external reference to check against. The reputational and policy risk of an equity analysis that reflects algorithmic bias outweighs the time savings of AI assistance.",
+      "outcome": "accepted"
+    },
+    {
+      "id": "urn:decision:model-parameter-adjustment",
+      "description": "Rejected AI model's default landlord exit rate assumption and adjusted upward by 15% based on state-specific landlord survey data",
+      "responsible": "Fatima Al-Rashid",
+      "responsibleId": "urn:gov:state-housing-agency/staff/falrashid",
+      "timestamp": "2026-03-08T11:00:00Z",
+      "context": "Initial Monte Carlo simulation used national-average landlord exit rates. This state has a higher share of small landlords (2–4 unit buildings) who are more sensitive to rent regulation than institutional landlords.",
+      "aiInputs": [
+        {
+          "model": "polaris-research-v3",
+          "provider": "Polaris Analytics",
+          "contribution": "Ran initial simulation with default national-average parameters; returned probability distributions that Fatima identified as underestimating small-landlord sensitivity"
+        }
+      ],
+      "rationale": "The state's most recent landlord survey shows 62% of rental units are in buildings with fewer than 5 units, compared to the national average of 48%. Small landlords have historically exited regulated markets at higher rates. Using the national average would systematically underestimate the supply effect in this state.",
+      "outcome": "accepted"
+    }
+  ],
+  "graph": {
+    "entities": [
+      {
+        "id": "urn:entity:impact-assessment",
+        "type": "artifact",
+        "label": "SB-1247 Impact Assessment (final)",
+        "identifier": "urn:gov:state-housing-agency/impact-assessment-sb1247-v1"
+      },
+      {
+        "id": "urn:entity:priya",
+        "type": "person",
+        "label": "Fatima Al-Rashid",
+        "identifier": "urn:gov:state-housing-agency/staff/falrashid",
+        "role": "author"
+      },
+      {
+        "id": "urn:entity:james",
+        "type": "person",
+        "label": "David Oluwale",
+        "identifier": "urn:gov:state-housing-agency/staff/doluwale",
+        "role": "reviewer"
+      },
+      {
+        "id": "urn:entity:karen",
+        "type": "person",
+        "label": "Margaret Liu",
+        "identifier": "urn:gov:state-housing-agency/staff/mliu",
+        "role": "approver"
+      },
+      {
+        "id": "urn:entity:polaris",
+        "type": "agent",
+        "label": "Polaris Research v3",
+        "identifier": "polaris-research-v3"
+      },
+      {
+        "id": "urn:entity:clarity",
+        "type": "agent",
+        "label": "Clarity Writer 2.0",
+        "identifier": "clarity-writer-2.0"
+      },
+      {
+        "id": "urn:entity:evidence-base",
+        "type": "artifact",
+        "label": "Curated evidence base: 23 peer-reviewed studies and 5 state post-enactment reports"
+      },
+      {
+        "id": "urn:entity:simulation-params",
+        "type": "artifact",
+        "label": "Simulation parameters: state housing data, BLS CPI forecasts, demographic projections, adjusted landlord exit rates"
+      },
+      {
+        "id": "urn:entity:jurisdiction-data",
+        "type": "artifact",
+        "label": "Structured comparative data from OR, CA, NY, MN, and Ontario"
+      },
+      {
+        "id": "urn:entity:literature-synthesis",
+        "type": "artifact",
+        "label": "Structured literature synthesis table (AI-generated, human-corrected)"
+      },
+      {
+        "id": "urn:entity:simulation-results",
+        "type": "artifact",
+        "label": "Monte Carlo simulation results (corrected run)"
+      },
+      {
+        "id": "urn:entity:jurisdiction-draft",
+        "type": "artifact",
+        "label": "Comparative jurisdiction section draft (AI-generated)"
+      },
+      {
+        "id": "urn:entity:sb1247-text",
+        "type": "artifact",
+        "label": "SB-1247 bill text and committee request"
+      },
+      {
+        "id": "urn:entity:agency",
+        "type": "organization",
+        "label": "State Housing Agency, Division of Housing Policy"
+      }
+    ],
+    "activities": [
+      {
+        "id": "urn:activity:evidence-curation",
+        "type": "create",
+        "startedAt": "2026-02-20T09:00:00Z",
+        "endedAt": "2026-02-25T17:00:00Z",
+        "description": "Fatima curated evidence base: reviewed candidate studies, applied inclusion criteria (post-2015, peer-reviewed or government-issued, transparent methodology), excluded three industry-funded studies lacking disclosed assumptions"
+      },
+      {
+        "id": "urn:activity:literature-synthesis",
+        "type": "generate",
+        "startedAt": "2026-02-26T09:00:00Z",
+        "endedAt": "2026-02-26T14:00:00Z",
+        "description": "AI synthesized findings from 23 studies into structured comparison table",
+        "interaction": {
+          "type": "analysis",
+          "humanResponse": "modified",
+          "responseNotes": "Corrected two extraction errors: one misattributed finding, one truncated limitation. Added contextual notes on four studies requiring adjustment for policy design differences."
+        }
+      },
+      {
+        "id": "urn:activity:simulation-initial",
+        "type": "generate",
+        "startedAt": "2026-03-03T09:00:00Z",
+        "endedAt": "2026-03-03T12:00:00Z",
+        "description": "AI ran initial Monte Carlo simulation (10,000 iterations x 3 scenarios) with default national-average parameters",
+        "interaction": {
+          "type": "analysis",
+          "humanResponse": "rejected",
+          "responseNotes": "Fatima identified that landlord exit rate assumption used national averages not reflective of this state's higher small-landlord share. Rejected results and adjusted parameter upward by 15%."
+        }
+      },
+      {
+        "id": "urn:activity:simulation-corrected",
+        "type": "generate",
+        "startedAt": "2026-03-08T13:00:00Z",
+        "endedAt": "2026-03-08T16:00:00Z",
+        "description": "AI reran Monte Carlo simulation with state-adjusted landlord exit rate parameter",
+        "interaction": {
+          "type": "analysis",
+          "humanResponse": "accepted",
+          "responseNotes": "Results accepted after Fatima verified distributions against state-specific benchmarks. Central estimate: 3.2% supply reduction, 90% CI: 1.1%–6.8%."
+        }
+      },
+      {
+        "id": "urn:activity:framing-decision",
+        "type": "decision",
+        "startedAt": "2026-03-10T10:00:00Z",
+        "endedAt": "2026-03-10T16:00:00Z",
+        "description": "Fatima decided how to present the supply impact finding — chose to lead with range, follow with central estimate, contextualize against baseline"
+      },
+      {
+        "id": "urn:activity:jurisdiction-draft",
+        "type": "generate",
+        "startedAt": "2026-03-11T09:00:00Z",
+        "endedAt": "2026-03-11T11:00:00Z",
+        "description": "AI generated comparative jurisdiction section from Fatima's structured data",
+        "interaction": {
+          "type": "generation",
+          "humanResponse": "modified",
+          "responseNotes": "Substantially revised: reordered jurisdictions to lead with most comparable cases (OR, MN); rewrote Ontario comparison to note healthcare system differences; removed one sentence implying causation where evidence supports only correlation; added original analytical synthesis paragraph."
+        }
+      },
+      {
+        "id": "urn:activity:equity-analysis",
+        "type": "create",
+        "startedAt": "2026-03-12T09:00:00Z",
+        "endedAt": "2026-03-14T17:00:00Z",
+        "description": "Fatima authored equity impact section entirely without AI assistance, using census microdata, agency tenant survey, and fair housing enforcement data. Reviewed by agency civil rights liaison."
+      },
+      {
+        "id": "urn:activity:plain-language-summaries",
+        "type": "generate",
+        "startedAt": "2026-03-15T09:00:00Z",
+        "endedAt": "2026-03-15T11:00:00Z",
+        "description": "AI generated plain-language summaries of economic modeling and comparative jurisdiction sections",
+        "interaction": {
+          "type": "transformation",
+          "humanResponse": "modified",
+          "responseNotes": "Corrected one instance where simplification changed meaning of a confidence interval. Rewrote equity section summary by hand."
+        }
+      },
+      {
+        "id": "urn:activity:director-review",
+        "type": "review",
+        "startedAt": "2026-03-16T09:00:00Z",
+        "endedAt": "2026-03-18T16:00:00Z",
+        "description": "David Oluwale reviewed complete draft; requested sensitivity analysis, strengthened limitations section, moved comparative table to appendix"
+      },
+      {
+        "id": "urn:activity:sensitivity-analysis",
+        "type": "generate",
+        "startedAt": "2026-03-18T17:00:00Z",
+        "endedAt": "2026-03-19T10:00:00Z",
+        "description": "AI reran simulation with CPI +/- 1 percentage point for sensitivity analysis requested by division director",
+        "interaction": {
+          "type": "analysis",
+          "humanResponse": "accepted",
+          "responseNotes": "Results accepted. Sensitivity range documented in appendix. Central estimate shifts by approximately 0.4 percentage points in either direction."
+        }
+      },
+      {
+        "id": "urn:activity:deputy-approval",
+        "type": "approve",
+        "startedAt": "2026-03-20T09:00:00Z",
+        "endedAt": "2026-03-20T14:00:00Z",
+        "description": "Margaret Liu reviewed assessment and approved for release; requested AI disclosure cover letter"
+      }
+    ],
+    "relationships": [
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:impact-assessment",
+        "to": "urn:activity:deputy-approval",
+        "notes": "Final version authorized for release"
+      },
+      {
+        "type": "wasAttributedTo",
+        "from": "urn:entity:impact-assessment",
+        "to": "urn:entity:priya"
+      },
+      {
+        "type": "wasAttributedTo",
+        "from": "urn:entity:impact-assessment",
+        "to": "urn:entity:agency",
+        "notes": "Institutional attribution — released as an agency document"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:evidence-curation",
+        "to": "urn:entity:sb1247-text"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:evidence-curation",
+        "to": "urn:entity:priya"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:literature-synthesis",
+        "to": "urn:activity:literature-synthesis"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:literature-synthesis",
+        "to": "urn:entity:evidence-base"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:literature-synthesis",
+        "to": "urn:entity:polaris"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:literature-synthesis",
+        "to": "urn:entity:priya",
+        "notes": "Fatima provided curated studies and corrected two extraction errors"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:simulation-initial",
+        "to": "urn:entity:simulation-params"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:simulation-initial",
+        "to": "urn:entity:polaris"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:simulation-initial",
+        "to": "urn:entity:priya",
+        "notes": "Fatima defined scenarios and parameters; rejected results due to inapplicable assumptions"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:simulation-results",
+        "to": "urn:activity:simulation-corrected"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:simulation-corrected",
+        "to": "urn:entity:polaris"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:simulation-corrected",
+        "to": "urn:entity:priya",
+        "notes": "Fatima adjusted landlord exit rate parameter and validated corrected results"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:simulation-corrected",
+        "to": "urn:activity:simulation-initial",
+        "notes": "Corrected run informed by rejection of initial run's assumptions"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:framing-decision",
+        "to": "urn:entity:priya"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:framing-decision",
+        "to": "urn:entity:james",
+        "notes": "Division director consulted on framing approach and concurred"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:framing-decision",
+        "to": "urn:activity:simulation-corrected"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:jurisdiction-draft",
+        "to": "urn:activity:jurisdiction-draft"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:jurisdiction-draft",
+        "to": "urn:entity:jurisdiction-data"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:jurisdiction-draft",
+        "to": "urn:entity:clarity"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:jurisdiction-draft",
+        "to": "urn:entity:priya",
+        "notes": "Fatima provided structured data and substantially revised the AI draft"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:equity-analysis",
+        "to": "urn:entity:priya",
+        "notes": "Entirely human-authored — no AI involvement"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:plain-language-summaries",
+        "to": "urn:entity:clarity"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:plain-language-summaries",
+        "to": "urn:entity:priya",
+        "notes": "Reviewed and corrected AI-generated summaries; wrote equity summary by hand"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:director-review",
+        "to": "urn:entity:james"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:sensitivity-analysis",
+        "to": "urn:entity:polaris"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:sensitivity-analysis",
+        "to": "urn:entity:priya"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:sensitivity-analysis",
+        "to": "urn:activity:director-review",
+        "notes": "Sensitivity analysis was requested by division director during review"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:deputy-approval",
+        "to": "urn:entity:karen"
+      },
+      {
+        "type": "actedOnBehalfOf",
+        "from": "urn:entity:polaris",
+        "to": "urn:entity:priya"
+      },
+      {
+        "type": "actedOnBehalfOf",
+        "from": "urn:entity:clarity",
+        "to": "urn:entity:priya"
+      },
+      {
+        "type": "actedOnBehalfOf",
+        "from": "urn:entity:priya",
+        "to": "urn:entity:agency",
+        "notes": "Fatima acts as the agency's analyst; the assessment is an institutional product"
+      },
+      {
+        "type": "wasDerivedFrom",
+        "from": "urn:entity:impact-assessment",
+        "to": "urn:entity:literature-synthesis",
+        "notes": "Evidence base section incorporates corrected synthesis"
+      },
+      {
+        "type": "wasDerivedFrom",
+        "from": "urn:entity:impact-assessment",
+        "to": "urn:entity:simulation-results",
+        "notes": "Economic modeling section reports simulation findings"
+      },
+      {
+        "type": "wasDerivedFrom",
+        "from": "urn:entity:impact-assessment",
+        "to": "urn:entity:jurisdiction-draft",
+        "notes": "Comparative section derived from AI draft but substantially rewritten"
+      }
+    ]
+  },
+  "policyEvaluations": [
+    {
+      "id": "urn:eval:agency-ai-policy",
+      "policy": "State Housing Agency AI Use and Transparency Policy",
+      "policyVersion": "2025.1",
+      "evaluator": "Fatima Al-Rashid",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-20T10:00:00Z",
+      "notes": "AI assistance disclosed in cover letter signed by Deputy Secretary. AI used only for research synthesis, simulation, and drafting — not for analytical conclusions, equity analysis, or recommendations. All AI outputs reviewed and corrected by analyst. Compliant with agency policy sections 3.1 (disclosure), 3.4 (human accountability), and 3.7 (sensitive content exclusion)."
+    },
+    {
+      "id": "urn:eval:foia-transparency",
+      "policy": "State Freedom of Information Act — AI Transparency Requirements",
+      "policyVersion": "2025",
+      "evaluator": "David Oluwale",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-18T16:30:00Z",
+      "notes": "Assessment methodology section documents AI tool usage. HALOS provenance record provides machine-readable detail sufficient to respond to FOIA requests regarding AI involvement in the assessment's preparation. Cover letter provides public-facing disclosure."
+    },
+    {
+      "id": "urn:eval:halos-compliance",
+      "policy": "HALOS Principles v1.0",
+      "evaluator": "Fatima Al-Rashid",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-20T11:00:00Z",
+      "notes": "Human authorship confirmed for all analytical conclusions, equity analysis, and executive summary. AI assistance properly disclosed and bounded. Decision provenance recorded for all material framing and methodology choices. Three-tier human review chain (analyst, director, deputy secretary) documented."
+    }
+  ]
+}

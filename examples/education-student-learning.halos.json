@@ -1,0 +1,429 @@
+{
+  "halos_version": "0.2-draft",
+  "artifact": {
+    "id": "urn:edu:capstone/rivera-crispr-scd-2026",
+    "type": "document",
+    "description": "Capstone research paper: Comparative Analysis of CRISPR-Cas9 Delivery Methods for Sickle Cell Disease",
+    "version": "1.0"
+  },
+  "human_author": {
+    "name": "Mateo Rivera",
+    "identifier": "https://university.example/students/mrivera",
+    "role": "originator"
+  },
+  "ai_assistance": [
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "Anthropic",
+      "role": "assistance",
+      "description": "Literature search and summarization, mechanism explanation, draft structural feedback, citation consistency checking"
+    }
+  ],
+  "timestamp": "2026-03-22T17:00:00Z",
+  "review": [
+    {
+      "reviewer": "Dr. James Whitfield",
+      "type": "approval",
+      "timestamp": "2026-03-20T14:00:00Z",
+      "notes": "Faculty advisor reviewed second draft and approved for final submission with minor revisions. Noted strength of off-target risk section and honest treatment of evidentiary gaps."
+    }
+  ],
+  "governance": {
+    "policy": "University AI Use Policy for Academic Work",
+    "version": "2025-2026",
+    "url": "https://university.example/policies/ai-academic-use"
+  },
+  "decisions": [
+    {
+      "id": "urn:decision:reject-unverifiable-citation",
+      "description": "Rejected AI-generated claim about age-correlated off-target editing risks (attributed to nonexistent 'Park et al., 2024') after failing to verify the citation in primary literature",
+      "responsible": "Mateo Rivera",
+      "responsibleId": "https://university.example/students/mrivera",
+      "timestamp": "2026-03-12T16:00:00Z",
+      "context": "AI produced a scientifically plausible synthesis claiming a correlation between chromatin accessibility at off-target sites and patient age, citing a paper that does not appear to exist. Including the claim would have strengthened the comparative framework but introduced an unverifiable assertion into an academic paper.",
+      "aiInputs": [
+        {
+          "model": "claude-sonnet-4-6",
+          "provider": "Anthropic",
+          "contribution": "Generated summary of off-target editing evidence that included a fabricated or conflated citation to 'Park et al., 2024, Nature Biotechnology'"
+        }
+      ],
+      "rationale": "The cited paper could not be found in PubMed, Google Scholar, or the Nature Biotechnology archive. The underlying claim may be directionally correct — chromatin accessibility does modulate off-target effects, and HSC epigenetics do change with age — but the specific correlation has not been demonstrated in published literature. Wrote an honest paragraph identifying this as a gap rather than asserting an unverified finding.",
+      "outcome": "rejected"
+    },
+    {
+      "id": "urn:decision:selective-draft-feedback",
+      "description": "Accepted AI feedback on structural gaps (incomplete delivery method analysis, weak conclusion) but rejected feedback on regulatory section placement",
+      "responsible": "Mateo Rivera",
+      "responsibleId": "https://university.example/students/mrivera",
+      "timestamp": "2026-03-16T11:00:00Z",
+      "context": "AI reviewed first complete draft and identified three structural issues. Two were valid and prompted additional research and rewriting. One reflected a misunderstanding of the paper's analytical structure.",
+      "aiInputs": [
+        {
+          "model": "claude-sonnet-4-6",
+          "provider": "Anthropic",
+          "contribution": "Structural review identifying three issues: incomplete coverage of third delivery method, detached regulatory discussion, and conclusion that restates without synthesizing"
+        }
+      ],
+      "rationale": "The incomplete coverage and weak conclusion were genuine gaps — addressing them improved the paper. The regulatory section serves a deliberately distinct analytical purpose and was kept separate; this choice was later validated by Dr. Whitfield.",
+      "outcome": "accepted"
+    },
+    {
+      "id": "urn:decision:use-ai-for-comprehension",
+      "description": "Used AI explanation of adenine base editor PAM specificity as a comprehension aid, then wrote original text from primary source",
+      "responsible": "Mateo Rivera",
+      "responsibleId": "https://university.example/students/mrivera",
+      "timestamp": "2026-03-08T14:30:00Z",
+      "context": "Primary paper (Newby et al., Nature, 2021) contained a methods passage on guide RNA specificity that Mateo could not fully parse. Needed to understand the mechanism to write his own analysis accurately.",
+      "aiInputs": [
+        {
+          "model": "claude-sonnet-4-6",
+          "provider": "Anthropic",
+          "contribution": "Explained PAM constraints, guide RNA mismatch tolerance, and thermodynamic basis for off-target discrimination in plain language"
+        }
+      ],
+      "rationale": "Used AI as a tutor to build understanding, not as a source to copy. Returned to the primary paper after the AI explanation and was able to parse the methods section independently. Wrote original text citing Newby et al., not the AI explanation.",
+      "outcome": "accepted"
+    }
+  ],
+  "graph": {
+    "entities": [
+      {
+        "id": "urn:entity:capstone-paper",
+        "type": "artifact",
+        "label": "Capstone paper — CRISPR-Cas9 delivery methods for SCD",
+        "identifier": "urn:edu:capstone/rivera-crispr-scd-2026"
+      },
+      {
+        "id": "urn:entity:mateo",
+        "type": "person",
+        "label": "Mateo Rivera",
+        "identifier": "https://university.example/students/mrivera",
+        "role": "author"
+      },
+      {
+        "id": "urn:entity:whitfield",
+        "type": "person",
+        "label": "Dr. James Whitfield",
+        "identifier": "https://university.example/faculty/jwhitfield",
+        "role": "approver"
+      },
+      {
+        "id": "urn:entity:claude",
+        "type": "agent",
+        "label": "Claude Sonnet 4.6",
+        "identifier": "claude-sonnet-4-6"
+      },
+      {
+        "id": "urn:entity:university",
+        "type": "organization",
+        "label": "University Department of Biochemistry"
+      },
+      {
+        "id": "urn:entity:ai-policy",
+        "type": "policy",
+        "label": "University AI Use Policy for Academic Work 2025-2026",
+        "identifier": "https://university.example/policies/ai-academic-use"
+      },
+      {
+        "id": "urn:entity:primary-literature",
+        "type": "artifact",
+        "label": "47 verified primary sources (journals, clinical trial registries, FDA documents)"
+      },
+      {
+        "id": "urn:entity:draft-1",
+        "type": "artifact",
+        "label": "First complete draft of capstone paper"
+      },
+      {
+        "id": "urn:entity:draft-2",
+        "type": "artifact",
+        "label": "Second draft incorporating AI feedback and additional research"
+      },
+      {
+        "id": "urn:entity:fabricated-citation",
+        "type": "artifact",
+        "label": "AI-generated claim citing nonexistent 'Park et al., 2024' — rejected after verification failure"
+      }
+    ],
+    "activities": [
+      {
+        "id": "urn:activity:lit-search",
+        "type": "generate",
+        "startedAt": "2026-03-03T09:00:00Z",
+        "endedAt": "2026-03-03T12:00:00Z",
+        "description": "AI-assisted literature search to map CRISPR-SCD clinical trial landscape",
+        "interaction": {
+          "type": "generation",
+          "humanResponse": "modified",
+          "responseNotes": "Used AI summary as starting point. Verified all trials against ClinicalTrials.gov and FDA briefing documents. Found one discontinued trial the AI listed as active — corrected notes accordingly."
+        }
+      },
+      {
+        "id": "urn:activity:mechanism-explanation",
+        "type": "suggest",
+        "startedAt": "2026-03-08T14:00:00Z",
+        "endedAt": "2026-03-08T14:30:00Z",
+        "description": "AI explained adenine base editor specificity mechanism to aid comprehension of primary paper",
+        "interaction": {
+          "type": "analysis",
+          "humanResponse": "accepted",
+          "responseNotes": "Used explanation as a comprehension aid to understand Newby et al. methods section. Did not copy AI text. Returned to primary paper and wrote original explanation in own words."
+        }
+      },
+      {
+        "id": "urn:activity:offtarget-research",
+        "type": "generate",
+        "startedAt": "2026-03-12T10:00:00Z",
+        "endedAt": "2026-03-12T11:00:00Z",
+        "description": "AI generated summary of off-target CRISPR editing evidence including fabricated citation",
+        "interaction": {
+          "type": "generation",
+          "humanResponse": "rejected",
+          "responseNotes": "AI cited 'Park et al., 2024, Nature Biotechnology' for an age-correlated off-target editing claim. Paper not found in PubMed, Google Scholar, or Nature Biotechnology archive. Rejected the specific claim. Traced the underlying concepts to verified sources (Tsai & Joung 2023, Kim et al. 2024) and wrote an honest paragraph identifying the evidentiary gap."
+        }
+      },
+      {
+        "id": "urn:activity:source-verification",
+        "type": "review",
+        "startedAt": "2026-03-12T11:00:00Z",
+        "endedAt": "2026-03-12T16:00:00Z",
+        "description": "Mateo searched PubMed, Google Scholar, and journal archives to verify AI-cited source — could not locate it"
+      },
+      {
+        "id": "urn:activity:draft-writing",
+        "type": "create",
+        "startedAt": "2026-03-05T09:00:00Z",
+        "endedAt": "2026-03-14T18:00:00Z",
+        "description": "Mateo wrote first complete draft of capstone paper — all prose authored by student from primary sources"
+      },
+      {
+        "id": "urn:activity:draft-feedback",
+        "type": "suggest",
+        "startedAt": "2026-03-15T20:00:00Z",
+        "endedAt": "2026-03-15T20:30:00Z",
+        "description": "AI reviewed first draft for structural coherence and argumentative gaps",
+        "interaction": {
+          "type": "review",
+          "humanResponse": "partial",
+          "responseNotes": "Accepted 2 of 3 points: expanded third delivery method analysis (read 2 additional papers) and rewrote conclusion. Rejected feedback on regulatory section placement — it serves a distinct analytical purpose."
+        }
+      },
+      {
+        "id": "urn:activity:revision",
+        "type": "edit",
+        "startedAt": "2026-03-16T09:00:00Z",
+        "endedAt": "2026-03-18T17:00:00Z",
+        "description": "Mateo revised draft — expanded LNP delivery analysis, rewrote conclusion, maintained regulatory section structure"
+      },
+      {
+        "id": "urn:activity:advisor-review",
+        "type": "approve",
+        "startedAt": "2026-03-19T10:00:00Z",
+        "endedAt": "2026-03-20T14:00:00Z",
+        "description": "Dr. Whitfield reviewed second draft and HALOS disclosure, approved with minor revisions"
+      },
+      {
+        "id": "urn:activity:citation-check",
+        "type": "suggest",
+        "startedAt": "2026-03-21T15:00:00Z",
+        "endedAt": "2026-03-21T15:15:00Z",
+        "description": "AI checked citation formatting consistency",
+        "interaction": {
+          "type": "review",
+          "humanResponse": "accepted",
+          "responseNotes": "Caught one misformatted DOI. Mechanical task — no intellectual content involved."
+        }
+      },
+      {
+        "id": "urn:activity:final-submission",
+        "type": "create",
+        "startedAt": "2026-03-22T16:00:00Z",
+        "endedAt": "2026-03-22T17:00:00Z",
+        "description": "Final paper submitted with HALOS provenance record as AI use disclosure"
+      }
+    ],
+    "relationships": [
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:capstone-paper",
+        "to": "urn:activity:final-submission"
+      },
+      {
+        "type": "wasAttributedTo",
+        "from": "urn:entity:capstone-paper",
+        "to": "urn:entity:mateo"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:lit-search",
+        "to": "urn:entity:claude"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:lit-search",
+        "to": "urn:entity:mateo",
+        "notes": "Mateo authored prompts and verified all AI output against primary databases"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:mechanism-explanation",
+        "to": "urn:entity:claude"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:mechanism-explanation",
+        "to": "urn:entity:mateo"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:offtarget-research",
+        "to": "urn:entity:claude"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:offtarget-research",
+        "to": "urn:entity:mateo"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:source-verification",
+        "to": "urn:entity:mateo",
+        "notes": "Mateo independently searched PubMed, Google Scholar, and Nature Biotechnology archive"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:draft-writing",
+        "to": "urn:entity:mateo"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:draft-feedback",
+        "to": "urn:entity:claude"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:revision",
+        "to": "urn:entity:mateo"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:advisor-review",
+        "to": "urn:entity:whitfield"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:citation-check",
+        "to": "urn:entity:claude"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:final-submission",
+        "to": "urn:entity:mateo"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:draft-writing",
+        "to": "urn:entity:primary-literature"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:draft-feedback",
+        "to": "urn:entity:draft-1"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:revision",
+        "to": "urn:entity:draft-1"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:advisor-review",
+        "to": "urn:entity:draft-2"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:draft-1",
+        "to": "urn:activity:draft-writing"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:draft-2",
+        "to": "urn:activity:revision"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:fabricated-citation",
+        "to": "urn:activity:offtarget-research"
+      },
+      {
+        "type": "wasDerivedFrom",
+        "from": "urn:entity:draft-2",
+        "to": "urn:entity:draft-1",
+        "notes": "Revised based on AI structural feedback (selectively adopted) and additional primary research"
+      },
+      {
+        "type": "wasDerivedFrom",
+        "from": "urn:entity:capstone-paper",
+        "to": "urn:entity:draft-2",
+        "notes": "Final version after Dr. Whitfield's minor revision requests"
+      },
+      {
+        "type": "actedOnBehalfOf",
+        "from": "urn:entity:claude",
+        "to": "urn:entity:mateo"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:draft-writing",
+        "to": "urn:activity:lit-search"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:draft-writing",
+        "to": "urn:activity:mechanism-explanation"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:source-verification",
+        "to": "urn:activity:offtarget-research"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:revision",
+        "to": "urn:activity:draft-feedback"
+      }
+    ]
+  },
+  "policyEvaluations": [
+    {
+      "id": "urn:eval:university-ai-policy",
+      "policy": "University AI Use Policy for Academic Work",
+      "policyVersion": "2025-2026",
+      "evaluator": "Mateo Rivera",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-22T16:30:00Z",
+      "notes": "AI use disclosed in full via attached HALOS provenance record. All AI interactions documented with interaction semantics. No AI-generated text appears in the final paper. All sources independently verified."
+    },
+    {
+      "id": "urn:eval:academic-integrity",
+      "policy": "University Honor Code — Academic Integrity Standards",
+      "policyVersion": "2025-2026",
+      "evaluator": "Dr. James Whitfield",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-20T14:30:00Z",
+      "notes": "Reviewed HALOS record alongside second draft. Student demonstrated independent verification of AI outputs, rejection of unverifiable claims, and original analytical contribution. AI use is consistent with policy-permitted assistance. Paper reflects genuine understanding of the subject matter."
+    },
+    {
+      "id": "urn:eval:citation-verification",
+      "policy": "Departmental Citation Accuracy Standards",
+      "evaluator": "Mateo Rivera",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-22T15:30:00Z",
+      "notes": "All 47 citations verified against primary sources. One AI-suggested citation (Park et al., 2024) identified as fabricated and excluded. Final citation check caught one formatting error (misformatted DOI), corrected before submission."
+    }
+  ]
+}

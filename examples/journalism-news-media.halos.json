@@ -1,0 +1,450 @@
+{
+  "halos_version": "0.2-draft",
+  "artifact": {
+    "id": "urn:journalism:lakeshore-herald/meridian-investigation-v1",
+    "type": "document",
+    "description": "Investigative article — 'Unfinished Business: 12 Years of Violations at Meridian Chemical and the Neighborhood Left Waiting'",
+    "version": "1.0"
+  },
+  "human_author": {
+    "name": "Carlos Medina",
+    "identifier": "https://lakeshoreherald.example/staff/carlos-medina",
+    "role": "originator"
+  },
+  "ai_assistance": [
+    {
+      "model": "docparse-regulatory-v3",
+      "provider": "DocParse AI",
+      "role": "analysis",
+      "description": "Analyzed 4,300 public regulatory filings to categorize violations, identify enforcement gaps, and generate timeline patterns"
+    },
+    {
+      "model": "docparse-regulatory-v3",
+      "provider": "DocParse AI",
+      "role": "analysis",
+      "description": "Cross-referenced facility violation timeline with county health department respiratory complaint data by ZIP code"
+    }
+  ],
+  "timestamp": "2026-03-18T09:00:00Z",
+  "review": [
+    {
+      "reviewer": "Sarah Kwan",
+      "type": "editorial-review",
+      "timestamp": "2026-03-15T14:00:00Z",
+      "notes": "Editor reviewed all findings; made framing decision on health-data correlation; chose contextualized presentation over omission or unqualified inclusion"
+    },
+    {
+      "reviewer": "Rachel Torres",
+      "type": "legal-review",
+      "timestamp": "2026-03-17T11:00:00Z",
+      "notes": "Reviewed for defamation risk; requested softened characterization of DEQ enforcement and inclusion of full Meridian statement"
+    },
+    {
+      "reviewer": "James Trujillo",
+      "type": "approval",
+      "timestamp": "2026-03-17T16:00:00Z",
+      "notes": "Managing editor approved publication after clarifying sourcing behind violation count"
+    }
+  ],
+  "governance": {
+    "policy": "Lakeshore Herald Newsroom AI Policy",
+    "version": "2025",
+    "url": "https://lakeshoreherald.example/policies/ai-use"
+  },
+  "decisions": [
+    {
+      "id": "urn:decision:health-correlation-framing",
+      "description": "Decided to include the AI-identified correlation between violation spikes and respiratory complaint rates, presented with full methodological context, expert caveats, and a call for formal study — rather than omitting it or presenting it as a causal finding",
+      "responsible": "Sarah Kwan",
+      "responsibleId": "https://lakeshoreherald.example/staff/sarah-kwan",
+      "timestamp": "2026-03-14T15:00:00Z",
+      "context": "AI identified a statistically notable correlation between facility violation spikes (2019, 2022) and elevated respiratory complaints in the adjacent ZIP code. However, the data does not control for confounders (highway pollution, seasonal variation, COVID-19), the ZIP code is too coarse for facility-specific attribution, and two independent researchers called the pattern 'suggestive but not conclusive.'",
+      "aiInputs": [
+        {
+          "model": "docparse-regulatory-v3",
+          "provider": "DocParse AI",
+          "contribution": "Identified temporal correlation between violation clusters and respiratory complaint spikes across two ZIP codes"
+        }
+      ],
+      "rationale": "The community has a right to know about a pattern that independent experts consider worth investigating. Omission would withhold potentially actionable information from a vulnerable population. Unqualified inclusion would imply causation not supported by the data. Contextualized presentation — framing the correlation as a question warranting formal study, with full disclosure of limitations — serves the public interest while maintaining journalistic standards.",
+      "outcome": "accepted"
+    },
+    {
+      "id": "urn:decision:ai-verification-methodology",
+      "description": "Established and executed a stratified sample verification of AI document analysis — checking 60 of 387 identified violations against original source documents, including all 43 flagged enforcement gaps",
+      "responsible": "Carlos Medina",
+      "responsibleId": "https://lakeshoreherald.example/staff/carlos-medina",
+      "timestamp": "2026-02-28T10:00:00Z",
+      "context": "The AI categorized 387 violations across 4,300 documents. The reporter needed to establish a known error rate before relying on the analysis for publication.",
+      "aiInputs": [
+        {
+          "model": "docparse-regulatory-v3",
+          "provider": "DocParse AI",
+          "contribution": "Produced the initial categorized violation dataset that was then sampled and verified"
+        }
+      ],
+      "rationale": "A 15% stratified sample (biased toward high-stakes findings) provides a defensible error estimate. Checking all enforcement-gap flags ensures the most consequential AI findings are fully verified. Discovered 7% misclassification rate and 1 false-positive enforcement gap (2% of flagged items), both corrected before publication.",
+      "outcome": "accepted"
+    },
+    {
+      "id": "urn:decision:legal-revisions",
+      "description": "Accepted legal counsel's two requested changes: softened DEQ characterization and included full Meridian spokesperson statement",
+      "responsible": "Carlos Medina",
+      "responsibleId": "https://lakeshoreherald.example/staff/carlos-medina",
+      "timestamp": "2026-03-17T13:00:00Z",
+      "context": "Legal review identified potential defamation exposure in characterizing DEQ response as 'neglect' and in excerpting rather than fully quoting Meridian's statement",
+      "rationale": "Both changes reduce legal risk without materially altering the story's findings. 'Gaps in follow-through' is factually accurate and less legally provocative than 'neglect.' The full Meridian statement gives the company fair representation.",
+      "outcome": "accepted"
+    }
+  ],
+  "graph": {
+    "entities": [
+      {
+        "id": "urn:entity:article",
+        "type": "artifact",
+        "label": "Published investigative article — Meridian Chemical investigation",
+        "identifier": "urn:journalism:lakeshore-herald/meridian-investigation-v1"
+      },
+      {
+        "id": "urn:entity:carlos",
+        "type": "person",
+        "label": "Carlos Medina",
+        "identifier": "https://lakeshoreherald.example/staff/carlos-medina",
+        "role": "author"
+      },
+      {
+        "id": "urn:entity:sarah",
+        "type": "person",
+        "label": "Sarah Kwan",
+        "identifier": "https://lakeshoreherald.example/staff/sarah-kwan",
+        "role": "reviewer"
+      },
+      {
+        "id": "urn:entity:james",
+        "type": "person",
+        "label": "James Trujillo",
+        "identifier": "https://lakeshoreherald.example/staff/james-trujillo",
+        "role": "approver"
+      },
+      {
+        "id": "urn:entity:rachel",
+        "type": "person",
+        "label": "Rachel Torres",
+        "identifier": "https://lakeshoreherald.example/legal/rachel-torres",
+        "role": "reviewer"
+      },
+      {
+        "id": "urn:entity:docparse",
+        "type": "agent",
+        "label": "DocParse Regulatory v3",
+        "identifier": "docparse-regulatory-v3"
+      },
+      {
+        "id": "urn:entity:regulatory-filings",
+        "type": "artifact",
+        "label": "4,300 public DEQ regulatory filings (2012-2024)"
+      },
+      {
+        "id": "urn:entity:health-data",
+        "type": "artifact",
+        "label": "County health department respiratory complaint data by ZIP code"
+      },
+      {
+        "id": "urn:entity:violation-dataset",
+        "type": "artifact",
+        "label": "AI-generated categorized violation dataset (387 violations, corrected after verification)"
+      },
+      {
+        "id": "urn:entity:correlation-analysis",
+        "type": "artifact",
+        "label": "AI-generated violation-health correlation analysis"
+      },
+      {
+        "id": "urn:entity:interview-notes",
+        "type": "artifact",
+        "label": "Reporter's interview notes — 14 residents, 4 employees, 2 inspectors, company spokesperson, county health officer"
+      }
+    ],
+    "activities": [
+      {
+        "id": "urn:activity:document-analysis",
+        "type": "generate",
+        "startedAt": "2026-02-20T09:00:00Z",
+        "endedAt": "2026-02-22T17:00:00Z",
+        "description": "AI analyzed 4,300 regulatory filings — categorized violations by type, date, severity, and enforcement follow-up",
+        "interaction": {
+          "type": "analysis",
+          "humanResponse": "modified",
+          "responseNotes": "Reporter verified stratified sample of 60 violations against source documents. Found 7% misclassification rate and 1 false-positive enforcement gap. Corrected dataset from 43 to 42 unenforced violations and reclassified 3 violation types."
+        }
+      },
+      {
+        "id": "urn:activity:health-crossref",
+        "type": "generate",
+        "startedAt": "2026-03-01T10:00:00Z",
+        "endedAt": "2026-03-01T12:00:00Z",
+        "description": "AI cross-referenced violation timeline with ZIP-code-level respiratory complaint data",
+        "interaction": {
+          "type": "analysis",
+          "humanResponse": "modified",
+          "responseNotes": "Correlation finding evaluated by reporter, data journalist, and two independent academic researchers. Consensus: pattern is suggestive but not conclusive. Reporter contextualized with confounders (highway, seasonal variation, COVID-19) and expert assessments. Published as a question warranting further study, not a causal claim."
+        }
+      },
+      {
+        "id": "urn:activity:source-verification",
+        "type": "review",
+        "startedAt": "2026-02-25T09:00:00Z",
+        "endedAt": "2026-02-28T17:00:00Z",
+        "description": "Reporter manually verified 60 AI-categorized violations against original DEQ documents"
+      },
+      {
+        "id": "urn:activity:field-reporting",
+        "type": "create",
+        "startedAt": "2026-03-03T09:00:00Z",
+        "endedAt": "2026-03-12T17:00:00Z",
+        "description": "Reporter conducted on-the-ground interviews — residents, employees, regulators, company spokesperson, county health officer"
+      },
+      {
+        "id": "urn:activity:article-drafting",
+        "type": "create",
+        "startedAt": "2026-03-12T09:00:00Z",
+        "endedAt": "2026-03-14T12:00:00Z",
+        "description": "Reporter wrote the article — all published text is human-authored"
+      },
+      {
+        "id": "urn:activity:editorial-review",
+        "type": "review",
+        "startedAt": "2026-03-14T13:00:00Z",
+        "endedAt": "2026-03-15T14:00:00Z",
+        "description": "Editor reviewed draft, discussed correlation framing, made editorial decisions on presentation"
+      },
+      {
+        "id": "urn:activity:correlation-decision",
+        "type": "decision",
+        "startedAt": "2026-03-14T15:00:00Z",
+        "description": "Editor and reporter decided to include health-data correlation with full context and caveats"
+      },
+      {
+        "id": "urn:activity:legal-review",
+        "type": "review",
+        "startedAt": "2026-03-17T09:00:00Z",
+        "endedAt": "2026-03-17T11:00:00Z",
+        "description": "Legal counsel reviewed for defamation risk and requested two changes"
+      },
+      {
+        "id": "urn:activity:managing-editor-approval",
+        "type": "approve",
+        "startedAt": "2026-03-17T14:00:00Z",
+        "endedAt": "2026-03-17T16:00:00Z",
+        "description": "Managing editor reviewed final draft, clarified sourcing, and approved publication"
+      }
+    ],
+    "relationships": [
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:article",
+        "to": "urn:activity:article-drafting"
+      },
+      {
+        "type": "wasAttributedTo",
+        "from": "urn:entity:article",
+        "to": "urn:entity:carlos"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:document-analysis",
+        "to": "urn:entity:regulatory-filings"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:document-analysis",
+        "to": "urn:entity:docparse"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:document-analysis",
+        "to": "urn:entity:carlos",
+        "notes": "Reporter defined analysis queries and evaluated outputs"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:violation-dataset",
+        "to": "urn:activity:document-analysis"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:health-crossref",
+        "to": "urn:entity:violation-dataset"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:health-crossref",
+        "to": "urn:entity:health-data"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:health-crossref",
+        "to": "urn:entity:docparse"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:health-crossref",
+        "to": "urn:entity:carlos",
+        "notes": "Reporter defined cross-reference parameters and evaluated correlation findings with independent experts"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:correlation-analysis",
+        "to": "urn:activity:health-crossref"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:source-verification",
+        "to": "urn:entity:carlos"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:source-verification",
+        "to": "urn:entity:violation-dataset"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:source-verification",
+        "to": "urn:entity:regulatory-filings",
+        "notes": "Verified AI categorizations against original documents"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:field-reporting",
+        "to": "urn:entity:carlos"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:interview-notes",
+        "to": "urn:activity:field-reporting"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:article-drafting",
+        "to": "urn:entity:carlos"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:article-drafting",
+        "to": "urn:entity:violation-dataset",
+        "notes": "Corrected dataset after verification"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:article-drafting",
+        "to": "urn:entity:correlation-analysis",
+        "notes": "Presented with full context and expert caveats"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:article-drafting",
+        "to": "urn:entity:interview-notes"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:editorial-review",
+        "to": "urn:entity:sarah"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:correlation-decision",
+        "to": "urn:entity:sarah"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:correlation-decision",
+        "to": "urn:entity:carlos"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:legal-review",
+        "to": "urn:entity:rachel"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:managing-editor-approval",
+        "to": "urn:entity:james"
+      },
+      {
+        "type": "actedOnBehalfOf",
+        "from": "urn:entity:docparse",
+        "to": "urn:entity:carlos"
+      },
+      {
+        "type": "wasDerivedFrom",
+        "from": "urn:entity:article",
+        "to": "urn:entity:violation-dataset",
+        "notes": "Verified and corrected AI analysis used as factual basis"
+      },
+      {
+        "type": "wasDerivedFrom",
+        "from": "urn:entity:article",
+        "to": "urn:entity:correlation-analysis",
+        "notes": "Contextualized with expert caveats; presented as question, not conclusion"
+      },
+      {
+        "type": "wasDerivedFrom",
+        "from": "urn:entity:article",
+        "to": "urn:entity:interview-notes",
+        "notes": "Primary source reporting — residents, employees, regulators, company"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:field-reporting",
+        "to": "urn:activity:document-analysis",
+        "notes": "AI findings guided interview questions and areas of focus"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:article-drafting",
+        "to": "urn:activity:correlation-decision"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:article-drafting",
+        "to": "urn:activity:source-verification"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:article-drafting",
+        "to": "urn:activity:field-reporting"
+      }
+    ]
+  },
+  "policyEvaluations": [
+    {
+      "id": "urn:eval:newsroom-ai-policy",
+      "policy": "Lakeshore Herald Newsroom AI Policy",
+      "policyVersion": "2025",
+      "evaluator": "Sarah Kwan",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-15T14:00:00Z",
+      "notes": "AI used for document analysis and pattern identification only — not for writing published text. All AI findings verified against primary sources. AI disclosure note included in published article. Compliant with newsroom policy sections 3.1 (permitted uses), 3.4 (verification requirements), and 4.2 (reader disclosure)."
+    },
+    {
+      "id": "urn:eval:editorial-review",
+      "policy": "Lakeshore Herald Editorial Standards",
+      "policyVersion": "2024",
+      "evaluator": "Sarah Kwan",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-15T14:00:00Z",
+      "notes": "All factual claims supported by at least two independent sources. Statistical claims reviewed by data journalist. Health correlation presented with appropriate caveats and expert context. Company given full opportunity to respond. Methodology sidebar included."
+    },
+    {
+      "id": "urn:eval:legal-review",
+      "policy": "Pre-publication legal review",
+      "evaluator": "Rachel Torres",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-17T11:00:00Z",
+      "notes": "Reviewed for defamation, privacy, and fair comment. Two revisions requested and accepted: softened DEQ characterization, included full Meridian statement. Cleared for publication."
+    }
+  ]
+}

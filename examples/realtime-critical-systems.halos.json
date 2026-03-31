@@ -1,0 +1,438 @@
+{
+  "halos_version": "0.2-draft",
+  "artifact": {
+    "id": "urn:scada:lakeview-wtp/plc-chlorine-dosing-v2.1",
+    "type": "code",
+    "description": "PLC program implementing feedforward-feedback hybrid chlorine dosing algorithm for Lakeview Regional Water Treatment Facility",
+    "version": "2.1"
+  },
+  "human_author": {
+    "name": "Luis Herrera, PE",
+    "identifier": "urn:license:state-deq/pe-2014-04821",
+    "role": "originator"
+  },
+  "ai_assistance": [
+    {
+      "model": "processiq-optima-3.2",
+      "provider": "ProcessIQ Industrial AI",
+      "role": "analysis",
+      "description": "Analyzed 18 months of SCADA historian data to identify flow/turbidity/temperature correlations and proposed a feedforward-feedback dosing algorithm with tuned parameters and seasonal adjustment curves"
+    }
+  ],
+  "timestamp": "2026-03-18T08:00:00Z",
+  "review": [
+    {
+      "reviewer": "Karen Osei",
+      "type": "peer-review",
+      "timestamp": "2026-03-12T14:00:00Z",
+      "notes": "Chief Plant Operator review — approved after requesting daily summary log entry for actual vs. predicted dose trending"
+    },
+    {
+      "reviewer": "Dr. Ingrid Solheim",
+      "type": "approval",
+      "timestamp": "2026-03-15T16:30:00Z",
+      "notes": "State DEQ regulatory approval — approved with condition: enhanced distribution system monitoring (daily coliform sampling) for first 90 days of operation"
+    }
+  ],
+  "governance": {
+    "policy": "Lakeview WTP Change Management Policy / State DEQ Operating Permit #WTP-2019-0847",
+    "version": "2024-rev3",
+    "url": "https://deq.state.example.gov/permits/wtp-2019-0847"
+  },
+  "decisions": [
+    {
+      "id": "urn:decision:dosing-algorithm-design",
+      "description": "Accepted AI's feedforward-feedback structure and flow/turbidity correlation model; rejected AI's proposed 12% winter dose reduction in favor of 5% reduction with mandatory storm-event override",
+      "responsible": "Luis Herrera, PE",
+      "responsibleId": "urn:license:state-deq/pe-2014-04821",
+      "timestamp": "2026-03-06T16:00:00Z",
+      "context": "AI proposed 12% winter base dose reduction based on historical low microbial loading. Engineer's storm event analysis revealed that 2 of 5 historical storm events would have caused 45-minute under-dosing windows under the AI's proposal due to dissolved organics arriving before turbidity spikes.",
+      "aiInputs": [
+        {
+          "model": "processiq-optima-3.2",
+          "provider": "ProcessIQ Industrial AI",
+          "contribution": "Proposed feedforward-feedback algorithm with seasonal adjustment curves, including 12% winter dose reduction based on 18-month historical pattern analysis. Provided sensitivity analysis showing projected 9% reduction in annual hypochlorite consumption."
+        }
+      ],
+      "rationale": "The feedforward structure is sound engineering — turbidity and flow are well-established dosing predictors. However, the 12% winter reduction is too aggressive given late-fall storm event risk. Agricultural runoff events are episodic and not fully captured by seasonal curves. A 5% reduction with a storm override (revert to 1.0 mg/L when turbidity >10 NTU or rate-of-change >2 NTU/hr) preserves most of the chemical savings while maintaining adequate CT during transient events. This was confirmed by simulation replay against historical storm data.",
+      "outcome": "accepted"
+    },
+    {
+      "id": "urn:decision:safety-fault-handling",
+      "description": "Added four categories of safety and fault-handling logic not present in AI's proposed algorithm: analyzer fault detection, hard dosing floor, alarm escalation, and manual override lockout",
+      "responsible": "Luis Herrera, PE",
+      "responsibleId": "urn:license:state-deq/pe-2014-04821",
+      "timestamp": "2026-03-07T11:00:00Z",
+      "context": "AI's proposed algorithm assumed all sensor inputs are continuously valid and did not include fault-handling logic. In real plant operations, analyzer failures, communication losses, and sensor drift are routine. A dosing algorithm without fault handling is not deployable in a safety-critical system.",
+      "aiInputs": [],
+      "rationale": "Safety and fault handling are the responsibility of the control systems engineer, not the optimization tool. Four additions: (1) Analyzer fault detection — stale readings or 0.0 mg/L readings lock pump at last known good speed and alarm. (2) Hard floor — pump cannot be commanded below 15% speed under any condition. (3) High-high/low-low residual alarms with automatic escalation to Chief Plant Operator phone. (4) Manual override lockout — 30-minute minimum manual hold to prevent oscillation. These are standard practice for safety-critical PLC logic and are the engineer's professional obligation regardless of AI involvement.",
+      "outcome": "accepted"
+    }
+  ],
+  "graph": {
+    "entities": [
+      {
+        "id": "urn:entity:plc-program",
+        "type": "artifact",
+        "label": "PLC Chlorine Dosing Program v2.1",
+        "identifier": "urn:scada:lakeview-wtp/plc-chlorine-dosing-v2.1"
+      },
+      {
+        "id": "urn:entity:luis",
+        "type": "person",
+        "label": "Luis Herrera, PE",
+        "identifier": "urn:license:state-deq/pe-2014-04821",
+        "role": "author"
+      },
+      {
+        "id": "urn:entity:karen",
+        "type": "person",
+        "label": "Karen Osei",
+        "identifier": "urn:org:lakeview-wtp/staff/kosei",
+        "role": "reviewer"
+      },
+      {
+        "id": "urn:entity:ingrid",
+        "type": "person",
+        "label": "Dr. Ingrid Solheim",
+        "identifier": "urn:gov:state-deq/staff/isolheim",
+        "role": "approver"
+      },
+      {
+        "id": "urn:entity:processiq",
+        "type": "agent",
+        "label": "ProcessIQ Optima 3.2",
+        "identifier": "processiq-optima-3.2"
+      },
+      {
+        "id": "urn:entity:scada-data",
+        "type": "artifact",
+        "label": "18-month SCADA historian export (flow, turbidity, temperature, chlorine residual, pump speed)"
+      },
+      {
+        "id": "urn:entity:permit-limits",
+        "type": "artifact",
+        "label": "Operating permit limits and EPA regulatory thresholds"
+      },
+      {
+        "id": "urn:entity:ai-proposal",
+        "type": "artifact",
+        "label": "AI-generated dosing algorithm proposal with seasonal curves and sensitivity analysis"
+      },
+      {
+        "id": "urn:entity:simulation-results",
+        "type": "artifact",
+        "label": "Simulation validation report — historical replay and synthetic stress scenarios"
+      },
+      {
+        "id": "urn:entity:deq-submission",
+        "type": "artifact",
+        "label": "Modified disinfection control strategy notification submitted to state DEQ"
+      }
+    ],
+    "activities": [
+      {
+        "id": "urn:activity:data-preparation",
+        "type": "create",
+        "startedAt": "2026-02-24T08:00:00Z",
+        "endedAt": "2026-02-25T12:00:00Z",
+        "description": "Luis exported and curated 18 months of SCADA historian data; compiled operating permit limits, EPA thresholds, and facility SOP; wrote structured optimization brief with hard safety constraints"
+      },
+      {
+        "id": "urn:activity:ai-analysis",
+        "type": "generate",
+        "startedAt": "2026-02-25T14:00:00Z",
+        "endedAt": "2026-02-26T09:00:00Z",
+        "description": "AI analyzed historical SCADA data and generated proposed feedforward-feedback dosing algorithm with tuned parameters, seasonal adjustment curves, and sensitivity analysis",
+        "interaction": {
+          "type": "analysis",
+          "humanResponse": "partial",
+          "responseNotes": "Accepted feedforward-feedback structure and flow/turbidity correlation model. Rejected 12% winter dose reduction (reduced to 5% with storm override). AI did not address fault handling, alarm logic, or safety floors — these were added entirely by the engineer."
+        }
+      },
+      {
+        "id": "urn:activity:engineering-review",
+        "type": "review",
+        "startedAt": "2026-03-03T08:00:00Z",
+        "endedAt": "2026-03-05T17:00:00Z",
+        "description": "Luis conducted two-day engineering review: regulatory compliance verification, manual CT calculations, storm event analysis against historical data, failure mode evaluation of sensor fault scenarios"
+      },
+      {
+        "id": "urn:activity:algorithm-modification",
+        "type": "edit",
+        "startedAt": "2026-03-06T08:00:00Z",
+        "endedAt": "2026-03-07T17:00:00Z",
+        "description": "Luis modified AI-proposed algorithm: reduced winter adjustment from 12% to 5%, added storm-event override logic, added analyzer fault detection, added hard dosing floor (15% pump minimum), added alarm escalation, added manual override lockout timer"
+      },
+      {
+        "id": "urn:activity:simulation-validation",
+        "type": "review",
+        "startedAt": "2026-03-08T08:00:00Z",
+        "endedAt": "2026-03-10T17:00:00Z",
+        "description": "Simulation testing of modified algorithm against 18 months of historical SCADA recordings plus two synthetic worst-case scenarios; verified CT compliance in all scenarios including the two storm events where unmodified AI proposal would have under-dosed"
+      },
+      {
+        "id": "urn:activity:dosing-decision",
+        "type": "decision",
+        "startedAt": "2026-03-06T16:00:00Z",
+        "description": "Selected 5% winter reduction with storm override over AI-proposed 12% reduction — based on storm event under-dosing analysis"
+      },
+      {
+        "id": "urn:activity:safety-decision",
+        "type": "decision",
+        "startedAt": "2026-03-07T11:00:00Z",
+        "description": "Added four categories of safety and fault-handling logic not present in AI proposal"
+      },
+      {
+        "id": "urn:activity:internal-review",
+        "type": "review",
+        "startedAt": "2026-03-11T09:00:00Z",
+        "endedAt": "2026-03-12T14:00:00Z",
+        "description": "Chief Plant Operator Karen Osei reviewed modified algorithm, simulation results, and operator interface; requested daily actual-vs-predicted dose log entry"
+      },
+      {
+        "id": "urn:activity:regulatory-submission",
+        "type": "create",
+        "startedAt": "2026-03-12T15:00:00Z",
+        "endedAt": "2026-03-13T10:00:00Z",
+        "description": "Luis prepared and submitted modified disinfection control strategy notification to state DEQ, including algorithm specification, simulation validation report, and HALOS provenance record"
+      },
+      {
+        "id": "urn:activity:regulatory-review",
+        "type": "approve",
+        "startedAt": "2026-03-13T10:00:00Z",
+        "endedAt": "2026-03-15T16:30:00Z",
+        "description": "State DEQ engineer Dr. Ingrid Solheim reviewed submission; approved with condition of enhanced distribution system monitoring (daily coliform sampling) for 90 days"
+      },
+      {
+        "id": "urn:activity:implementation",
+        "type": "create",
+        "startedAt": "2026-03-16T06:00:00Z",
+        "endedAt": "2026-03-16T14:00:00Z",
+        "description": "Luis implemented final algorithm in PLC; configured alarm points and operator interface screens"
+      },
+      {
+        "id": "urn:activity:commissioning",
+        "type": "review",
+        "startedAt": "2026-03-16T14:00:00Z",
+        "endedAt": "2026-03-18T08:00:00Z",
+        "description": "72-hour parallel operation: new algorithm calculating but not controlling, compared against old algorithm output. Results confirmed agreement within expected bounds. New algorithm placed in active control under Luis's direct supervision."
+      }
+    ],
+    "relationships": [
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:plc-program",
+        "to": "urn:activity:implementation"
+      },
+      {
+        "type": "wasAttributedTo",
+        "from": "urn:entity:plc-program",
+        "to": "urn:entity:luis"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:ai-analysis",
+        "to": "urn:entity:scada-data"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:ai-analysis",
+        "to": "urn:entity:permit-limits"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:ai-analysis",
+        "to": "urn:entity:processiq"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:ai-analysis",
+        "to": "urn:entity:luis",
+        "notes": "Luis prepared the data, defined hard safety constraints, and evaluated all AI outputs"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:ai-proposal",
+        "to": "urn:activity:ai-analysis"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:engineering-review",
+        "to": "urn:entity:ai-proposal"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:engineering-review",
+        "to": "urn:entity:permit-limits"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:engineering-review",
+        "to": "urn:entity:luis"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:algorithm-modification",
+        "to": "urn:entity:ai-proposal",
+        "notes": "Feedforward structure and flow/turbidity model accepted; seasonal parameters and safety logic substantially modified or added by engineer"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:algorithm-modification",
+        "to": "urn:entity:luis"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:simulation-results",
+        "to": "urn:activity:simulation-validation"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:simulation-validation",
+        "to": "urn:entity:luis"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:internal-review",
+        "to": "urn:entity:karen"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:regulatory-submission",
+        "to": "urn:entity:luis"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:deq-submission",
+        "to": "urn:activity:regulatory-submission"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:regulatory-review",
+        "to": "urn:entity:ingrid"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:regulatory-review",
+        "to": "urn:entity:deq-submission"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:regulatory-review",
+        "to": "urn:entity:simulation-results"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:implementation",
+        "to": "urn:entity:luis"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:commissioning",
+        "to": "urn:entity:luis"
+      },
+      {
+        "type": "wasDerivedFrom",
+        "from": "urn:entity:plc-program",
+        "to": "urn:entity:ai-proposal",
+        "notes": "Partial derivation — feedforward structure and correlation model accepted; seasonal parameters reduced, storm overrides added, four categories of safety logic added entirely by engineer"
+      },
+      {
+        "type": "actedOnBehalfOf",
+        "from": "urn:entity:processiq",
+        "to": "urn:entity:luis"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:algorithm-modification",
+        "to": "urn:activity:engineering-review"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:algorithm-modification",
+        "to": "urn:activity:ai-analysis"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:implementation",
+        "to": "urn:activity:regulatory-review"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:implementation",
+        "to": "urn:activity:simulation-validation"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:implementation",
+        "to": "urn:activity:internal-review"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:dosing-decision",
+        "to": "urn:activity:engineering-review"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:dosing-decision",
+        "to": "urn:entity:luis"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:safety-decision",
+        "to": "urn:entity:luis"
+      }
+    ]
+  },
+  "policyEvaluations": [
+    {
+      "id": "urn:eval:swtr-ct-compliance",
+      "policy": "EPA Surface Water Treatment Rule — CT Requirements",
+      "policyVersion": "40 CFR 141.72",
+      "evaluator": "Luis Herrera, PE",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-05T17:00:00Z",
+      "notes": "Manual CT calculations confirm modified algorithm maintains required log inactivation credits under worst-case flow and temperature conditions. Verified against clearwell volume (2.1 MG) and baffling factor (0.5). Minimum residual floor (0.5 mg/L at clearwell outlet) exceeds minimum required for 0.5-log Giardia inactivation at all operating temperatures."
+    },
+    {
+      "id": "urn:eval:dbpr-thm-compliance",
+      "policy": "EPA Disinfectants and Disinfection Byproducts Rule — THM/HAA MCLs",
+      "policyVersion": "40 CFR 141.64",
+      "evaluator": "Luis Herrera, PE",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-05T17:00:00Z",
+      "notes": "Projected THM formation under modified algorithm (5% winter reduction) remains well below MCL of 80 ug/L based on historical DBP monitoring data and dose reduction modeling. Expected 4-6% reduction in annual THM formation vs. current operation."
+    },
+    {
+      "id": "urn:eval:simulation-validation",
+      "policy": "Lakeview WTP Change Management Policy — Simulation Requirement",
+      "policyVersion": "2024-rev3",
+      "evaluator": "Luis Herrera, PE",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-10T17:00:00Z",
+      "notes": "Modified algorithm tested against 18 months of historical SCADA recordings and 2 synthetic worst-case scenarios. CT compliance maintained in all scenarios. Storm event override triggered correctly in all 5 historical storm events. Analyzer fault detection correctly locked pump speed in simulated sensor failure scenarios."
+    },
+    {
+      "id": "urn:eval:deq-regulatory-approval",
+      "policy": "State DEQ Operating Permit #WTP-2019-0847 — Disinfection Process Modification Notification",
+      "evaluator": "Dr. Ingrid Solheim",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-15T16:30:00Z",
+      "notes": "Approved with condition: facility must conduct daily (vs. routine weekly) distribution system coliform sampling at all three monitoring points for the first 90 days of operation under the new algorithm. Results to be reported monthly to DEQ."
+    },
+    {
+      "id": "urn:eval:halos-compliance",
+      "policy": "HALOS Principles v1.0",
+      "evaluator": "Luis Herrera, PE",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-18T08:30:00Z",
+      "notes": "AI assistance disclosed in regulatory submission and facility records. Human engineer authored all safety-critical logic. All AI outputs reviewed, modified, and validated by PE before implementation. Multiple independent review layers completed. Provenance record maintained."
+    }
+  ]
+}

@@ -1,0 +1,286 @@
+{
+  "halos_version": "0.2-draft",
+  "artifact": {
+    "id": "urn:music:reef-doc/cue-14-bleached-v1",
+    "type": "other",
+    "description": "Cue 14 — 'Bleached' — 94-second orchestral underscore for coral reef documentary",
+    "version": "1.0"
+  },
+  "human_author": {
+    "name": "Maya Reeves",
+    "identifier": "https://pro.musicianprofile.example/maya-reeves",
+    "role": "originator"
+  },
+  "ai_assistance": [
+    {
+      "model": "harmonia-compose-v4",
+      "provider": "Harmonia AI",
+      "role": "generation",
+      "description": "Generated three harmonic/melodic sketches as MIDI from natural-language scene description"
+    },
+    {
+      "model": "mixcraft-ai-2.0",
+      "provider": "MixCraft",
+      "role": "assistance",
+      "description": "Suggested reverb and EQ settings for final mix"
+    }
+  ],
+  "timestamp": "2026-03-28T18:00:00Z",
+  "review": [
+    {
+      "reviewer": "Daniel Okafor",
+      "type": "approval",
+      "timestamp": "2026-03-29T10:30:00Z",
+      "notes": "Director approved after requesting 3-beat viola extension at scene transition"
+    }
+  ],
+  "governance": {
+    "policy": "HALOS",
+    "version": "1.0",
+    "url": "https://halos.northharbor.dev"
+  },
+  "decisions": [
+    {
+      "id": "urn:decision:cue14-harmonic-approach",
+      "description": "Selected modal mixture approach for the hope-to-grief transition, rejecting deceptive cadence and textural dissolution alternatives",
+      "responsible": "Maya Reeves",
+      "responsibleId": "https://pro.musicianprofile.example/maya-reeves",
+      "timestamp": "2026-03-27T14:00:00Z",
+      "context": "Director required emotional shift without melodrama; scene pivots on a single facial expression at 01:02:34",
+      "aiInputs": [
+        {
+          "model": "harmonia-compose-v4",
+          "provider": "Harmonia AI",
+          "contribution": "Generated three sketch options: deceptive cadence, modal mixture, textural dissolution — each interpreting the prompt differently"
+        }
+      ],
+      "rationale": "Modal mixture preserves harmonic continuity while introducing ambiguity; the other approaches were either too dramatic or lost emotional thread. Sketch was substantially reworked: open voicings, new melody, retimed pivot, replaced cello with solo viola to connect to recurring motif from Cue 3.",
+      "outcome": "accepted"
+    },
+    {
+      "id": "urn:decision:cue14-mix-reverb",
+      "description": "Accepted AI-suggested reverb tail (2.1s) but rejected high-shelf EQ cut to preserve viola presence in dialogue mix",
+      "responsible": "Maya Reeves",
+      "responsibleId": "https://pro.musicianprofile.example/maya-reeves",
+      "timestamp": "2026-03-28T16:00:00Z",
+      "context": "Mixing cue to sit under dialogue without disappearing; viola carries the emotional weight",
+      "aiInputs": [
+        {
+          "model": "mixcraft-ai-2.0",
+          "provider": "MixCraft",
+          "contribution": "Suggested 2.1s reverb tail and 8kHz high-shelf cut for dialogue clearance"
+        }
+      ],
+      "rationale": "Reverb tail matched the room tone of the underwater footage. EQ cut would have buried the viola — the instrument needs to be felt, not hidden.",
+      "outcome": "accepted"
+    }
+  ],
+  "graph": {
+    "entities": [
+      {
+        "id": "urn:entity:cue-14",
+        "type": "artifact",
+        "label": "Cue 14 — Bleached (final)",
+        "identifier": "urn:music:reef-doc/cue-14-bleached-v1"
+      },
+      {
+        "id": "urn:entity:maya",
+        "type": "person",
+        "label": "Maya Reeves",
+        "identifier": "https://pro.musicianprofile.example/maya-reeves",
+        "role": "author"
+      },
+      {
+        "id": "urn:entity:daniel",
+        "type": "person",
+        "label": "Daniel Okafor",
+        "identifier": "https://imdb.example/daniel-okafor",
+        "role": "approver"
+      },
+      {
+        "id": "urn:entity:harmonia",
+        "type": "agent",
+        "label": "Harmonia Compose v4",
+        "identifier": "harmonia-compose-v4"
+      },
+      {
+        "id": "urn:entity:mixcraft",
+        "type": "agent",
+        "label": "MixCraft AI 2.0",
+        "identifier": "mixcraft-ai-2.0"
+      },
+      {
+        "id": "urn:entity:scene-description",
+        "type": "artifact",
+        "label": "Natural-language scene description and emotional arc prompt"
+      },
+      {
+        "id": "urn:entity:sketch-2",
+        "type": "artifact",
+        "label": "AI-generated harmonic sketch #2 (modal mixture)"
+      },
+      {
+        "id": "urn:entity:cue-3-motif",
+        "type": "artifact",
+        "label": "Recurring viola motif from Cue 3"
+      }
+    ],
+    "activities": [
+      {
+        "id": "urn:activity:scene-analysis",
+        "type": "create",
+        "startedAt": "2026-03-27T10:00:00Z",
+        "endedAt": "2026-03-27T11:30:00Z",
+        "description": "Maya analyzed locked picture and wrote natural-language prompt describing emotional arc"
+      },
+      {
+        "id": "urn:activity:generate-sketches",
+        "type": "generate",
+        "startedAt": "2026-03-27T11:30:00Z",
+        "endedAt": "2026-03-27T11:45:00Z",
+        "description": "AI generated three harmonic/melodic sketches from scene description",
+        "interaction": {
+          "type": "generation",
+          "humanResponse": "partial",
+          "responseNotes": "Rejected sketches 1 and 3 entirely. Took harmonic skeleton of sketch 2 only; rewrote melody, revoiced, retimed, and changed instrumentation."
+        }
+      },
+      {
+        "id": "urn:activity:compose-cue",
+        "type": "edit",
+        "startedAt": "2026-03-27T14:00:00Z",
+        "endedAt": "2026-03-28T12:00:00Z",
+        "description": "Maya composed, orchestrated, and produced the full cue using sketch 2's harmonic idea as a starting point"
+      },
+      {
+        "id": "urn:activity:ai-mix-suggestions",
+        "type": "suggest",
+        "startedAt": "2026-03-28T14:00:00Z",
+        "endedAt": "2026-03-28T14:15:00Z",
+        "description": "AI mixing tool suggested reverb and EQ parameters",
+        "interaction": {
+          "type": "suggestion",
+          "humanResponse": "partial",
+          "responseNotes": "Accepted reverb (2.1s tail). Rejected high-shelf EQ cut at 8kHz — viola needed to remain present."
+        }
+      },
+      {
+        "id": "urn:activity:final-mix",
+        "type": "edit",
+        "startedAt": "2026-03-28T15:00:00Z",
+        "endedAt": "2026-03-28T18:00:00Z",
+        "description": "Maya completed final mix, applying accepted reverb and her own EQ decisions"
+      },
+      {
+        "id": "urn:activity:director-review",
+        "type": "approve",
+        "startedAt": "2026-03-29T09:00:00Z",
+        "endedAt": "2026-03-29T10:30:00Z",
+        "description": "Director reviewed cue against picture, requested viola extension, then approved"
+      }
+    ],
+    "relationships": [
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:cue-14",
+        "to": "urn:activity:final-mix"
+      },
+      {
+        "type": "wasAttributedTo",
+        "from": "urn:entity:cue-14",
+        "to": "urn:entity:maya"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:generate-sketches",
+        "to": "urn:entity:scene-description"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:generate-sketches",
+        "to": "urn:entity:harmonia"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:generate-sketches",
+        "to": "urn:entity:maya",
+        "notes": "Maya authored the prompt and evaluated outputs"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:sketch-2",
+        "to": "urn:activity:generate-sketches"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:compose-cue",
+        "to": "urn:entity:sketch-2",
+        "notes": "Harmonic skeleton only; melody, voicing, timing, and orchestration are original"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:compose-cue",
+        "to": "urn:entity:cue-3-motif",
+        "notes": "Recurring viola motif woven into new cue for thematic continuity"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:compose-cue",
+        "to": "urn:entity:maya"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:ai-mix-suggestions",
+        "to": "urn:entity:mixcraft"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:final-mix",
+        "to": "urn:entity:maya"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:director-review",
+        "to": "urn:entity:daniel"
+      },
+      {
+        "type": "wasDerivedFrom",
+        "from": "urn:entity:cue-14",
+        "to": "urn:entity:sketch-2",
+        "notes": "Partial derivation — harmonic idea only"
+      },
+      {
+        "type": "actedOnBehalfOf",
+        "from": "urn:entity:harmonia",
+        "to": "urn:entity:maya"
+      },
+      {
+        "type": "actedOnBehalfOf",
+        "from": "urn:entity:mixcraft",
+        "to": "urn:entity:maya"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:compose-cue",
+        "to": "urn:activity:generate-sketches"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:final-mix",
+        "to": "urn:activity:ai-mix-suggestions"
+      }
+    ]
+  },
+  "policyEvaluations": [
+    {
+      "id": "urn:eval:ai-disclosure",
+      "policy": "Production AI Disclosure Policy",
+      "policyVersion": "2026",
+      "evaluator": "Maya Reeves",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-28T18:30:00Z",
+      "notes": "AI assistance in composition and mixing disclosed to director and documented in delivery metadata per production agreement"
+    }
+  ]
+}
