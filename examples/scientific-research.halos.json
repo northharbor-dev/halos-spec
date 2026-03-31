@@ -15,7 +15,7 @@
     {
       "model": "claude-sonnet-4-6",
       "provider": "Anthropic",
-      "role": "analysis",
+      "role": "assistance",
       "taskType": "researching",
       "techniques": ["clustering", "partial-correlation-analysis"],
       "description": "Feature analysis on genomic sequencing data, partial correlation computation for confound investigation, and comparison of model features against published resistance mechanisms"

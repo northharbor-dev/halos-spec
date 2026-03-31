@@ -35,8 +35,16 @@ jobs:
       - name: Validate v0.2 provenance examples against schema
         run: |
           node scripts/validate.js \
-            -s spec/schema/halos-provenance-v0.2-draft.schema.json \
-            examples/v0.2-graph.json
+            -s spec/schema/halos-provenance-v0.2.schema.json \
+            examples/v0.2-graph.json \
+            examples/education-student-learning.halos.json \
+            examples/enterprise-software-development.halos.json \
+            examples/government-policy-legal.halos.json \
+            examples/journalism-news-media.halos.json \
+            examples/music-creative-production.halos.json \
+            examples/nonprofit-humanitarian.halos.json \
+            examples/realtime-critical-systems.halos.json \
+            examples/scientific-research.halos.json
 
       - name: Validate manifest.json against schema
         run: node scripts/validate.js -s spec/schema/manifest.schema.json spec/manifest.json

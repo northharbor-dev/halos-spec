@@ -15,7 +15,7 @@
     {
       "model": "crisismap-analytics-v3",
       "provider": "CrisisMap AI",
-      "role": "analysis",
+      "role": "assistance",
       "description": "Analyzed satellite imagery, social media aggregation, and logistics data to produce ranked village priority list and recommended convoy routing"
     }
   ],

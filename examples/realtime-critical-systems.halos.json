@@ -15,7 +15,7 @@
     {
       "model": "processiq-optima-3.2",
       "provider": "ProcessIQ Industrial AI",
-      "role": "analysis",
+      "role": "assistance",
       "description": "Analyzed 18 months of SCADA historian data to identify flow/turbidity/temperature correlations and proposed a feedforward-feedback dosing algorithm with tuned parameters and seasonal adjustment curves"
     }
   ],

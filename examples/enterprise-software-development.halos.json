@@ -15,7 +15,7 @@
     {
       "model": "claude-sonnet-4-6",
       "provider": "Anthropic",
-      "role": "analysis",
+      "role": "assistance",
       "taskType": "comparing",
       "techniques": ["code-pattern-matching", "abstract-syntax-tree-analysis"],
       "description": "Compared three legacy reconciliation codebases to identify shared patterns, divergent behaviors, and undocumented business rules"
@@ -33,7 +33,7 @@
   "review": [
     {
       "reviewer": "Marcus Webb",
-      "type": "security-review",
+      "type": "other",
       "timestamp": "2026-03-25T16:00:00Z",
       "notes": "Security review passed: no raw card data stored, audit log is append-only with cryptographic chaining, all endpoints require mTLS with vertical-specific certificates"
     },
