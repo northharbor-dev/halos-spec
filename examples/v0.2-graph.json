@@ -8,7 +8,7 @@
   },
   "human_author": {
     "name": "Bob Hong",
-    "identifier": "https://github.com/bobhong",
+    "identifier": "https://github.example.com/bobhong",
     "role": "originator"
   },
   "ai_assistance": [
@@ -16,6 +16,7 @@
       "model": "claude-sonnet-4-6",
       "provider": "Anthropic",
       "role": "generation",
+      "taskType": "scaffolding",
       "description": "Generated initial implementation from architecture specification"
     }
   ],
@@ -38,14 +39,15 @@
       "id": "urn:decision:token-strategy",
       "description": "Selected short-lived JWTs with refresh tokens over session-based auth",
       "responsible": "Bob Hong",
-      "responsibleId": "https://github.com/bobhong",
+      "responsibleId": "https://github.example.com/bobhong",
       "timestamp": "2026-03-24T10:00:00Z",
       "context": "Migrating from monolith session store to stateless microservices",
       "aiInputs": [
         {
           "model": "claude-sonnet-4-6",
           "provider": "Anthropic",
-          "contribution": "Analyzed session vs token trade-offs for distributed systems"
+          "contribution": "Analyzed session vs token trade-offs for distributed systems",
+          "taskType": "comparing"
         }
       ],
       "rationale": "Stateless tokens align with microservice architecture; refresh tokens limit exposure window",
@@ -64,14 +66,14 @@
         "id": "urn:entity:bob",
         "type": "person",
         "label": "Bob Hong",
-        "identifier": "https://github.com/bobhong",
+        "identifier": "https://github.example.com/bobhong",
         "role": "author"
       },
       {
         "id": "urn:entity:alice",
         "type": "person",
         "label": "Alice Chen",
-        "identifier": "https://github.com/alicechen",
+        "identifier": "https://github.example.com/alicechen",
         "role": "reviewer"
       },
       {
@@ -93,6 +95,7 @@
         "startedAt": "2026-03-25T09:00:00Z",
         "endedAt": "2026-03-25T11:00:00Z",
         "description": "AI generated initial implementation from architecture spec",
+        "taskType": "scaffolding",
         "interaction": {
           "type": "generation",
           "humanResponse": "modified",

@@ -1,0 +1,473 @@
+{
+  "halos_version": "0.2-draft",
+  "artifact": {
+    "id": "urn:pkg:oci/meridian/payment-reconciliation-service@1.0.0",
+    "type": "code",
+    "description": "Payment Reconciliation Service (PRS) — shared Go microservice for cross-vertical payment reconciliation across finance, e-commerce, and manufacturing verticals",
+    "version": "1.0.0"
+  },
+  "human_author": {
+    "name": "Tomoko Hayashi",
+    "identifier": "https://github.example.com/tomokohayashi",
+    "role": "originator"
+  },
+  "ai_assistance": [
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "Anthropic",
+      "role": "analysis",
+      "taskType": "comparing",
+      "techniques": ["code-pattern-matching", "abstract-syntax-tree-analysis"],
+      "description": "Compared three legacy reconciliation codebases to identify shared patterns, divergent behaviors, and undocumented business rules"
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "Anthropic",
+      "role": "generation",
+      "taskType": "scaffolding",
+      "techniques": ["code-pattern-matching"],
+      "description": "Generated architecture trade-off analysis, initial service scaffolding, and conducted code reviews for edge cases"
+    }
+  ],
+  "timestamp": "2026-03-27T17:00:00Z",
+  "review": [
+    {
+      "reviewer": "Marcus Webb",
+      "type": "security-review",
+      "timestamp": "2026-03-25T16:00:00Z",
+      "notes": "Security review passed: no raw card data stored, audit log is append-only with cryptographic chaining, all endpoints require mTLS with vertical-specific certificates"
+    },
+    {
+      "reviewer": "Lena Vasquez",
+      "type": "approval",
+      "timestamp": "2026-03-27T14:00:00Z",
+      "notes": "ARB approved for production with condition: finance vertical must run 30-day shadow mode before cutover"
+    }
+  ],
+  "governance": {
+    "policy": "Meridian AI Usage Policy for Shared Infrastructure",
+    "version": "2.1",
+    "url": "https://internal.meridian.example/policies/ai-usage-shared-infra"
+  },
+  "decisions": [
+    {
+      "id": "urn:decision:prs-architecture-pattern",
+      "description": "Selected event-driven architecture for payment reconciliation, rejecting request-response and rejecting AI-recommended CQRS complexity in favor of a simpler synchronous balance snapshot API for the finance vertical's real-time reporting needs",
+      "responsible": "Tomoko Hayashi",
+      "responsibleId": "https://github.example.com/tomokohayashi",
+      "timestamp": "2026-03-12T14:00:00Z",
+      "context": "Three verticals with different payment models and latency tolerances. SOX auditors require immutable event records. Finance vertical needs real-time balance visibility. Team is 3 engineers — cannot sustain high operational complexity.",
+      "aiInputs": [
+        {
+          "model": "claude-sonnet-4-6",
+          "provider": "Anthropic",
+          "contribution": "Produced trade-off analysis comparing event-driven vs request-response architectures across consistency, auditability, scalability, and coupling dimensions. Recommended event-driven with CQRS pattern.",
+          "taskType": "comparing"
+        }
+      ],
+      "rationale": "Event-driven core provides natural audit trail (each reconciliation state change is an immutable event), better decoupling from downstream consumers, and horizontal scalability for batch processing. Rejected CQRS as premature complexity: maintaining separate read/write models doubles bug surface area and requires expertise the team lacks. Designed simpler synchronous balance snapshot API for finance vertical's real-time needs instead.",
+      "outcome": "accepted"
+    },
+    {
+      "id": "urn:decision:prs-no-currency-conversion",
+      "description": "Rejected AI suggestion to add automatic currency conversion for multi-currency e-commerce settlements, keeping currency conversion as payment gateway responsibility",
+      "responsible": "Tomoko Hayashi",
+      "responsibleId": "https://github.example.com/tomokohayashi",
+      "timestamp": "2026-03-20T11:00:00Z",
+      "context": "E-commerce vertical processes settlements in 12 currencies. AI suggested PRS should normalize to USD during reconciliation. Finance team confirmed that exchange rates must come from a single authoritative source (the payment gateway).",
+      "aiInputs": [
+        {
+          "model": "claude-sonnet-4-6",
+          "provider": "Anthropic",
+          "contribution": "Suggested adding currency normalization layer within PRS to simplify downstream accounting integration",
+          "taskType": "reasoning"
+        }
+      ],
+      "rationale": "Adding currency conversion to PRS would create a second source of truth for exchange rates, violating the finance team's single-source-of-truth compliance requirement. The payment gateway already converts at settlement time using rates locked at transaction time. Duplicating this in PRS introduces reconciliation drift risk and a potential SOX finding.",
+      "outcome": "rejected"
+    },
+    {
+      "id": "urn:decision:prs-state-machine-rewrite",
+      "description": "Rejected AI-generated reconciliation state machine and wrote it from scratch to handle manufacturing vertical's partial payment workflow",
+      "responsible": "Tomoko Hayashi",
+      "responsibleId": "https://github.example.com/tomokohayashi",
+      "timestamp": "2026-03-16T09:00:00Z",
+      "context": "Manufacturing vertical allows a single invoice to be paid across 3-4 separate remittances over 60 days, each requiring individual reconciliation. AI-generated state machine assumed one payment per invoice.",
+      "aiInputs": [
+        {
+          "model": "claude-sonnet-4-6",
+          "provider": "Anthropic",
+          "contribution": "Generated reconciliation state machine as part of service scaffolding, modeling a linear payment-to-order matching lifecycle",
+          "taskType": "scaffolding"
+        }
+      ],
+      "rationale": "The AI's state machine was designed for simple 1:1 payment-to-order reconciliation. The manufacturing vertical's partial payment model requires tracking cumulative remittance progress against invoice totals, with each remittance independently reconciled before the invoice transitions to 'settled.' This business logic was not documented anywhere — it was derived from interviews with the manufacturing vertical's lead engineer and reading the legacy EDI matching code across 14 files.",
+      "outcome": "rejected"
+    }
+  ],
+  "graph": {
+    "entities": [
+      {
+        "id": "urn:entity:prs",
+        "type": "artifact",
+        "label": "Payment Reconciliation Service v1.0.0",
+        "identifier": "urn:pkg:oci/meridian/payment-reconciliation-service@1.0.0"
+      },
+      {
+        "id": "urn:entity:priya",
+        "type": "person",
+        "label": "Tomoko Hayashi",
+        "identifier": "https://github.example.com/tomokohayashi",
+        "role": "author"
+      },
+      {
+        "id": "urn:entity:marcus",
+        "type": "person",
+        "label": "Marcus Webb",
+        "identifier": "https://github.example.com/marcuswebb",
+        "role": "reviewer"
+      },
+      {
+        "id": "urn:entity:lena",
+        "type": "person",
+        "label": "Lena Vasquez",
+        "identifier": "https://github.example.com/lenavasquez",
+        "role": "approver"
+      },
+      {
+        "id": "urn:entity:claude-analysis",
+        "type": "agent",
+        "label": "Claude Sonnet 4.6 (analysis)",
+        "identifier": "claude-sonnet-4-6"
+      },
+      {
+        "id": "urn:entity:claude-codegen",
+        "type": "agent",
+        "label": "Claude Sonnet 4.6 (code generation)",
+        "identifier": "claude-sonnet-4-6"
+      },
+      {
+        "id": "urn:entity:legacy-finance-recon",
+        "type": "artifact",
+        "label": "Legacy finance vertical reconciliation codebase"
+      },
+      {
+        "id": "urn:entity:legacy-ecomm-recon",
+        "type": "artifact",
+        "label": "Legacy e-commerce vertical reconciliation codebase"
+      },
+      {
+        "id": "urn:entity:legacy-mfg-recon",
+        "type": "artifact",
+        "label": "Legacy manufacturing vertical reconciliation codebase"
+      },
+      {
+        "id": "urn:entity:arch-trade-off-analysis",
+        "type": "artifact",
+        "label": "Architecture trade-off analysis (event-driven vs request-response)"
+      },
+      {
+        "id": "urn:entity:service-scaffold",
+        "type": "artifact",
+        "label": "AI-generated service scaffolding (project structure, event schemas, API contracts)"
+      },
+      {
+        "id": "urn:entity:race-condition-finding",
+        "type": "artifact",
+        "label": "Race condition finding in concurrent reconciliation handler"
+      },
+      {
+        "id": "urn:entity:meridian",
+        "type": "organization",
+        "label": "Meridian Systems"
+      }
+    ],
+    "activities": [
+      {
+        "id": "urn:activity:legacy-analysis",
+        "type": "generate",
+        "startedAt": "2026-03-10T09:00:00Z",
+        "endedAt": "2026-03-10T17:00:00Z",
+        "description": "AI analyzed three legacy reconciliation codebases to produce comparison matrix of shared patterns, divergent behaviors, and undocumented rules",
+        "taskType": "comparing",
+        "techniques": ["code-pattern-matching", "abstract-syntax-tree-analysis"],
+        "interaction": {
+          "type": "analysis",
+          "humanResponse": "partial",
+          "responseNotes": "Accepted structural comparison and identification of shared patterns (idempotency keys, state machines) and divergent retry logic. Accepted discovery of undocumented fractional cent rounding in e-commerce system. Rejected characterization of manufacturing EDI matching as 'simple' — AI missed complex partial shipment logic spread across 14 files."
+        }
+      },
+      {
+        "id": "urn:activity:arch-decision",
+        "type": "decision",
+        "startedAt": "2026-03-12T10:00:00Z",
+        "endedAt": "2026-03-12T16:00:00Z",
+        "description": "Architecture decision: event-driven reconciliation with synchronous balance snapshot API, rejecting CQRS recommendation"
+      },
+      {
+        "id": "urn:activity:arch-trade-off",
+        "type": "suggest",
+        "startedAt": "2026-03-11T14:00:00Z",
+        "endedAt": "2026-03-11T15:00:00Z",
+        "description": "AI produced trade-off analysis comparing event-driven and request-response architectures for payment reconciliation",
+        "taskType": "comparing",
+        "interaction": {
+          "type": "analysis",
+          "humanResponse": "modified",
+          "responseNotes": "Adopted event-driven core recommendation. Rejected CQRS pattern as premature complexity for a 3-person team. Designed simpler synchronous balance snapshot API as alternative to separate read model."
+        }
+      },
+      {
+        "id": "urn:activity:generate-scaffold",
+        "type": "generate",
+        "startedAt": "2026-03-14T09:00:00Z",
+        "endedAt": "2026-03-14T14:00:00Z",
+        "description": "AI generated initial service scaffolding: project structure, domain models, event definitions, database migration, OpenAPI specs, and reconciliation state machine",
+        "taskType": "scaffolding",
+        "techniques": ["code-pattern-matching"],
+        "interaction": {
+          "type": "generation",
+          "humanResponse": "partial",
+          "responseNotes": "Accepted project structure, event schema definitions, and OpenAPI contract shapes. Rejected state machine entirely — it assumed 1:1 payment-to-order matching and could not handle manufacturing partial payments. Modified database migration to add partitioning by vertical and payment date."
+        }
+      },
+      {
+        "id": "urn:activity:state-machine-rewrite",
+        "type": "create",
+        "startedAt": "2026-03-16T09:00:00Z",
+        "endedAt": "2026-03-17T18:00:00Z",
+        "description": "Tomoko wrote the reconciliation state machine from scratch, incorporating partial payment workflows derived from interviews with manufacturing vertical lead and legacy code analysis"
+      },
+      {
+        "id": "urn:activity:edge-case-review",
+        "type": "generate",
+        "startedAt": "2026-03-22T10:00:00Z",
+        "endedAt": "2026-03-22T12:00:00Z",
+        "description": "AI reviewed concurrent reconciliation handler and identified race condition with duplicate webhook deliveries",
+        "taskType": "debugging",
+        "techniques": ["static-analysis"],
+        "interaction": {
+          "type": "review",
+          "humanResponse": "accepted",
+          "responseNotes": "Confirmed race condition is real: concurrent Stripe webhook retries for the same payment can create duplicate reconciliation records. Implemented database-level advisory lock to serialize reconciliation per order ID."
+        }
+      },
+      {
+        "id": "urn:activity:currency-suggestion",
+        "type": "suggest",
+        "startedAt": "2026-03-20T10:00:00Z",
+        "endedAt": "2026-03-20T10:30:00Z",
+        "description": "AI suggested adding automatic currency conversion for multi-currency e-commerce settlements",
+        "taskType": "reasoning",
+        "interaction": {
+          "type": "suggestion",
+          "humanResponse": "rejected",
+          "responseNotes": "Rejected: adding currency conversion to PRS would create a second source of truth for exchange rates. Payment gateway is the authoritative source per finance team compliance requirement."
+        }
+      },
+      {
+        "id": "urn:activity:security-review",
+        "type": "review",
+        "startedAt": "2026-03-24T09:00:00Z",
+        "endedAt": "2026-03-25T16:00:00Z",
+        "description": "Marcus Webb conducted security review: SAST/DAST scanning plus manual review of payment data handling paths"
+      },
+      {
+        "id": "urn:activity:arb-approval",
+        "type": "approve",
+        "startedAt": "2026-03-27T10:00:00Z",
+        "endedAt": "2026-03-27T14:00:00Z",
+        "description": "Architecture Review Board evaluated PRS design, migration plan, and HALOS provenance record. Approved for production with 30-day shadow mode condition for finance vertical."
+      }
+    ],
+    "relationships": [
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:prs",
+        "to": "urn:activity:state-machine-rewrite",
+        "notes": "Core reconciliation logic is human-authored"
+      },
+      {
+        "type": "wasAttributedTo",
+        "from": "urn:entity:prs",
+        "to": "urn:entity:priya"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:legacy-analysis",
+        "to": "urn:entity:legacy-finance-recon"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:legacy-analysis",
+        "to": "urn:entity:legacy-ecomm-recon"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:legacy-analysis",
+        "to": "urn:entity:legacy-mfg-recon"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:legacy-analysis",
+        "to": "urn:entity:claude-analysis"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:legacy-analysis",
+        "to": "urn:entity:priya",
+        "notes": "Tomoko directed the analysis and evaluated outputs"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:arch-trade-off-analysis",
+        "to": "urn:activity:arch-trade-off"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:arch-trade-off",
+        "to": "urn:entity:claude-analysis"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:arch-decision",
+        "to": "urn:entity:priya"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:arch-decision",
+        "to": "urn:activity:arch-trade-off"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:arch-decision",
+        "to": "urn:activity:legacy-analysis"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:service-scaffold",
+        "to": "urn:activity:generate-scaffold"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:generate-scaffold",
+        "to": "urn:entity:claude-codegen"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:generate-scaffold",
+        "to": "urn:entity:priya",
+        "notes": "Tomoko described architecture and evaluated all generated output"
+      },
+      {
+        "type": "wasDerivedFrom",
+        "from": "urn:entity:prs",
+        "to": "urn:entity:service-scaffold",
+        "notes": "Partial derivation — project structure and event schemas retained; state machine rejected and rewritten; database migration modified"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:state-machine-rewrite",
+        "to": "urn:entity:priya"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:state-machine-rewrite",
+        "to": "urn:activity:legacy-analysis",
+        "notes": "Legacy analysis informed understanding of manufacturing partial payment patterns"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:race-condition-finding",
+        "to": "urn:activity:edge-case-review"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:edge-case-review",
+        "to": "urn:entity:claude-codegen"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:edge-case-review",
+        "to": "urn:entity:priya",
+        "notes": "Tomoko confirmed the finding and implemented the fix"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:currency-suggestion",
+        "to": "urn:entity:claude-codegen"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:security-review",
+        "to": "urn:entity:marcus"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:arb-approval",
+        "to": "urn:entity:lena"
+      },
+      {
+        "type": "actedOnBehalfOf",
+        "from": "urn:entity:claude-analysis",
+        "to": "urn:entity:priya"
+      },
+      {
+        "type": "actedOnBehalfOf",
+        "from": "urn:entity:claude-codegen",
+        "to": "urn:entity:priya"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:generate-scaffold",
+        "to": "urn:activity:arch-decision"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:security-review",
+        "to": "urn:activity:state-machine-rewrite"
+      }
+    ]
+  },
+  "policyEvaluations": [
+    {
+      "id": "urn:eval:sast-scan",
+      "policy": "Meridian SAST/DAST Security Standards",
+      "policyVersion": "2026.1",
+      "evaluator": "semgrep",
+      "evaluatorType": "tool",
+      "result": "pass",
+      "timestamp": "2026-03-24T14:00:00Z",
+      "notes": "No critical or high findings. 2 medium findings (both informational logging patterns) accepted as risk-acknowledged."
+    },
+    {
+      "id": "urn:eval:pci-dss-review",
+      "policy": "PCI-DSS v4.0",
+      "policyVersion": "4.0",
+      "evaluator": "Marcus Webb",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-25T16:00:00Z",
+      "notes": "PRS never stores, processes, or transmits raw cardholder data. Receives only tokenized payment references from gateways. Audit log uses append-only storage with cryptographic hash chaining."
+    },
+    {
+      "id": "urn:eval:halos-check",
+      "policy": "HALOS Principles v1.0",
+      "evaluator": "Tomoko Hayashi",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-27T09:00:00Z",
+      "notes": "AI assistance disclosed in HALOS record and ARB presentation. Human authored all business-critical reconciliation logic. AI-generated scaffolding was reviewed and partially rewritten before use."
+    },
+    {
+      "id": "urn:eval:ai-usage-policy",
+      "policy": "Meridian AI Usage Policy for Shared Infrastructure",
+      "policyVersion": "2.1",
+      "evaluator": "Lena Vasquez",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-27T14:00:00Z",
+      "notes": "ARB reviewed HALOS provenance record as part of architectural approval. AI involvement documented and proportionate. Approved with shadow mode condition."
+    }
+  ]
+}
