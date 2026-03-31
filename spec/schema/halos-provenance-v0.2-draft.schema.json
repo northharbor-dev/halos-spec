@@ -259,7 +259,13 @@
                   "wasDerivedFrom",
                   "actedOnBehalfOf",
                   "wasInformedBy",
-                  "hadRole"
+                  "hadRole",
+                  "authored_by",
+                  "reviewed_by",
+                  "approved_by",
+                  "generated_with",
+                  "derived_from",
+                  "influenced_by"
                 ]
               },
               "from": {
