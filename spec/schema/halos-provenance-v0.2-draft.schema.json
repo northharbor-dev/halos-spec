@@ -82,6 +82,18 @@
           "description": {
             "type": "string",
             "description": "Free-text description of the specific AI contribution"
+          },
+          "taskType": {
+            "type": "string",
+            "description": "The cognitive task the AI performed (e.g. classifying, researching, summarizing, predicting, extracting, orchestrating, presenting, reasoning, translating)"
+          },
+          "techniques": {
+            "type": "array",
+            "description": "Named algorithms, methods, or patterns the AI employed (e.g. retrieval-augmented-generation, chain-of-thought, monte-carlo-simulation, gradient-descent, ensemble-averaging)",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         },
         "additionalProperties": false
@@ -219,6 +231,18 @@
               "description": {
                 "type": "string"
               },
+              "taskType": {
+                "type": "string",
+                "description": "The cognitive task the AI performed in this activity (e.g. classifying, researching, summarizing, predicting, extracting, orchestrating, presenting, reasoning, translating)"
+              },
+              "techniques": {
+                "type": "array",
+                "description": "Named algorithms, methods, or patterns employed in this activity (e.g. retrieval-augmented-generation, chain-of-thought, monte-carlo-simulation)",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
               "interaction": {
                 "type": "object",
                 "description": "Human-AI interaction metadata for this activity",
@@ -338,6 +362,18 @@
                 "contribution": {
                   "type": "string",
                   "description": "What the AI contributed to the decision"
+                },
+                "taskType": {
+                  "type": "string",
+                  "description": "The cognitive task the AI performed for this input (e.g. researching, summarizing, predicting, classifying)"
+                },
+                "techniques": {
+                  "type": "array",
+                  "description": "Named algorithms or methods used (e.g. retrieval-augmented-generation, monte-carlo-simulation)",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
                 }
               },
               "additionalProperties": false
