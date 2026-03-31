@@ -101,7 +101,7 @@ A valid v0.2 HALOS provenance record containing:
 
 **Technical requirements:**
 - The `.halos.json` must validate against `spec/schema/halos-provenance-v0.2.schema.json`
-- Use `halos_version: "0.2-draft"`
+- Use `halos_version: "0.2"`
 - Graph entity IDs should use `urn:entity:` prefix, activity IDs `urn:activity:`, decision IDs `urn:decision:`
 - Timestamps must be valid ISO 8601
 - Relationship types must be from the v0.2 spec: `wasGeneratedBy`, `wasAttributedTo`, `used`, `wasAssociatedWith`, `wasDerivedFrom`, `actedOnBehalfOf`, `wasInformedBy`
