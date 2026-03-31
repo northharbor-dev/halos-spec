@@ -40,7 +40,11 @@ halos-spec/
 │       └── extension.schema.json
 │
 ├── examples/                                # Provenance record examples
-│   ├── minimal.json                         # Standalone record — validated by CI
+│   ├── README.md                            # Index of all examples
+│   ├── GENERATE-EXAMPLE.md                  # Agent prompt for creating new domain examples
+│   ├── minimal.json                         # v0.1 minimal record — CI-validated
+│   ├── v0.2-graph.json                      # v0.2-draft full graph example
+│   ├── {domain}.md + {domain}.halos.json    # Domain examples (8 domains, narrative + record)
 │   └── embedded/                            # Embedded in other standards (not CI-validated)
 │       ├── cyclonedx.json                   # HALOS inside a CycloneDX SBOM
 │       └── slsa.json                        # HALOS as a SLSA predicate
@@ -129,7 +133,9 @@ ajv validate --spec=draft2020 -s spec/schema/core.schema.json -d spec/core.json
 
 ### Adding Examples
 
-New provenance examples go in `examples/` and must be valid against `spec/schema/halos-provenance-v0.1.schema.json`. The CI pipeline validates all `examples/*.json` files automatically.
+New provenance examples go in `examples/`. The CI pipeline validates all `examples/*.json` files against `spec/schema/halos-provenance-v0.1.schema.json` automatically (domain `.halos.json` files and `embedded/` files are excluded from CI validation as they use different schemas).
+
+To generate a new domain example, use the agent prompt at `examples/GENERATE-EXAMPLE.md`. Each domain example consists of a narrative `.md` and a provenance `.halos.json` file. See `examples/README.md` for the full index and contribution requirements.
 
 ---
 

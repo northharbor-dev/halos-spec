@@ -63,6 +63,14 @@ All v0.2 fields are optional. A v0.2 record without them is equivalent to v0.1. 
 
 ---
 
+## Examples
+
+The [`examples/`](examples/) directory contains provenance records across eight professional domains — education, enterprise software, government policy, journalism, music production, humanitarian aid, critical infrastructure, and scientific research. Each includes a narrative companion explaining the collaboration scenario alongside a machine-readable v0.2-draft provenance record.
+
+See the [examples index](examples/README.md) for the full catalog. To generate a new domain example using an AI assistant, use the [GENERATE-EXAMPLE.md](examples/GENERATE-EXAMPLE.md) agent prompt.
+
+---
+
 ## Adopting HALOS
 
 To adopt HALOS into your repository:
@@ -133,8 +141,11 @@ halos-spec/
 │       └── extension.schema.json
 │
 ├── examples/                                # Provenance record examples
-│   ├── minimal.json                         # Standalone v0.1 — validated by CI
+│   ├── README.md                            # Index of all examples
+│   ├── GENERATE-EXAMPLE.md                  # Agent prompt for creating new domain examples
+│   ├── minimal.json                         # v0.1 minimal record — CI-validated
 │   ├── v0.2-graph.json                      # v0.2 with graph, decisions, interactions
+│   ├── {domain}.md + {domain}.halos.json    # 8 domain examples (narrative + record)
 │   └── embedded/                            # Embedded in other standards
 │       ├── cyclonedx.json                   # HALOS inside a CycloneDX SBOM
 │       └── slsa.json                        # HALOS as a SLSA predicate
