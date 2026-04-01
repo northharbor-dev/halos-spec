@@ -1,0 +1,44 @@
+{
+  "halos_version": "0.3",
+  "artifact": {
+    "id": "urn:halos:example:open-source-project",
+    "type": "document",
+    "description": "HALOS domain example for Open Source Project Governance — narrative document (open-source-project.md) and provenance record (open-source-project.halos.json)",
+    "version": "1.0"
+  },
+  "human_author": {
+    "name": "Bob Hong",
+    "identifier": "https://github.com/bobmhong",
+    "role": "originator"
+  },
+  "ai_assistance": [
+    {
+      "model": "claude-opus-4-6",
+      "provider": "Anthropic",
+      "role": "generation",
+      "taskType": "scaffolding",
+      "description": "Generated narrative document and provenance record following GENERATE-EXAMPLE.md workflow, using reference examples and HALOS v0.3 spec as templates"
+    }
+  ],
+  "timestamp": "2026-03-31T23:00:00Z",
+  "governance": [
+    {
+      "policy": "HALOS",
+      "version": "1.0",
+      "url": "https://halos.northharbor.dev"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "urn:decision:domain-selection",
+      "description": "Selected 'Open Source Project Governance' as the domain — a custom domain not in the predefined catalog",
+      "responsible": "Bob Hong",
+      "responsibleId": "https://github.com/bobmhong",
+      "timestamp": "2026-03-31T22:30:00Z",
+      "context": "Eight domains already implemented in the examples catalog. User chose to propose a new domain rather than select from available options.",
+      "rationale": "Open source project governance is a distinct and underrepresented domain that demonstrates unique HALOS value: community transparency about AI involvement in security-critical infrastructure releases.",
+      "outcome": "accepted"
+    }
+  ],
+  "notes": "Self-provenance record for example generation. Created by GENERATE-EXAMPLE.md workflow."
+}

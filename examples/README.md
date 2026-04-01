@@ -29,6 +29,7 @@ All domain examples use the **v0.3** provenance model featuring graph entities, 
 | [Journalism](journalism-news-media.md) | Carlos Medina (investigative reporter) | Corrected AI-generated violation dataset before publication | [narrative](journalism-news-media.md) / [record](journalism-news-media.halos.json) |
 | [Music Production](music-creative-production.md) | Maya Reeves (composer) | Rejected AI harmonic sketch, kept only structural idea | [narrative](music-creative-production.md) / [record](music-creative-production.halos.json) |
 | [Nonprofit / Humanitarian](nonprofit-humanitarian.md) | Amara Diallo (field coordinator) | Overrode AI priority ranking based on ground-truth field report | [narrative](nonprofit-humanitarian.md) / [record](nonprofit-humanitarian.halos.json) |
+| [Open Source Project](open-source-project.md) | Priya Chandrasekaran (lead maintainer) | Rejected AI-recommended unsafe_inner() API; designed GroupPolicy trait instead | [narrative](open-source-project.md) / [record](open-source-project.halos.json) |
 | [Real-time Critical Systems](realtime-critical-systems.md) | Luis Herrera, PE (control systems engineer) | Reduced AI-proposed dosing reduction, added safety logic AI omitted | [narrative](realtime-critical-systems.md) / [record](realtime-critical-systems.halos.json) |
 | [Scientific Research](scientific-research.md) | Dr. Nkechi Okonkwo (computational epidemiologist) | Excluded confounded feature the AI ranked as highly predictive | [narrative](scientific-research.md) / [record](scientific-research.halos.json) |
 

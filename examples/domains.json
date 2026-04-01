@@ -106,6 +106,19 @@
       "added": "2026-03-31"
     },
     {
+      "slug": "open-source-project",
+      "name": "Open Source Project Governance",
+      "status": "implemented",
+      "lead": "Priya Chandrasekaran",
+      "leadRole": "lead maintainer",
+      "keyDecision": "Rejected AI-recommended unsafe_inner() API; designed GroupPolicy trait instead",
+      "files": {
+        "narrative": "examples/open-source-project.md",
+        "record": "examples/open-source-project.halos.json"
+      },
+      "added": "2026-03-31"
+    },
+    {
       "slug": "healthcare-clinical",
       "name": "Healthcare / Clinical Decision Support",
       "status": "available",

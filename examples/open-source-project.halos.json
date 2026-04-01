@@ -1,0 +1,495 @@
+{
+  "halos_version": "0.3",
+  "artifact": {
+    "id": "urn:pkg:cargo/libsignal-bridge@4.0.0",
+    "type": "code",
+    "description": "libsignal-bridge v4.0.0 — Rust library crate for encrypted messaging protocol bridging, adding MLS (RFC 9420) support alongside existing Signal Protocol bridge",
+    "version": "4.0.0"
+  },
+  "human_author": {
+    "name": "Priya Chandrasekaran",
+    "identifier": "https://github.example.com/priyachandrasekaran",
+    "role": "originator"
+  },
+  "ai_assistance": [
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "Anthropic",
+      "role": "assistance",
+      "taskType": "summarizing",
+      "techniques": ["retrieval-augmented-generation"],
+      "description": "Summarized 47 merged pull requests into categorized changelog draft; analyzed API surface changes between v3.6 and v4.0 release branch"
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "Anthropic",
+      "role": "drafting",
+      "taskType": "scaffolding",
+      "description": "Generated initial migration guide sections with before/after code examples for 23 breaking API changes"
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "Anthropic",
+      "role": "review",
+      "taskType": "validating",
+      "techniques": ["retrieval-augmented-generation"],
+      "description": "Reviewed security documentation against RFC 9420 (MLS) for accuracy and consistency"
+    },
+    {
+      "model": "GitHub Copilot",
+      "provider": "GitHub",
+      "role": "assistance",
+      "taskType": "scaffolding",
+      "description": "Code completion during last-minute bug fixes in the mls-bridge module"
+    }
+  ],
+  "timestamp": "2026-03-28T18:00:00Z",
+  "review": [
+    {
+      "reviewer": "Kwame Asante",
+      "type": "peer-review",
+      "timestamp": "2026-03-27T16:00:00Z",
+      "notes": "Reviewed changelog, migration guide, and release artifacts. Caught version constraint error in Cargo.toml that would have pulled incompatible dependency. Approved after fix."
+    },
+    {
+      "reviewer": "Dagny Holm",
+      "type": "approval",
+      "timestamp": "2026-03-28T14:00:00Z",
+      "notes": "TSC voted 4-1 to approve v4.0 release. Existing test coverage (94% line, 2 weeks continuous fuzzing, third-party audit) deemed sufficient. Signed release tag."
+    }
+  ],
+  "governance": [
+    {
+      "policy": "libsignal-bridge AI Transparency Policy",
+      "version": "1.0",
+      "url": "https://github.example.com/lattice-comm/libsignal-bridge/blob/main/GOVERNANCE.md#ai-transparency"
+    },
+    {
+      "policy": "HALOS",
+      "version": "1.0",
+      "url": "https://halos.northharbor.dev"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "urn:decision:mls-group-api-design",
+      "description": "Chose GroupPolicy trait pattern over AI-recommended layered API with unsafe_inner() escape hatch for MLS group management",
+      "responsible": "Priya Chandrasekaran",
+      "responsibleId": "https://github.example.com/priyachandrasekaran",
+      "timestamp": "2026-03-22T15:00:00Z",
+      "context": "v4.0 public API is a compatibility commitment — breaking changes require v5.0. Downstream consumers range from simple messaging apps to government secure messaging with custom group policies. Volunteer maintainer team cannot sustain two separate API layers. The 'unsafe' keyword in Rust has a specific meaning (memory unsafety) that must not be repurposed.",
+      "aiInputs": [
+        {
+          "model": "claude-sonnet-4-6",
+          "provider": "Anthropic",
+          "contribution": "Analyzed three API design options and recommended Option C: layered API with GroupManager wrapping MlsSession, accessible via unsafe_inner() method",
+          "taskType": "comparing"
+        }
+      ],
+      "rationale": "Rejected unsafe_inner() pattern for two reasons: (1) 'unsafe' in Rust means memory unsafety — reusing it for 'cryptographically unsafe' confuses users and violates Rust community conventions; (2) exposing the inner MlsSession directly lets callers invalidate GroupManager's internal state, creating subtle state-corruption bugs. Designed GroupPolicy trait instead: consumers implement the trait to customize group management behavior (approval workflows, validation, audit logging) while GroupManager retains exclusive control of MLS state machine. This gives advanced users extensibility without exposing dangerous internals.",
+      "outcome": "rejected"
+    },
+    {
+      "id": "urn:decision:changelog-security-reclassification",
+      "description": "Reclassified PR #312 from 'refactor' to 'security fix' in changelog after identifying timing side-channel patch in epoch key derivation",
+      "responsible": "Priya Chandrasekaran",
+      "responsibleId": "https://github.example.com/priyachandrasekaran",
+      "timestamp": "2026-03-20T11:00:00Z",
+      "context": "AI-generated changelog categorized PR #312 ('Refactor epoch handling') as an internal refactor. PR discussion thread (not available to AI) revealed it patches a timing side-channel in epoch key derivation — a security-critical change.",
+      "aiInputs": [
+        {
+          "model": "claude-sonnet-4-6",
+          "provider": "Anthropic",
+          "contribution": "Generated categorized changelog from PR titles and labels, classifying PR #312 as internal refactoring based on its title",
+          "taskType": "summarizing"
+        }
+      ],
+      "rationale": "The AI had access to PR titles and labels but not discussion threads. The title 'Refactor epoch handling' was deliberately understated to avoid drawing attention to the vulnerability before the fix was merged. As the PR reviewer, Priya knew the actual nature of the change. Misclassifying a security fix as a refactor in the changelog would prevent downstream consumers from prioritizing the upgrade.",
+      "outcome": "rejected"
+    },
+    {
+      "id": "urn:decision:migration-guide-corrections",
+      "description": "Rejected 5 of 23 AI-generated migration examples where replacement code would compile but produce subtly incorrect runtime behavior",
+      "responsible": "Priya Chandrasekaran",
+      "responsibleId": "https://github.example.com/priyachandrasekaran",
+      "timestamp": "2026-03-24T10:00:00Z",
+      "context": "AI generated before/after code examples for all 23 breaking API changes. 18 were correct. 5 produced code that compiles but silently changes behavior — e.g., omitting key_rotation_interval from BridgeConfig builder, defaulting to library value instead of caller's previous custom value.",
+      "aiInputs": [
+        {
+          "model": "claude-sonnet-4-6",
+          "provider": "Anthropic",
+          "contribution": "Generated migration code snippets showing how to update v3.x code to v4.0 API for each of the 23 identified breaking changes",
+          "taskType": "scaffolding"
+        }
+      ],
+      "rationale": "Migration guides for cryptographic libraries must preserve existing security-relevant configuration. Code that compiles but silently changes key rotation intervals, cipher suite preferences, or protocol parameters can weaken the security posture of downstream applications without any visible error. Rewrote the 5 incorrect examples and added explicit warning callouts for each.",
+      "outcome": "rejected"
+    }
+  ],
+  "graph": {
+    "entities": [
+      {
+        "id": "urn:entity:libsignal-bridge-v4",
+        "type": "artifact",
+        "label": "libsignal-bridge v4.0.0",
+        "identifier": "urn:pkg:cargo/libsignal-bridge@4.0.0"
+      },
+      {
+        "id": "urn:entity:priya",
+        "type": "person",
+        "label": "Priya Chandrasekaran",
+        "identifier": "https://github.example.com/priyachandrasekaran",
+        "role": "author"
+      },
+      {
+        "id": "urn:entity:kwame",
+        "type": "person",
+        "label": "Kwame Asante",
+        "identifier": "https://github.example.com/kwameasante",
+        "role": "reviewer"
+      },
+      {
+        "id": "urn:entity:dagny",
+        "type": "person",
+        "label": "Dagny Holm",
+        "identifier": "https://github.example.com/dagnyholm",
+        "role": "approver"
+      },
+      {
+        "id": "urn:entity:claude-analysis",
+        "type": "agent",
+        "label": "Claude Sonnet 4.6 (analysis and drafting)",
+        "identifier": "claude-sonnet-4-6"
+      },
+      {
+        "id": "urn:entity:copilot",
+        "type": "agent",
+        "label": "GitHub Copilot (code completion)",
+        "identifier": "github-copilot"
+      },
+      {
+        "id": "urn:entity:changelog-draft",
+        "type": "artifact",
+        "label": "AI-generated changelog draft (47 PRs categorized)"
+      },
+      {
+        "id": "urn:entity:api-diff-analysis",
+        "type": "artifact",
+        "label": "API surface diff analysis (v3.6 → v4.0)"
+      },
+      {
+        "id": "urn:entity:migration-guide-draft",
+        "type": "artifact",
+        "label": "AI-generated migration guide draft (23 breaking changes)"
+      },
+      {
+        "id": "urn:entity:security-review-findings",
+        "type": "artifact",
+        "label": "Security documentation review findings (3 RFC 9420 inconsistencies)"
+      },
+      {
+        "id": "urn:entity:group-policy-trait",
+        "type": "artifact",
+        "label": "GroupPolicy trait design and reference implementation"
+      },
+      {
+        "id": "urn:entity:lattice-comm",
+        "type": "organization",
+        "label": "Lattice Communications"
+      },
+      {
+        "id": "urn:entity:tsc",
+        "type": "organization",
+        "label": "libsignal-bridge Technical Steering Committee"
+      }
+    ],
+    "activities": [
+      {
+        "id": "urn:activity:changelog-drafting",
+        "type": "generate",
+        "startedAt": "2026-03-20T09:00:00Z",
+        "endedAt": "2026-03-20T12:00:00Z",
+        "description": "AI summarized 47 merged PRs into categorized changelog draft",
+        "taskType": "summarizing",
+        "techniques": ["retrieval-augmented-generation"],
+        "interaction": {
+          "type": "generation",
+          "humanResponse": "modified",
+          "responseNotes": "Reclassified PR #312 from refactor to security fix (timing side-channel patch). Corrected attribution for PR #298 to include co-author from PR discussion. Adjusted 4 other descriptions for accuracy."
+        }
+      },
+      {
+        "id": "urn:activity:api-surface-analysis",
+        "type": "generate",
+        "startedAt": "2026-03-21T10:00:00Z",
+        "endedAt": "2026-03-21T14:00:00Z",
+        "description": "AI compared public API between v3.6 tag and v4.0 release branch, identifying 23 breaking changes, 41 new types, and 8 removed deprecated types",
+        "taskType": "comparing",
+        "techniques": ["abstract-syntax-tree-analysis", "code-pattern-matching"],
+        "interaction": {
+          "type": "analysis",
+          "humanResponse": "accepted",
+          "responseNotes": "Spot-checked 10 of 23 breaking changes against actual code. All accurate. Analysis caught 3 breaking changes not previously tracked: Send bound on BridgeConfig, renamed ProtocolError variant, removed re-export."
+        }
+      },
+      {
+        "id": "urn:activity:api-design-consultation",
+        "type": "suggest",
+        "startedAt": "2026-03-22T10:00:00Z",
+        "endedAt": "2026-03-22T11:00:00Z",
+        "description": "AI analyzed three GroupManager API design options and recommended layered API with unsafe_inner() escape hatch",
+        "taskType": "comparing",
+        "interaction": {
+          "type": "suggestion",
+          "humanResponse": "rejected",
+          "responseNotes": "Rejected unsafe_inner() pattern: 'unsafe' has specific Rust semantics (memory unsafety) and exposing inner MlsSession allows state corruption. Designed GroupPolicy trait instead."
+        }
+      },
+      {
+        "id": "urn:activity:api-design-decision",
+        "type": "decision",
+        "startedAt": "2026-03-22T11:00:00Z",
+        "endedAt": "2026-03-22T17:00:00Z",
+        "description": "Priya designed GroupPolicy trait for extensible MLS group management without exposing dangerous MLS internals"
+      },
+      {
+        "id": "urn:activity:group-policy-implementation",
+        "type": "create",
+        "startedAt": "2026-03-23T09:00:00Z",
+        "endedAt": "2026-03-23T18:00:00Z",
+        "description": "Priya wrote the GroupPolicy trait definition, safety contract documentation, and reference implementation"
+      },
+      {
+        "id": "urn:activity:migration-guide-drafting",
+        "type": "generate",
+        "startedAt": "2026-03-24T09:00:00Z",
+        "endedAt": "2026-03-24T12:00:00Z",
+        "description": "AI generated migration guide sections with before/after code examples for 23 breaking changes",
+        "taskType": "scaffolding",
+        "interaction": {
+          "type": "generation",
+          "humanResponse": "partial",
+          "responseNotes": "Accepted 18 of 23 migration examples. Rejected 5 where replacement code compiles but silently changes behavior (e.g., omitting key_rotation_interval defaults to library value instead of caller's custom value). Rewrote rejected examples with correct semantics and added warning callouts."
+        }
+      },
+      {
+        "id": "urn:activity:security-doc-review",
+        "type": "review",
+        "startedAt": "2026-03-25T10:00:00Z",
+        "endedAt": "2026-03-25T13:00:00Z",
+        "description": "AI reviewed security documentation against RFC 9420 for accuracy, identifying 3 inconsistencies",
+        "taskType": "validating",
+        "techniques": ["retrieval-augmented-generation"],
+        "interaction": {
+          "type": "review",
+          "humanResponse": "partial",
+          "responseNotes": "Accepted 2 findings: corrected PFS/PCS conflation and TreeKEM diagram. Modified 3rd finding (external join caveat): AI's wording was technically correct but discouraged a legitimate MLS feature. Rewrote to explain trade-off accurately."
+        }
+      },
+      {
+        "id": "urn:activity:co-maintainer-review",
+        "type": "review",
+        "startedAt": "2026-03-27T09:00:00Z",
+        "endedAt": "2026-03-27T16:00:00Z",
+        "description": "Kwame reviewed changelog, migration guide, release artifacts, and Cargo.toml version constraints"
+      },
+      {
+        "id": "urn:activity:tsc-approval",
+        "type": "approve",
+        "startedAt": "2026-03-28T10:00:00Z",
+        "endedAt": "2026-03-28T14:00:00Z",
+        "description": "TSC voted 4-1 to approve v4.0 release. Reviewed HALOS provenance record documenting AI involvement. Dagny Holm signed release tag."
+      }
+    ],
+    "relationships": [
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:group-policy-trait",
+        "to": "urn:activity:group-policy-implementation",
+        "notes": "GroupPolicy trait is entirely human-authored after rejecting AI recommendation"
+      },
+      {
+        "type": "wasAttributedTo",
+        "from": "urn:entity:libsignal-bridge-v4",
+        "to": "urn:entity:priya"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:changelog-draft",
+        "to": "urn:activity:changelog-drafting"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:changelog-drafting",
+        "to": "urn:entity:claude-analysis"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:changelog-drafting",
+        "to": "urn:entity:priya",
+        "notes": "Priya directed the summarization and corrected security classification and attribution errors"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:api-diff-analysis",
+        "to": "urn:activity:api-surface-analysis"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:api-surface-analysis",
+        "to": "urn:entity:claude-analysis"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:api-surface-analysis",
+        "to": "urn:entity:priya",
+        "notes": "Priya spot-checked analysis against actual code and confirmed accuracy"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:api-design-consultation",
+        "to": "urn:entity:claude-analysis"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:api-design-decision",
+        "to": "urn:entity:priya"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:api-design-decision",
+        "to": "urn:activity:api-design-consultation"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:api-design-decision",
+        "to": "urn:activity:api-surface-analysis"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:migration-guide-draft",
+        "to": "urn:activity:migration-guide-drafting"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:migration-guide-drafting",
+        "to": "urn:entity:claude-analysis"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:migration-guide-drafting",
+        "to": "urn:entity:priya",
+        "notes": "Priya evaluated all 23 examples, rejected 5 with incorrect semantics, and rewrote them"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:security-review-findings",
+        "to": "urn:activity:security-doc-review"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:security-doc-review",
+        "to": "urn:entity:claude-analysis"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:security-doc-review",
+        "to": "urn:entity:priya",
+        "notes": "Priya accepted 2 findings and rewrote the 3rd for accurate tone"
+      },
+      {
+        "type": "wasDerivedFrom",
+        "from": "urn:entity:libsignal-bridge-v4",
+        "to": "urn:entity:changelog-draft",
+        "notes": "Changelog substantially modified from AI draft — security reclassification and attribution corrections"
+      },
+      {
+        "type": "wasDerivedFrom",
+        "from": "urn:entity:libsignal-bridge-v4",
+        "to": "urn:entity:migration-guide-draft",
+        "notes": "18 of 23 migration examples retained; 5 rejected and rewritten by maintainer"
+      },
+      {
+        "type": "wasDerivedFrom",
+        "from": "urn:entity:libsignal-bridge-v4",
+        "to": "urn:entity:group-policy-trait"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:group-policy-implementation",
+        "to": "urn:entity:priya"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:co-maintainer-review",
+        "to": "urn:entity:kwame"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:tsc-approval",
+        "to": "urn:entity:dagny"
+      },
+      {
+        "type": "actedOnBehalfOf",
+        "from": "urn:entity:claude-analysis",
+        "to": "urn:entity:priya"
+      },
+      {
+        "type": "actedOnBehalfOf",
+        "from": "urn:entity:copilot",
+        "to": "urn:entity:priya"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:migration-guide-drafting",
+        "to": "urn:activity:api-surface-analysis"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:co-maintainer-review",
+        "to": "urn:activity:group-policy-implementation"
+      }
+    ]
+  },
+  "policyEvaluations": [
+    {
+      "id": "urn:eval:rfc9420-consistency",
+      "policy": "RFC 9420 (MLS Protocol)",
+      "policyVersion": "1.0",
+      "evaluator": "claude-sonnet-4-6",
+      "evaluatorType": "tool",
+      "result": "warning",
+      "timestamp": "2026-03-25T13:00:00Z",
+      "notes": "Found 3 inconsistencies between security documentation and RFC 9420: PFS/PCS conflation, incorrect key agreement diagram, and missing external join caveat. 2 accepted as-is, 1 modified by maintainer."
+    },
+    {
+      "id": "urn:eval:ai-transparency-policy",
+      "policy": "libsignal-bridge AI Transparency Policy",
+      "policyVersion": "1.0",
+      "evaluator": "Priya Chandrasekaran",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-28T09:00:00Z",
+      "notes": "AI assistance disclosed in HALOS provenance record and presented to TSC. All AI contributions reviewed and evaluated by maintainer with domain expertise. Security-critical components (GroupPolicy API, security docs) human-authored or human-corrected."
+    },
+    {
+      "id": "urn:eval:tsc-release-review",
+      "policy": "libsignal-bridge Release Governance",
+      "policyVersion": "3.0",
+      "evaluator": "Dagny Holm",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-28T14:00:00Z",
+      "notes": "TSC voted 4-1 to approve. Test coverage (94% line, continuous fuzzing, third-party audit) deemed sufficient. HALOS record reviewed. Release tag signed."
+    },
+    {
+      "id": "urn:eval:cargo-audit",
+      "policy": "Dependency vulnerability policy",
+      "evaluator": "cargo-audit",
+      "evaluatorType": "tool",
+      "result": "pass",
+      "timestamp": "2026-03-27T15:00:00Z",
+      "notes": "No known vulnerabilities in dependency tree. All dependencies pinned to audited versions."
+    }
+  ]
+}
