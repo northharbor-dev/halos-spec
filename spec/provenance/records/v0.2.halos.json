@@ -1,0 +1,49 @@
+{
+  "halos_version": "0.3",
+  "artifact": {
+    "id": "urn:halos-spec:provenance-spec-v0.2",
+    "type": "document",
+    "description": "HALOS Provenance Spec v0.2 — graph model with decision provenance, interaction semantics, and policy evaluation traces",
+    "version": "0.2"
+  },
+  "human_author": {
+    "name": "Bob Hong",
+    "identifier": "https://github.com/bobhong",
+    "role": "originator"
+  },
+  "ai_assistance": [
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "Anthropic",
+      "role": "drafting",
+      "taskType": "scaffolding",
+      "description": "Drafted initial graph model schema with entities, activities, and relationships aligned to W3C PROV concepts"
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "Anthropic",
+      "role": "assistance",
+      "taskType": "comparing",
+      "description": "Compared W3C PROV relationship types and recommended a subset for HALOS, plus simpler aliases for readability"
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "Anthropic",
+      "role": "drafting",
+      "taskType": "scaffolding",
+      "description": "Drafted eight domain examples (enterprise, journalism, education, government, music, nonprofit, realtime-critical, scientific) with full graph provenance records and collaboration narratives"
+    }
+  ],
+  "timestamp": "2026-03-31T01:34:01-04:00",
+  "governance": [
+    {
+      "policy": "HALOS",
+      "version": "1.0",
+      "url": "https://halos.northharbor.dev"
+    }
+  ],
+  "lineage": [
+    "urn:halos-spec:provenance-spec-v0.1"
+  ],
+  "notes": "Retroactively created from git history (commits 777db0e through 88ca7c8). Details are best-effort reconstruction. v0.2 was a major expansion: the graph model (entities, activities, relationships) aligned with W3C PROV, decision provenance as a first-class concept, human-AI interaction semantics (accepted/modified/rejected), policy evaluation traces, taskType and techniques fields, and eight domain examples spanning enterprise software to humanitarian aid."
+}

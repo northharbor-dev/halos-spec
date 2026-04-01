@@ -22,4 +22,5 @@
 - [ ] This change is appropriately scoped
 - [ ] If this changes a schema, I have updated examples to remain valid
 - [ ] If this is a new spec document, it references the correct schema
+- [ ] If this changes the provenance spec or schemas, I have included a provenance record in `spec/provenance/records/`
 - [ ] I understand this will be licensed under CC-BY-4.0

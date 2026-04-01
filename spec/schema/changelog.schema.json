@@ -2,30 +2,72 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://halos.northharbor.dev/spec/schema/changelog.schema.json",
   "title": "HALOS Changelog",
-  "description": "Machine-readable changelog",
+  "description": "Machine-readable changelog organized by spec artifact",
   "type": "object",
-  "required": ["versions"],
+  "required": ["principles", "provenance"],
   "properties": {
-    "versions": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": ["version", "date", "changes"],
-        "properties": {
-          "version": {
-            "type": "string",
-            "pattern": "^\\d+\\.\\d+\\.\\d+(-[a-zA-Z0-9.-]+)?(\\+[a-zA-Z0-9.-]+)?$",
-            "description": "Semantic version"
-          },
-          "date": { "type": "string" },
-          "changes": {
-            "type": "array",
-            "items": { "type": "string" }
-          },
-          "proposals": {
-            "type": "array",
-            "items": { "type": "string" }
-          }
+    "principles": {
+      "type": "object",
+      "required": ["versions"],
+      "description": "Changelog for the HALOS Principles spec",
+      "properties": {
+        "versions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/versionEntry" }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["versions"],
+      "description": "Changelog for the HALOS Provenance spec",
+      "properties": {
+        "versions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/versionEntry" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "versionEntry": {
+      "type": "object",
+      "required": ["version", "date", "status", "changes"],
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "Version identifier (e.g. 1.0.0 for principles, 0.3 for provenance)"
+        },
+        "date": {
+          "type": "string",
+          "description": "Release date (ISO 8601 date)"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "superseded", "stable"],
+          "description": "Current status of this version"
+        },
+        "changes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Summary of changes in this version"
+        },
+        "breaking": {
+          "type": "boolean",
+          "description": "Whether this version contains breaking changes from the previous version"
+        },
+        "supersededBy": {
+          "type": "string",
+          "description": "Version that supersedes this one (if status is superseded)"
+        },
+        "proposals": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Proposal IDs that produced this version"
+        },
+        "provenanceRecord": {
+          "type": "string",
+          "description": "Path to the HALOS provenance record for this version change"
         }
       }
     }

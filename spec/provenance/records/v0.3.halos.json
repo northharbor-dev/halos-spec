@@ -1,0 +1,97 @@
+{
+  "halos_version": "0.3",
+  "artifact": {
+    "id": "urn:halos-spec:provenance-spec-v0.3",
+    "type": "document",
+    "description": "HALOS Provenance Spec v0.3 — multi-policy governance (governance field changed from object to array)",
+    "version": "0.3"
+  },
+  "human_author": {
+    "name": "Bob Hong",
+    "identifier": "https://github.com/bobhong",
+    "role": "originator"
+  },
+  "ai_assistance": [
+    {
+      "model": "claude-opus-4-6",
+      "provider": "Anthropic",
+      "role": "assistance",
+      "taskType": "comparing",
+      "description": "Compared two design options for multi-policy governance: (A) make governance an array, (B) keep single object and rely on policyEvaluations for additional policies. Recommended option A as cleaner and more honest about the reality."
+    },
+    {
+      "model": "claude-opus-4-6",
+      "provider": "Anthropic",
+      "role": "drafting",
+      "taskType": "scaffolding",
+      "description": "Drafted v0.3 JSON schema, spec document with migration notes, and updated all 11 examples plus embedded examples to array governance syntax."
+    },
+    {
+      "model": "claude-opus-4-6",
+      "provider": "Anthropic",
+      "role": "assistance",
+      "taskType": "researching",
+      "description": "Researched versioning conventions across peer specs (SLSA, CycloneDX, OpenAPI, JSON Schema, W3C PROV) to inform decision on version format and draft/alpha suffixes."
+    }
+  ],
+  "timestamp": "2026-03-31T23:07:35-04:00",
+  "governance": [
+    {
+      "policy": "HALOS",
+      "version": "1.0",
+      "url": "https://halos.northharbor.dev"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "urn:decision:governance-array",
+      "description": "Changed governance from a single object to an array of policy references, accepting a breaking change from v0.2",
+      "responsible": "Bob Hong",
+      "responsibleId": "https://github.com/bobhong",
+      "timestamp": "2026-03-31T22:00:00-04:00",
+      "context": "Artifacts routinely fall under multiple concurrent governance policies. The v0.2 single-object form forced authors to pick one policy or concatenate multiple into a string. The realtime-critical-systems example already worked around this by cramming two policies into one string field.",
+      "aiInputs": [
+        {
+          "model": "claude-opus-4-6",
+          "provider": "Anthropic",
+          "contribution": "Proposed two options: (A) governance as array, (B) keep single governance and lean on policyEvaluations. Recommended A because policyEvaluations conflates 'what policies exist' with 'what evaluations were run', and not every governing policy has an automated evaluation.",
+          "taskType": "comparing"
+        }
+      ],
+      "rationale": "Option A is cleaner and more honest about the reality. The governance field answers 'under what policies was this artifact produced?' — that question is inherently plural. Relying on policyEvaluations to fill the gap conflates policy identity with evaluation results.",
+      "outcome": "accepted"
+    },
+    {
+      "id": "urn:decision:version-format",
+      "description": "Decided to keep x.y version format for halos_version rather than adopting semver or adding draft/alpha suffixes",
+      "responsible": "Bob Hong",
+      "responsibleId": "https://github.com/bobhong",
+      "timestamp": "2026-03-31T22:30:00-04:00",
+      "context": "Question arose whether 0.x breaking changes should bump the major version (semver convention) and whether draft versions should use suffixes like 0.3-draft.",
+      "aiInputs": [
+        {
+          "model": "claude-opus-4-6",
+          "provider": "Anthropic",
+          "contribution": "Researched peer specs: SLSA, CycloneDX, OpenAPI, and JSON Schema all use simple x.y for spec versions. Semver section 4 explicitly defines 0.x as the 'anything may change' pre-stable period. Draft suffixes in version strings would require records to be rewritten when the version goes final.",
+          "taskType": "researching"
+        }
+      ],
+      "rationale": "Semver 0.x convention explicitly allows breaking changes at the minor version level. Peer specs in the supply chain ecosystem use the same pattern. Status metadata (Status: Draft/Active) in spec docs is the right place to signal maturity, not the version string inside every record.",
+      "outcome": "accepted"
+    },
+    {
+      "id": "urn:decision:promote-v03-active",
+      "description": "Promoted v0.3 to Active status immediately rather than holding as Draft",
+      "responsible": "Bob Hong",
+      "responsibleId": "https://github.com/bobhong",
+      "timestamp": "2026-03-31T23:00:00-04:00",
+      "context": "v0.3 is the only active consumer's current spec. Holding it as Draft while all examples already use it creates an inconsistency.",
+      "rationale": "The entire v0.x series is implicitly unstable. Adding a Draft status on top of that is redundant. All examples and landing pages already reference v0.3. Marking it Active reflects reality.",
+      "outcome": "accepted"
+    }
+  ],
+  "lineage": [
+    "urn:halos-spec:provenance-spec-v0.2"
+  ],
+  "notes": "This is the first HALOS provenance record created for a HALOS spec change — the bootstrap moment for self-provenance. Created as part of plan 004 (self-provenance bootstrapping)."
+}

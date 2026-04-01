@@ -1,15 +1,66 @@
 {
-  "versions": [
-    {
-      "version": "1.0.0",
-      "date": "2025-03-15",
-      "changes": [
-        "Initial machine-readable spec",
-        "Core requirements formalize eight HALOS principles",
-        "JSON Schema for manifest, core, extension, changelog",
-        "Spec generation derives human-readable docs from JSON"
-      ],
-      "proposals": []
-    }
-  ]
+  "principles": {
+    "versions": [
+      {
+        "version": "1.0.0",
+        "date": "2025-03-15",
+        "status": "stable",
+        "changes": [
+          "Initial machine-readable spec",
+          "Core requirements formalize eight HALOS principles",
+          "JSON Schema for manifest, core, extension, changelog",
+          "Spec generation derives human-readable docs from JSON"
+        ],
+        "proposals": []
+      }
+    ]
+  },
+  "provenance": {
+    "versions": [
+      {
+        "version": "0.3",
+        "date": "2026-03-31",
+        "status": "active",
+        "changes": [
+          "Breaking: governance field changed from single object to array of policy references",
+          "Supports artifacts under multiple concurrent governance policies",
+          "Clarifies relationship between governance array and policyEvaluations array",
+          "Migration path documented for v0.2 to v0.3 upgrade"
+        ],
+        "breaking": true,
+        "provenanceRecord": "spec/provenance/records/v0.3.halos.json"
+      },
+      {
+        "version": "0.2",
+        "date": "2026-03-30",
+        "status": "superseded",
+        "supersededBy": "0.3",
+        "changes": [
+          "Graph model: entities, activities, and relationships (aligned with W3C PROV)",
+          "Decision provenance: first-class tracking of human decisions with AI inputs",
+          "Human-AI interaction semantics: structured recording of accepted/modified/rejected",
+          "Responsibility modeling: roles and delegation on graph entities",
+          "Policy evaluation traces: records of automated or manual policy checks",
+          "Task type and techniques fields for AI contribution specificity"
+        ],
+        "breaking": false,
+        "provenanceRecord": "spec/provenance/records/v0.2.halos.json"
+      },
+      {
+        "version": "0.1",
+        "date": "2026-03-25",
+        "status": "superseded",
+        "supersededBy": "0.2",
+        "changes": [
+          "Initial provenance spec: flat document model",
+          "Required fields: artifact, human_author, ai_assistance, timestamp",
+          "Optional fields: review, governance, lineage, notes",
+          "Embedding patterns for CycloneDX and SLSA",
+          "JSON Schema validation (Draft 2020-12)"
+        ],
+        "breaking": false,
+        "provenanceRecord": "spec/provenance/records/v0.1.halos.json"
+      }
+    ]
+  }
 }

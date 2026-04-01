@@ -1,0 +1,32 @@
+{
+  "halos_version": "0.3",
+  "artifact": {
+    "id": "urn:halos-spec:provenance-spec-v0.1",
+    "type": "document",
+    "description": "HALOS Provenance Spec v0.1 — flat provenance model for recording human-AI collaboration on artifacts",
+    "version": "0.1"
+  },
+  "human_author": {
+    "name": "Bob Hong",
+    "identifier": "https://github.com/bobhong",
+    "role": "originator"
+  },
+  "ai_assistance": [
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "Anthropic",
+      "role": "assistance",
+      "taskType": "scaffolding",
+      "description": "Assisted with schema design, field definitions, and embedding patterns for CycloneDX and SLSA integration"
+    }
+  ],
+  "timestamp": "2026-03-25T01:20:57-04:00",
+  "governance": [
+    {
+      "policy": "HALOS",
+      "version": "1.0",
+      "url": "https://halos.northharbor.dev"
+    }
+  ],
+  "notes": "Retroactively created from git history (commit 0932745). Details are best-effort reconstruction. v0.1 established the foundational flat document model: artifact identity, accountable human author, AI assistance disclosure, human review chain, governance policy reference, and artifact lineage. Embedding patterns for CycloneDX and SLSA were defined from the start."
+}

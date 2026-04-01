@@ -1,8 +1,18 @@
 # Plan 004: Self-Provenance Bootstrapping
 
-**Status:** Draft
+**Status:** Complete
 **Created:** 2026-03-31
+**Completed:** 2026-03-31
 **Author:** Bob Hong
+
+---
+
+## Resolved Decisions
+
+1. **Changelog structure** — Option A: separate `principles` and `provenance` sequences within changelog.json. Schema updated to support both.
+2. **Record location** — Option A: `spec/provenance/records/` subdirectory.
+3. **Backfill depth** — Moderate: artifact + author + AI assistance entries reconstructed from commit messages, but no decisions or graph (the graph model was just emerging at that point).
+4. **Automation** — Advisory for now. CONTRIBUTING.md and PR template updated. Enforcement issue created: northharbor-dev/halos-spec#20. Options to evaluate: CI check, git pre-commit hook, or PR bot comment.
 
 ---
 

@@ -28,6 +28,19 @@ Typos, broken links, and formatting corrections can be submitted as direct pull 
 
 ---
 
+## Self-Provenance
+
+HALOS uses its own provenance spec to document spec changes. When submitting a PR that modifies the provenance spec or schemas:
+
+1. Create a HALOS provenance record for your change in `spec/provenance/records/`
+2. Name it after the version or change (e.g., `v0.3.halos.json`)
+3. Record yourself as the human author, document AI assistance used, and capture key decisions
+4. Reference the record in `spec/changelog.json` via the `provenanceRecord` field
+
+This is advisory — not yet enforced by CI. See existing records in `spec/provenance/records/` for examples.
+
+---
+
 ## What Belongs Here
 
 This repository contains specification-level content and adoption tooling:

@@ -135,7 +135,11 @@ halos-spec/
 │   ├── provenance/
 │   │   ├── v0.1.md                          # Active provenance spec
 │   │   ├── v0.2.md                          # Graph model (superseded by v0.3)
-│   │   └── v0.3.md                          # Multi-policy governance (active)
+│   │   ├── v0.3.md                          # Multi-policy governance (active)
+│   │   └── records/                         # Self-provenance records for spec changes
+│   │       ├── v0.1.halos.json
+│   │       ├── v0.2.halos.json
+│   │       └── v0.3.halos.json
 │   └── schema/                              # JSON Schemas (Draft 2020-12)
 │       ├── core.schema.json
 │       ├── halos-profile.schema.json
