@@ -1,0 +1,32 @@
+{
+  "halos_version": "0.3",
+  "artifact": {
+    "id": "urn:doc:marketing/q1-2026-brand-guidelines-update",
+    "type": "document",
+    "description": "Quarterly brand guidelines update covering new product line messaging, tone adjustments for APAC markets, and refreshed visual identity standards",
+    "version": "2026-Q1"
+  },
+  "human_author": {
+    "name": "Tomás Rivera",
+    "identifier": "https://brand.example.com/team/trivera",
+    "role": "originator"
+  },
+  "ai_assistance": [
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "Anthropic",
+      "role": "editing",
+      "description": "Copy-edited 45-page brand guidelines document for consistency, grammar, and adherence to existing style guide. Flagged 23 instances of tone inconsistency between sections written by different team members.",
+      "taskType": "presenting"
+    }
+  ],
+  "timestamp": "2026-03-28T12:00:00Z",
+  "review": [
+    {
+      "reviewer": "Chief Brand Officer",
+      "type": "approval",
+      "timestamp": "2026-03-27T16:00:00Z",
+      "notes": "Approved with minor revisions to APAC messaging section"
+    }
+  ]
+}

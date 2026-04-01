@@ -1,0 +1,52 @@
+{
+  "halos_version": "0.3",
+  "artifact": {
+    "id": "urn:pkg:npm/@acme/transaction-processor@2.3.0",
+    "type": "code",
+    "description": "Transaction processing module with real-time fraud scoring integration",
+    "version": "2.3.0"
+  },
+  "human_author": {
+    "name": "Amir Hassan",
+    "identifier": "https://github.example.com/ahassan",
+    "role": "originator"
+  },
+  "ai_assistance": [
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "Anthropic",
+      "role": "generation",
+      "description": "Generated test fixtures for edge-case transaction scenarios (multi-currency, partial refunds, chargeback flows)",
+      "taskType": "scaffolding"
+    }
+  ],
+  "timestamp": "2026-03-20T14:00:00Z",
+  "policyEvaluations": [
+    {
+      "id": "urn:eval:snyk-scan",
+      "policy": "Dependency Vulnerability Policy",
+      "policyVersion": "2026.1",
+      "evaluator": "Snyk",
+      "evaluatorType": "service",
+      "result": "warning",
+      "timestamp": "2026-03-19T22:00:00Z",
+      "notes": "2 low-severity vulnerabilities in transitive dependencies. No exploitable path in current usage. Scheduled for next dependency update cycle.",
+      "details": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 2,
+        "totalDependencies": 147
+      }
+    },
+    {
+      "id": "urn:eval:sonarcloud",
+      "policy": "Code Quality Gate",
+      "evaluator": "SonarCloud",
+      "evaluatorType": "service",
+      "result": "pass",
+      "timestamp": "2026-03-20T06:00:00Z",
+      "notes": "Quality gate passed: 92% coverage, 0 bugs, 0 vulnerabilities, 3 code smells (all accepted)"
+    }
+  ]
+}

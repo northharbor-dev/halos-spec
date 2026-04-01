@@ -1,0 +1,71 @@
+{
+  "halos_version": "0.3",
+  "artifact": {
+    "id": "urn:dataset:pharma/clinical-trial-adverse-events-2026q1",
+    "type": "dataset",
+    "description": "Curated adverse event dataset from Phase III clinical trial NCT-2026-04821, combining patient-reported outcomes with AI-extracted signals from unstructured clinical notes",
+    "version": "1.2.0"
+  },
+  "human_author": {
+    "name": "Dr. Elena Vasquez",
+    "identifier": "https://orcid.org/0000-0002-1234-5678",
+    "role": "originator"
+  },
+  "ai_assistance": [
+    {
+      "model": "med-llm-v3",
+      "provider": "Internal ML Platform",
+      "role": "assistance",
+      "description": "Extracted structured adverse event mentions from 12,400 free-text clinical notes using fine-tuned NER model",
+      "taskType": "extracting",
+      "techniques": ["named-entity-recognition", "medical-ontology-mapping"]
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "Anthropic",
+      "role": "review",
+      "description": "Reviewed extraction quality by sampling 200 notes and flagging misclassified severity grades",
+      "taskType": "classifying"
+    }
+  ],
+  "timestamp": "2026-03-10T16:00:00Z",
+  "review": [
+    {
+      "reviewer": "Dr. James Okonkwo",
+      "type": "peer-review",
+      "timestamp": "2026-03-09T14:00:00Z",
+      "notes": "Validated extraction accuracy against manual annotations on 500-note gold standard subset. Precision 94.2%, recall 91.7%."
+    }
+  ],
+  "governance": [
+    {
+      "policy": "FDA 21 CFR Part 11",
+      "version": "2024",
+      "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-11"
+    },
+    {
+      "policy": "HIPAA De-identification Standard",
+      "version": "2013"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "urn:decision:severity-reclassification",
+      "description": "Overrode AI severity classification for 47 adverse events where model assigned 'mild' but clinical context indicated 'moderate' based on duration and functional impact",
+      "responsible": "Dr. Elena Vasquez",
+      "timestamp": "2026-03-05T11:00:00Z",
+      "context": "NER model was trained on outpatient data; trial population includes post-surgical patients with different baseline severity thresholds",
+      "aiInputs": [
+        {
+          "model": "med-llm-v3",
+          "provider": "Internal ML Platform",
+          "contribution": "Classified adverse event severity using MedDRA preferred terms and duration heuristics",
+          "taskType": "classifying",
+          "techniques": ["named-entity-recognition"]
+        }
+      ],
+      "rationale": "Model's severity heuristics don't account for post-surgical baseline. Manual review of flagged cases confirmed 43 of 47 warranted upgrade to moderate based on CTCAE v5.0 grading criteria.",
+      "outcome": "rejected"
+    }
+  ]
+}

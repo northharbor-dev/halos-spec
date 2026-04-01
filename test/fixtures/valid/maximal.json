@@ -1,0 +1,202 @@
+{
+  "halos_version": "0.3",
+  "artifact": {
+    "id": "urn:test:maximal-artifact",
+    "type": "code",
+    "description": "A comprehensive test artifact exercising every field in the v0.3 schema",
+    "version": "2.0.0"
+  },
+  "human_author": {
+    "name": "Dr. Maria Santos",
+    "identifier": "https://github.example.com/msantos",
+    "role": "originator"
+  },
+  "ai_assistance": [
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "Anthropic",
+      "role": "generation",
+      "description": "Generated initial project scaffolding and test stubs",
+      "taskType": "scaffolding",
+      "techniques": ["code-pattern-matching", "retrieval-augmented-generation"]
+    },
+    {
+      "model": "gpt-4o",
+      "provider": "OpenAI",
+      "role": "review",
+      "description": "Reviewed generated code for security vulnerabilities",
+      "taskType": "classifying",
+      "techniques": ["static-analysis"]
+    }
+  ],
+  "timestamp": "2026-03-15T18:00:00Z",
+  "review": [
+    {
+      "reviewer": "James Park",
+      "type": "peer-review",
+      "timestamp": "2026-03-14T10:00:00Z",
+      "notes": "Code quality review passed with minor style suggestions"
+    },
+    {
+      "reviewer": "Aisha Okafor",
+      "type": "approval",
+      "timestamp": "2026-03-15T09:00:00Z",
+      "notes": "Approved for production deployment"
+    }
+  ],
+  "governance": [
+    {
+      "policy": "Internal AI Usage Policy",
+      "version": "3.0",
+      "url": "https://internal.example.com/policies/ai-usage"
+    },
+    {
+      "policy": "HALOS",
+      "version": "1.0",
+      "url": "https://halos.northharbor.dev"
+    }
+  ],
+  "lineage": [
+    "urn:test:parent-artifact-v1",
+    "urn:test:reference-dataset"
+  ],
+  "notes": "Comprehensive test fixture demonstrating full schema utilization",
+  "decisions": [
+    {
+      "id": "urn:decision:test-architecture",
+      "description": "Selected microservice architecture over monolith for the data pipeline",
+      "responsible": "Dr. Maria Santos",
+      "responsibleId": "https://github.example.com/msantos",
+      "timestamp": "2026-03-01T14:00:00Z",
+      "context": "Team of 8 engineers across 3 time zones; need independent deployability",
+      "aiInputs": [
+        {
+          "model": "claude-sonnet-4-6",
+          "provider": "Anthropic",
+          "contribution": "Produced trade-off analysis comparing monolith vs microservice vs modular monolith",
+          "taskType": "comparing",
+          "techniques": ["chain-of-thought"]
+        }
+      ],
+      "rationale": "Microservice architecture enables independent deployment and scaling per data source, critical for the team's distributed workflow",
+      "outcome": "accepted"
+    }
+  ],
+  "graph": {
+    "entities": [
+      {
+        "id": "urn:entity:artifact",
+        "type": "artifact",
+        "label": "Maximal Test Artifact v2.0.0",
+        "identifier": "urn:test:maximal-artifact"
+      },
+      {
+        "id": "urn:entity:maria",
+        "type": "person",
+        "label": "Dr. Maria Santos",
+        "identifier": "https://github.example.com/msantos",
+        "role": "author"
+      },
+      {
+        "id": "urn:entity:claude",
+        "type": "agent",
+        "label": "Claude Sonnet 4.6",
+        "identifier": "claude-sonnet-4-6",
+        "delegatedBy": "urn:entity:maria"
+      },
+      {
+        "id": "urn:entity:acme",
+        "type": "organization",
+        "label": "Acme Corp"
+      },
+      {
+        "id": "urn:entity:policy",
+        "type": "policy",
+        "label": "Internal AI Usage Policy v3.0"
+      }
+    ],
+    "activities": [
+      {
+        "id": "urn:activity:design",
+        "type": "create",
+        "startedAt": "2026-03-01T09:00:00Z",
+        "endedAt": "2026-03-01T17:00:00Z",
+        "description": "Designed the system architecture",
+        "taskType": "reasoning",
+        "techniques": ["chain-of-thought"],
+        "interaction": {
+          "type": "analysis",
+          "humanResponse": "modified",
+          "responseNotes": "Accepted core design but rejected CQRS recommendation"
+        }
+      },
+      {
+        "id": "urn:activity:generate",
+        "type": "generate",
+        "startedAt": "2026-03-05T09:00:00Z",
+        "endedAt": "2026-03-05T14:00:00Z",
+        "description": "AI generated initial scaffolding"
+      },
+      {
+        "id": "urn:activity:review",
+        "type": "review",
+        "startedAt": "2026-03-14T09:00:00Z",
+        "endedAt": "2026-03-14T12:00:00Z",
+        "description": "Peer review of the implementation"
+      }
+    ],
+    "relationships": [
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:artifact",
+        "to": "urn:activity:design"
+      },
+      {
+        "type": "wasAttributedTo",
+        "from": "urn:entity:artifact",
+        "to": "urn:entity:maria"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:generate",
+        "to": "urn:entity:claude"
+      },
+      {
+        "type": "actedOnBehalfOf",
+        "from": "urn:entity:claude",
+        "to": "urn:entity:maria"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:design",
+        "to": "urn:entity:artifact",
+        "notes": "Design activity used reference materials"
+      }
+    ]
+  },
+  "policyEvaluations": [
+    {
+      "id": "urn:eval:sast",
+      "policy": "OWASP Top 10",
+      "policyVersion": "2025",
+      "evaluator": "semgrep",
+      "evaluatorType": "tool",
+      "result": "pass",
+      "timestamp": "2026-03-13T14:00:00Z",
+      "notes": "No critical findings",
+      "details": {
+        "rulesChecked": 247,
+        "findings": 0
+      }
+    },
+    {
+      "id": "urn:eval:halos",
+      "policy": "HALOS Principles v1.0",
+      "evaluator": "Dr. Maria Santos",
+      "evaluatorType": "human",
+      "result": "pass",
+      "timestamp": "2026-03-15T08:00:00Z",
+      "notes": "All AI contributions documented and reviewed"
+    }
+  ]
+}

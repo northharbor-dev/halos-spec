@@ -1,0 +1,33 @@
+{
+  "halos_version": "0.3",
+  "artifact": {
+    "id": "urn:design:northstar/mobile-checkout-redesign",
+    "type": "design",
+    "description": "Mobile checkout flow redesign — wireframes, interaction specifications, and accessibility annotations for the NorthStar e-commerce platform",
+    "version": "2.0"
+  },
+  "human_author": {
+    "name": "Kenji Watanabe",
+    "identifier": "https://figma.com/@kenjiwatanabe",
+    "role": "reviewer"
+  },
+  "ai_assistance": [
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "Anthropic",
+      "role": "assistance",
+      "description": "Analyzed competitor checkout flows and generated comparative UX audit with heuristic scoring",
+      "taskType": "summarizing",
+      "techniques": ["heuristic-evaluation"]
+    }
+  ],
+  "timestamp": "2026-03-22T17:00:00Z",
+  "review": [
+    {
+      "reviewer": "Accessibility Team",
+      "type": "other",
+      "timestamp": "2026-03-21T12:00:00Z",
+      "notes": "WCAG 2.2 AA compliance verified for all interaction states. Color contrast ratios meet requirements for low-vision users."
+    }
+  ]
+}

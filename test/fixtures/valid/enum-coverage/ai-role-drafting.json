@@ -1,0 +1,46 @@
+{
+  "halos_version": "0.3",
+  "artifact": {
+    "id": "urn:doc:legal/saas-enterprise-agreement-template-v5",
+    "type": "document",
+    "description": "Enterprise SaaS agreement template with AI-acceptable-use addendum, data processing agreement, and SLA schedule",
+    "version": "5.0"
+  },
+  "human_author": {
+    "name": "Rachel Kim",
+    "identifier": "https://linkedin.com/in/rachelkim-esq",
+    "role": "editor"
+  },
+  "ai_assistance": [
+    {
+      "model": "claude-opus-4-6",
+      "provider": "Anthropic",
+      "role": "drafting",
+      "description": "Drafted initial AI-acceptable-use addendum based on existing data processing agreement structure and provided regulatory guidance documents",
+      "taskType": "summarizing",
+      "techniques": ["retrieval-augmented-generation"]
+    }
+  ],
+  "timestamp": "2026-03-25T16:00:00Z",
+  "review": [
+    {
+      "reviewer": "David Chen",
+      "type": "editorial",
+      "timestamp": "2026-03-24T11:00:00Z",
+      "notes": "Revised AI-generated liability limitation clauses to align with firm precedent. Strengthened indemnification language around model output accuracy."
+    },
+    {
+      "reviewer": "Sarah Johansson",
+      "type": "approval",
+      "timestamp": "2026-03-25T09:00:00Z",
+      "notes": "Partner approval. Template approved for use with enterprise clients in US and EU jurisdictions."
+    }
+  ],
+  "governance": [
+    {
+      "policy": "Firm AI Usage Policy for Client Deliverables",
+      "version": "2.0",
+      "url": "https://internal.lawfirm.example/policies/ai-client-work"
+    }
+  ]
+}

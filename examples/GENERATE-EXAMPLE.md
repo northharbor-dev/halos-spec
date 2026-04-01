@@ -137,7 +137,9 @@ This is a real (not fictional) HALOS record documenting the human-AI collaborati
 
 1. **Update `examples/domains.json`** — set the domain's status to `"implemented"`, fill in `lead`, `leadRole`, `keyDecision`, `files`, and `added` fields
 2. **Update `examples/README.md`** — add the new example to the domain examples table, maintaining alphabetical order by domain
-3. **Validate** the `.halos.json` against `spec/schema/halos-provenance-v0.3.schema.json`
+3. **Run `npm test`** to validate the `.halos.json` against the schema and all semantic checks. If validation fails:
+   - Check the error message — it will tell you exactly which field or value is invalid
+   - If the failure is due to a value not in the schema's enum (e.g., a new artifact type or relationship type), this may be a valid **spec proposal**. Tell the user and suggest opening a GitHub issue describing the use case.
 4. **Stage all new and modified files** with `git add`
 5. **Summarize** what was created: domain, lead character, key decision, files produced
 

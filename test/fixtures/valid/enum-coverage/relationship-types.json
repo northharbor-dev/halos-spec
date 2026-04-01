@@ -1,0 +1,206 @@
+{
+  "halos_version": "0.3",
+  "artifact": {
+    "id": "urn:doc:supply-chain/vendor-risk-assessment-q1-2026",
+    "type": "document",
+    "description": "Quarterly vendor risk assessment covering 45 tier-1 suppliers — exercises all 14 HALOS graph relationship types",
+    "version": "2026-Q1"
+  },
+  "human_author": {
+    "name": "Marcus Chen",
+    "identifier": "https://procurement.example.com/users/mchen",
+    "role": "originator"
+  },
+  "ai_assistance": [
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "Anthropic",
+      "role": "assistance",
+      "description": "Analyzed vendor financial filings and news feeds to produce preliminary risk scores",
+      "taskType": "predicting",
+      "techniques": ["retrieval-augmented-generation", "sentiment-analysis"]
+    }
+  ],
+  "timestamp": "2026-03-30T12:00:00Z",
+  "graph": {
+    "entities": [
+      {
+        "id": "urn:entity:report",
+        "type": "artifact",
+        "label": "Vendor Risk Assessment Q1 2026",
+        "identifier": "urn:doc:supply-chain/vendor-risk-assessment-q1-2026"
+      },
+      {
+        "id": "urn:entity:marcus",
+        "type": "person",
+        "label": "Marcus Chen",
+        "identifier": "https://procurement.example.com/users/mchen",
+        "role": "author"
+      },
+      {
+        "id": "urn:entity:claude",
+        "type": "agent",
+        "label": "Claude Sonnet 4.6",
+        "identifier": "claude-sonnet-4-6",
+        "delegatedBy": "urn:entity:marcus"
+      },
+      {
+        "id": "urn:entity:reviewer",
+        "type": "person",
+        "label": "Diana Okafor",
+        "role": "reviewer"
+      },
+      {
+        "id": "urn:entity:approver",
+        "type": "person",
+        "label": "VP Procurement",
+        "role": "approver"
+      },
+      {
+        "id": "urn:entity:acme-corp",
+        "type": "organization",
+        "label": "Acme Corporation"
+      },
+      {
+        "id": "urn:entity:prior-report",
+        "type": "artifact",
+        "label": "Vendor Risk Assessment Q4 2025"
+      },
+      {
+        "id": "urn:entity:risk-policy",
+        "type": "policy",
+        "label": "Supply Chain Risk Management Policy v3.0"
+      },
+      {
+        "id": "urn:entity:vendor-data",
+        "type": "artifact",
+        "label": "Raw vendor financial data feed"
+      }
+    ],
+    "activities": [
+      {
+        "id": "urn:activity:analyze",
+        "type": "generate",
+        "startedAt": "2026-03-25T09:00:00Z",
+        "endedAt": "2026-03-25T17:00:00Z",
+        "description": "AI analyzed vendor data to produce preliminary risk scores"
+      },
+      {
+        "id": "urn:activity:author",
+        "type": "create",
+        "startedAt": "2026-03-26T09:00:00Z",
+        "endedAt": "2026-03-28T17:00:00Z",
+        "description": "Marcus authored the final report, overriding 7 of 45 AI risk scores based on direct supplier conversations"
+      },
+      {
+        "id": "urn:activity:review-report",
+        "type": "review",
+        "startedAt": "2026-03-29T09:00:00Z",
+        "endedAt": "2026-03-29T12:00:00Z",
+        "description": "Diana reviewed the assessment for completeness and methodology adherence"
+      },
+      {
+        "id": "urn:activity:approve-report",
+        "type": "approve",
+        "startedAt": "2026-03-30T10:00:00Z",
+        "endedAt": "2026-03-30T11:00:00Z",
+        "description": "VP Procurement approved the assessment for distribution to the board"
+      },
+      {
+        "id": "urn:activity:suggest-scores",
+        "type": "suggest",
+        "startedAt": "2026-03-25T14:00:00Z",
+        "endedAt": "2026-03-25T14:30:00Z",
+        "description": "AI suggested elevated risk scores for 3 vendors based on recent news sentiment",
+        "interaction": {
+          "type": "suggestion",
+          "humanResponse": "partial",
+          "responseNotes": "Accepted 2 of 3 elevated scores. Rejected one: negative news was about a subsidiary not relevant to our supply relationship."
+        }
+      },
+      {
+        "id": "urn:activity:decide-methodology",
+        "type": "decision",
+        "startedAt": "2026-03-24T14:00:00Z",
+        "endedAt": "2026-03-24T15:00:00Z",
+        "description": "Decided to weight financial stability at 40% vs AI-recommended 25%"
+      }
+    ],
+    "relationships": [
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:report",
+        "to": "urn:activity:author"
+      },
+      {
+        "type": "wasAttributedTo",
+        "from": "urn:entity:report",
+        "to": "urn:entity:marcus"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:analyze",
+        "to": "urn:entity:vendor-data"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:analyze",
+        "to": "urn:entity:claude"
+      },
+      {
+        "type": "wasDerivedFrom",
+        "from": "urn:entity:report",
+        "to": "urn:entity:prior-report",
+        "notes": "Q1 report builds on Q4 baseline scores and trend data"
+      },
+      {
+        "type": "actedOnBehalfOf",
+        "from": "urn:entity:claude",
+        "to": "urn:entity:marcus"
+      },
+      {
+        "type": "wasInformedBy",
+        "from": "urn:activity:author",
+        "to": "urn:activity:analyze"
+      },
+      {
+        "type": "hadRole",
+        "from": "urn:entity:reviewer",
+        "to": "urn:activity:review-report",
+        "notes": "Diana served as methodology reviewer"
+      },
+      {
+        "type": "authored_by",
+        "from": "urn:entity:report",
+        "to": "urn:entity:marcus"
+      },
+      {
+        "type": "reviewed_by",
+        "from": "urn:entity:report",
+        "to": "urn:entity:reviewer"
+      },
+      {
+        "type": "approved_by",
+        "from": "urn:entity:report",
+        "to": "urn:entity:approver"
+      },
+      {
+        "type": "generated_with",
+        "from": "urn:entity:report",
+        "to": "urn:entity:claude",
+        "notes": "AI generated preliminary risk scores that informed the final report"
+      },
+      {
+        "type": "derived_from",
+        "from": "urn:entity:report",
+        "to": "urn:entity:prior-report"
+      },
+      {
+        "type": "influenced_by",
+        "from": "urn:activity:decide-methodology",
+        "to": "urn:activity:suggest-scores",
+        "notes": "AI score suggestions influenced the decision to re-weight financial stability factor"
+      }
+    ]
+  }
+}

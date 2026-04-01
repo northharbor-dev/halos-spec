@@ -1,0 +1,44 @@
+{
+  "halos_version": "0.3",
+  "artifact": {
+    "id": "urn:model:radiology/chest-xray-pneumonia-detector-v4",
+    "type": "model",
+    "description": "Fine-tuned vision transformer for pneumonia detection in chest X-rays, achieving 97.3% sensitivity on institutional validation set",
+    "version": "4.0.0"
+  },
+  "human_author": {
+    "name": "Dr. Priya Sharma",
+    "identifier": "https://orcid.org/0000-0003-9876-5432",
+    "role": "other"
+  },
+  "ai_assistance": [
+    {
+      "model": "claude-opus-4-6",
+      "provider": "Anthropic",
+      "role": "assistance",
+      "description": "Assisted with hyperparameter search analysis and training pipeline debugging",
+      "taskType": "reasoning",
+      "techniques": ["chain-of-thought"]
+    }
+  ],
+  "timestamp": "2026-02-20T09:00:00Z",
+  "review": [
+    {
+      "reviewer": "Radiology AI Committee",
+      "type": "approval",
+      "timestamp": "2026-02-19T15:00:00Z",
+      "notes": "Model approved for clinical decision support (not standalone diagnosis). Must be used alongside radiologist interpretation per institutional policy."
+    }
+  ],
+  "governance": [
+    {
+      "policy": "FDA Software as Medical Device (SaMD) Guidance",
+      "version": "2023"
+    },
+    {
+      "policy": "Institutional AI in Clinical Practice Policy",
+      "version": "1.4",
+      "url": "https://hospital.example.com/policies/ai-clinical"
+    }
+  ]
+}

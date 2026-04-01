@@ -1,0 +1,140 @@
+{
+  "halos_version": "0.3",
+  "artifact": {
+    "id": "urn:dataset:analytics/customer-churn-features-v2",
+    "type": "dataset",
+    "description": "Feature-engineered customer churn prediction dataset — exercises derive and transform activity types in the provenance graph",
+    "version": "2.0.0"
+  },
+  "human_author": {
+    "name": "Yuki Tanaka",
+    "identifier": "https://github.example.com/ytanaka",
+    "role": "originator"
+  },
+  "ai_assistance": [
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "Anthropic",
+      "role": "assistance",
+      "description": "Suggested feature engineering approaches and assisted with SQL query optimization for the transformation pipeline",
+      "taskType": "reasoning",
+      "techniques": ["chain-of-thought"]
+    }
+  ],
+  "timestamp": "2026-03-12T18:00:00Z",
+  "lineage": [
+    "urn:dataset:raw/customer-events-2025",
+    "urn:dataset:raw/billing-records-2025"
+  ],
+  "graph": {
+    "entities": [
+      {
+        "id": "urn:entity:features",
+        "type": "artifact",
+        "label": "Customer Churn Features v2",
+        "identifier": "urn:dataset:analytics/customer-churn-features-v2"
+      },
+      {
+        "id": "urn:entity:raw-events",
+        "type": "artifact",
+        "label": "Raw customer event stream (2025)"
+      },
+      {
+        "id": "urn:entity:raw-billing",
+        "type": "artifact",
+        "label": "Raw billing records (2025)"
+      },
+      {
+        "id": "urn:entity:intermediate",
+        "type": "artifact",
+        "label": "Cleaned and joined customer-billing dataset"
+      },
+      {
+        "id": "urn:entity:yuki",
+        "type": "person",
+        "label": "Yuki Tanaka",
+        "role": "author"
+      },
+      {
+        "id": "urn:entity:claude",
+        "type": "agent",
+        "label": "Claude Sonnet 4.6"
+      }
+    ],
+    "activities": [
+      {
+        "id": "urn:activity:transform-clean",
+        "type": "transform",
+        "startedAt": "2026-03-10T09:00:00Z",
+        "endedAt": "2026-03-10T14:00:00Z",
+        "description": "Cleaned, deduplicated, and joined customer events with billing records. Removed 12% of records as duplicates or test accounts.",
+        "taskType": "extracting",
+        "interaction": {
+          "type": "generation",
+          "humanResponse": "modified",
+          "responseNotes": "AI suggested removing records with zero sessions; Yuki kept them as they represent churned users who stopped logging in"
+        }
+      },
+      {
+        "id": "urn:activity:derive-features",
+        "type": "derive",
+        "startedAt": "2026-03-11T09:00:00Z",
+        "endedAt": "2026-03-11T17:00:00Z",
+        "description": "Derived 47 features from cleaned dataset: session frequency, billing patterns, support ticket sentiment, and engagement decay curves",
+        "taskType": "extracting",
+        "techniques": ["feature-engineering", "time-series-aggregation"]
+      },
+      {
+        "id": "urn:activity:validate-features",
+        "type": "review",
+        "startedAt": "2026-03-12T09:00:00Z",
+        "endedAt": "2026-03-12T12:00:00Z",
+        "description": "Validated feature distributions, checked for data leakage, and verified temporal consistency"
+      },
+      {
+        "id": "urn:activity:manual-correction",
+        "type": "other",
+        "startedAt": "2026-03-12T14:00:00Z",
+        "endedAt": "2026-03-12T15:00:00Z",
+        "description": "Manually corrected 12 mislabeled churn events discovered during feature validation"
+      }
+    ],
+    "relationships": [
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:features",
+        "to": "urn:activity:derive-features"
+      },
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:intermediate",
+        "to": "urn:activity:transform-clean"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:transform-clean",
+        "to": "urn:entity:raw-events"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:transform-clean",
+        "to": "urn:entity:raw-billing"
+      },
+      {
+        "type": "used",
+        "from": "urn:activity:derive-features",
+        "to": "urn:entity:intermediate"
+      },
+      {
+        "type": "wasAttributedTo",
+        "from": "urn:entity:features",
+        "to": "urn:entity:yuki"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:derive-features",
+        "to": "urn:entity:claude"
+      }
+    ]
+  }
+}

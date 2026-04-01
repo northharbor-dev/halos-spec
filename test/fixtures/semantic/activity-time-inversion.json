@@ -1,0 +1,26 @@
+{
+  "halos_version": "0.3",
+  "artifact": {
+    "id": "urn:test:time-inversion",
+    "type": "code"
+  },
+  "human_author": {
+    "name": "Test Author"
+  },
+  "ai_assistance": [],
+  "timestamp": "2026-01-01T00:00:00Z",
+  "graph": {
+    "entities": [
+      { "id": "urn:entity:artifact", "type": "artifact", "label": "Test" }
+    ],
+    "activities": [
+      {
+        "id": "urn:activity:inverted",
+        "type": "create",
+        "startedAt": "2026-03-15T17:00:00Z",
+        "endedAt": "2026-03-15T09:00:00Z"
+      }
+    ],
+    "relationships": []
+  }
+}

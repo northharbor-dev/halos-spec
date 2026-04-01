@@ -1,0 +1,6 @@
+{
+  "halos_version": "0.3",
+  "artifact": { "id": "urn:test:x", "type": "code" },
+  "human_author": { "name": "Test" },
+  "ai_assistance": []
+}

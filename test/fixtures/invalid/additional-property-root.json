@@ -1,0 +1,8 @@
+{
+  "halos_version": "0.3",
+  "artifact": { "id": "urn:test:x", "type": "code" },
+  "human_author": { "name": "Test" },
+  "ai_assistance": [],
+  "timestamp": "2026-01-01T00:00:00Z",
+  "custom_field": "should not be allowed"
+}

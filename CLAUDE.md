@@ -1,6 +1,6 @@
 # CLAUDE.md — halos-spec
 
-This file provides guidance for AI assistants working in this repository.
+Claude-specific instructions for this repository. For agent-agnostic guidance that applies to all AI assistants, see `AGENTS.md`.
 
 ---
 
@@ -8,7 +8,7 @@ This file provides guidance for AI assistants working in this repository.
 
 **halos-spec** is the canonical standards repository for the HALOS framework — Human–Agent Lineage and Origin Standard. HALOS defines how to describe, record, and verify the provenance of work created through human–AI collaboration.
 
-This is a **specification and documentation repository**, not a software package. There is no `package.json`, no build output, and no deployable artifact. The primary outputs are:
+This is a **specification and documentation repository**, not a software package. The primary outputs are:
 - Normative specification documents (Markdown)
 - JSON Schemas (for validation of provenance records and adoption profiles)
 - Adoption tooling (templates, guides, agent prompts)
@@ -28,13 +28,15 @@ halos-spec/
 │   ├── principles/
 │   │   └── v1.0.md                          # DO NOT EDIT — generated from spec/core.json
 │   ├── provenance/
-│   │   ├── v0.1.md                          # Active provenance spec
-│   │   └── v0.2.md                    # Graph model (draft)
+│   │   ├── v0.1.md                          # Superseded
+│   │   ├── v0.2.md                          # Superseded
+│   │   └── v0.3.md                          # Active provenance spec
 │   └── schema/                              # JSON Schemas (Draft 2020-12)
 │       ├── core.schema.json                 # Validates spec/core.json
 │       ├── halos-profile.schema.json        # Validates halos.yaml adoption profiles
 │       ├── halos-provenance-v0.1.schema.json
 │       ├── halos-provenance-v0.2.schema.json
+│       ├── halos-provenance-v0.3.schema.json # Current — all new examples validate against this
 │       ├── manifest.schema.json
 │       ├── changelog.schema.json
 │       └── extension.schema.json
@@ -69,6 +71,14 @@ halos-spec/
 ├── docs/                                    # Supplementary documentation
 │   ├── explainer.md                         # Plain-language intro
 │   └── migration-notes.md                   # Migration history
+│
+├── test/                                    # Automated test suite (node:test)
+│   ├── helpers/load-schema.js               # Shared AJV setup
+│   ├── schema-validation.test.js            # Valid + invalid record tests
+│   ├── enum-coverage.test.js                # Ensures every schema enum is exercised
+│   ├── semantic-validation.test.js          # Cross-field consistency checks
+│   ├── schema-evolution.test.js             # Version boundary tests
+│   └── fixtures/                            # Test data (valid, invalid, semantic)
 │
 ├── scripts/
 │   ├── generate-principles.js              # Generates spec/principles/ from spec/core.json
@@ -119,23 +129,24 @@ This is enforced by CI. If you modify `spec/core.json`, you must also regenerate
 
 Edit files in `spec/schema/`. Schemas use **JSON Schema Draft 2020-12**.
 
-Validate schemas locally using `ajv-cli`:
+After any schema change, run the test suite to verify nothing breaks:
 ```bash
-npm install -g ajv-cli
-ajv validate --spec=draft2020 -s spec/schema/core.schema.json -d spec/core.json
+npm test
 ```
 
 ### Making Changes to the Provenance Spec
 
-- Active spec: `PROVENANCE/halos-provenance-spec-v0.1.md`
-- Draft graph model: `PROVENANCE/halos-provenance-model-v0.2.md`
-- Validate examples after changes: all files in `examples/` are validated against `spec/schema/halos-provenance-v0.1.schema.json`
+- Active spec: `spec/provenance/v0.3.md`
+- All domain examples must validate against `spec/schema/halos-provenance-v0.3.schema.json`
+- The test suite automatically validates every `.halos.json` in `examples/` and checks enum coverage
 
 ### Adding Examples
 
-New provenance examples go in `examples/`. The CI pipeline validates all `examples/*.json` files against `spec/schema/halos-provenance-v0.1.schema.json` automatically (domain `.halos.json` files and `embedded/` files are excluded from CI validation as they use different schemas).
+New provenance examples go in `examples/`. Any `.halos.json` file added there is **automatically validated** by the test suite — no manual CI configuration needed.
 
 To generate a new domain example, use the agent prompt at `examples/GENERATE-EXAMPLE.md`. Each domain example consists of a narrative `.md` and a provenance `.halos.json` file. See `examples/README.md` for the full index and contribution requirements.
+
+If your example uses a schema value that doesn't exist yet (new artifact type, new relationship type, etc.), the schema validation will fail. This is intentional — it means you may have a valid use case for a **spec proposal**. Open an issue describing the use case and the value you need added.
 
 ---
 
@@ -144,13 +155,19 @@ To generate a new domain example, use the agent prompt at `examples/GENERATE-EXA
 **`.github/workflows/validate.yml`** runs on every push to `main` and all pull requests.
 
 Steps:
-1. Install `ajv-cli` (JSON Schema validator, Node 20)
-2. Validate `spec/core.json` against `spec/schema/core.schema.json`
-3. Validate all `examples/*.json` against the v0.1 provenance schema
-4. Validate `spec/manifest.json` and `spec/changelog.json` against their schemas
-5. Re-run `node scripts/generate-principles.js` and check for drift — **fails if `PRINCIPLES/halos-principles-v1.0.md` is out of date**
 
-There is no test suite beyond schema validation. If you add new JSON data files, consider whether they should be validated in CI.
+1. Install dependencies (Node 20)
+2. Validate `spec/core.json` against `spec/schema/core.schema.json`
+3. Run the full test suite (`npm test`) — this automatically:
+   - Validates all `examples/*.halos.json` against the v0.3 provenance schema
+   - Validates all test fixtures (valid pass, invalid reject)
+   - Checks that every enum value in the schema is exercised in at least one fixture
+   - Runs semantic checks (graph referential integrity, lineage, time ordering)
+   - Tests version boundaries between v0.1/v0.2/v0.3 schemas
+4. Validate `spec/manifest.json` and `spec/changelog.json` against their schemas
+5. Re-run `node scripts/generate-principles.js` and check for drift
+
+**New examples are automatically picked up** — no CI changes needed when adding `.halos.json` files to `examples/`.
 
 ---
 
@@ -203,8 +220,7 @@ Follow the conventional commits pattern used in this repo:
 | Document | Version | Status |
 |----------|---------|--------|
 | HALOS Principles | v1.0 | **Stable** — rarely changed |
-| HALOS Provenance Spec | v0.1 | **Active** — suitable for use |
-| HALOS Provenance Model (graph) | v0.2 | **Draft** — under development |
+| HALOS Provenance Spec | v0.3 | **Active** — extends v0.2 with multi-policy governance |
 | HALOS Profile Schema | v1alpha1 | **Active** — validates `halos.yaml` |
 
 ---

@@ -1,0 +1,44 @@
+{
+  "halos_version": "0.3",
+  "artifact": {
+    "id": "urn:build:ci/payment-service-pipeline-v3",
+    "type": "build",
+    "description": "CI/CD pipeline configuration for the payment service — includes build, test, security scan, and staged deployment to production",
+    "version": "3.1.0"
+  },
+  "human_author": {
+    "name": "Sofia Mendez",
+    "identifier": "https://github.example.com/smendez",
+    "role": "contributor"
+  },
+  "ai_assistance": [
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "Anthropic",
+      "role": "generation",
+      "description": "Generated initial pipeline YAML from natural language description of deployment requirements and existing Dockerfile",
+      "taskType": "scaffolding",
+      "techniques": ["code-pattern-matching"]
+    }
+  ],
+  "timestamp": "2026-03-18T10:00:00Z",
+  "decisions": [
+    {
+      "id": "urn:decision:canary-vs-blue-green",
+      "description": "Selected canary deployment strategy over AI-recommended blue-green deployment",
+      "responsible": "Sofia Mendez",
+      "timestamp": "2026-03-17T14:00:00Z",
+      "context": "Team operates a single Kubernetes cluster with limited node capacity. Blue-green requires 2x resources during deployment.",
+      "aiInputs": [
+        {
+          "model": "claude-sonnet-4-6",
+          "provider": "Anthropic",
+          "contribution": "Recommended blue-green deployment for zero-downtime guarantees",
+          "taskType": "reasoning"
+        }
+      ],
+      "rationale": "Blue-green doubles resource requirements during deployment windows. Canary with automated rollback achieves comparable safety with 10% resource overhead. Cluster cannot sustain 2x capacity for the 15-minute deployment window.",
+      "outcome": "rejected"
+    }
+  ]
+}

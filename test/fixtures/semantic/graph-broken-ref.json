@@ -1,0 +1,33 @@
+{
+  "halos_version": "0.3",
+  "artifact": {
+    "id": "urn:test:broken-ref",
+    "type": "code"
+  },
+  "human_author": {
+    "name": "Test Author"
+  },
+  "ai_assistance": [],
+  "timestamp": "2026-01-01T00:00:00Z",
+  "graph": {
+    "entities": [
+      { "id": "urn:entity:artifact", "type": "artifact", "label": "Test Artifact" },
+      { "id": "urn:entity:person", "type": "person", "label": "Test Person" }
+    ],
+    "activities": [
+      { "id": "urn:activity:create", "type": "create" }
+    ],
+    "relationships": [
+      {
+        "type": "wasGeneratedBy",
+        "from": "urn:entity:artifact",
+        "to": "urn:activity:create"
+      },
+      {
+        "type": "wasAssociatedWith",
+        "from": "urn:activity:create",
+        "to": "urn:entity:nonexistent"
+      }
+    ]
+  }
+}

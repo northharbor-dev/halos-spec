@@ -1,0 +1,63 @@
+{
+  "halos_version": "0.3",
+  "artifact": {
+    "id": "urn:pkg:oci/acme/data-pipeline@0.9.0-rc1",
+    "type": "code",
+    "description": "Data pipeline release candidate with new PII detection stage — demonstrates multiple policy evaluation outcomes",
+    "version": "0.9.0-rc1"
+  },
+  "human_author": {
+    "name": "Lisa Park",
+    "identifier": "https://github.example.com/lpark",
+    "role": "originator"
+  },
+  "ai_assistance": [
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "Anthropic",
+      "role": "assistance",
+      "description": "Assisted with PII detection regex patterns and test data generation",
+      "taskType": "scaffolding"
+    }
+  ],
+  "timestamp": "2026-03-15T18:00:00Z",
+  "policyEvaluations": [
+    {
+      "id": "urn:eval:pii-scan-fail",
+      "policy": "GDPR Data Minimization",
+      "policyVersion": "2024",
+      "evaluator": "privacy-scanner",
+      "evaluatorType": "tool",
+      "result": "fail",
+      "timestamp": "2026-03-15T14:00:00Z",
+      "notes": "PII detection stage passes through email addresses in debug log output. Must be masked before production release."
+    },
+    {
+      "id": "urn:eval:perf-degradation",
+      "policy": "Performance SLA",
+      "evaluator": "load-test-harness",
+      "evaluatorType": "tool",
+      "result": "error",
+      "timestamp": "2026-03-15T15:00:00Z",
+      "notes": "Load test harness crashed during 10k concurrent connection test. Unable to complete evaluation. Infrastructure issue, not code issue."
+    },
+    {
+      "id": "urn:eval:accessibility-skipped",
+      "policy": "WCAG 2.2 AA Compliance",
+      "evaluator": "axe-core",
+      "evaluatorType": "tool",
+      "result": "skipped",
+      "timestamp": "2026-03-15T15:30:00Z",
+      "notes": "Backend-only change — accessibility evaluation not applicable for this artifact"
+    },
+    {
+      "id": "urn:eval:sast-pass",
+      "policy": "OWASP Top 10",
+      "policyVersion": "2025",
+      "evaluator": "semgrep",
+      "evaluatorType": "tool",
+      "result": "pass",
+      "timestamp": "2026-03-15T16:00:00Z"
+    }
+  ]
+}
