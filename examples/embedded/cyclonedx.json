@@ -13,7 +13,7 @@
         {
           "name": "halos:provenance",
           "value": {
-            "halos_version": "0.1",
+            "halos_version": "0.3",
             "artifact": {
               "id": "urn:pkg:npm/my-library@2.1.0",
               "type": "code",
@@ -47,11 +47,13 @@
                 "notes": "Reviewed AI-generated code, confirmed logic correct, merged after minor edits"
               }
             ],
-            "governance": {
-              "policy": "HALOS",
-              "version": "1.0",
-              "url": "https://halos.northharbor.dev"
-            },
+            "governance": [
+              {
+                "policy": "HALOS",
+                "version": "1.0",
+                "url": "https://halos.northharbor.dev"
+              }
+            ],
             "timestamp": "2026-03-21T14:05:00Z"
           }
         }

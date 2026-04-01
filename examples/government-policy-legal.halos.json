@@ -1,5 +1,5 @@
 {
-  "halos_version": "0.2",
+  "halos_version": "0.3",
   "artifact": {
     "id": "urn:gov:state-housing-agency/impact-assessment-sb1247-v1",
     "type": "document",
@@ -40,11 +40,13 @@
       "notes": "Deputy Secretary approved for release to legislature; requested AI disclosure cover letter"
     }
   ],
-  "governance": {
-    "policy": "State Housing Agency AI Use and Transparency Policy",
-    "version": "2025.1",
-    "url": "https://housing.state.example.gov/policies/ai-transparency"
-  },
+  "governance": [
+    {
+      "policy": "State Housing Agency AI Use and Transparency Policy",
+      "version": "2025.1",
+      "url": "https://housing.state.example.gov/policies/ai-transparency"
+    }
+  ],
   "decisions": [
     {
       "id": "urn:decision:supply-impact-framing",

@@ -1,5 +1,5 @@
 {
-  "halos_version": "0.2",
+  "halos_version": "0.3",
   "artifact": {
     "id": "urn:scada:lakeview-wtp/plc-chlorine-dosing-v2.1",
     "type": "code",
@@ -34,11 +34,18 @@
       "notes": "State DEQ regulatory approval — approved with condition: enhanced distribution system monitoring (daily coliform sampling) for first 90 days of operation"
     }
   ],
-  "governance": {
-    "policy": "Lakeview WTP Change Management Policy / State DEQ Operating Permit #WTP-2019-0847",
-    "version": "2024-rev3",
-    "url": "https://deq.state.example.gov/permits/wtp-2019-0847"
-  },
+  "governance": [
+    {
+      "policy": "Lakeview WTP Change Management Policy",
+      "version": "2024-rev3",
+      "url": "https://lakeviewwtp.example/policies/change-management"
+    },
+    {
+      "policy": "State DEQ Operating Permit",
+      "version": "WTP-2019-0847",
+      "url": "https://deq.state.example.gov/permits/wtp-2019-0847"
+    }
+  ],
   "decisions": [
     {
       "id": "urn:decision:dosing-algorithm-design",

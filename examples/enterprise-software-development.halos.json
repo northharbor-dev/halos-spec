@@ -1,5 +1,5 @@
 {
-  "halos_version": "0.2",
+  "halos_version": "0.3",
   "artifact": {
     "id": "urn:pkg:oci/meridian/payment-reconciliation-service@1.0.0",
     "type": "code",
@@ -44,11 +44,23 @@
       "notes": "ARB approved for production with condition: finance vertical must run 30-day shadow mode before cutover"
     }
   ],
-  "governance": {
-    "policy": "Meridian AI Usage Policy for Shared Infrastructure",
-    "version": "2.1",
-    "url": "https://internal.meridian.example/policies/ai-usage-shared-infra"
-  },
+  "governance": [
+    {
+      "policy": "Meridian AI Usage Policy for Shared Infrastructure",
+      "version": "2.1",
+      "url": "https://internal.meridian.example/policies/ai-usage-shared-infra"
+    },
+    {
+      "policy": "PCI-DSS",
+      "version": "4.0",
+      "url": "https://www.pcisecuritystandards.org/document_library/"
+    },
+    {
+      "policy": "HALOS",
+      "version": "1.0",
+      "url": "https://halos.northharbor.dev"
+    }
+  ],
   "decisions": [
     {
       "id": "urn:decision:prs-architecture-pattern",

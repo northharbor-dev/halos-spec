@@ -1,5 +1,5 @@
 {
-  "halos_version": "0.2",
+  "halos_version": "0.3",
   "artifact": {
     "id": "urn:research:cre-prediction-model/paper-v1",
     "type": "document",
@@ -50,11 +50,13 @@
       "notes": "Journal peer review — accepted with minor revisions; requested clarification on temporal cross-validation split rationale"
     }
   ],
-  "governance": {
-    "policy": "HALOS",
-    "version": "1.0",
-    "url": "https://halos.northharbor.dev"
-  },
+  "governance": [
+    {
+      "policy": "HALOS",
+      "version": "1.0",
+      "url": "https://halos.northharbor.dev"
+    }
+  ],
   "decisions": [
     {
       "id": "urn:decision:confound-exclusion",

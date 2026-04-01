@@ -49,9 +49,13 @@ A provenance record captures:
 
 See [`spec/provenance/v0.1.md`](spec/provenance/v0.1.md)
 
-### Provenance Spec — v0.2, Active
+### Provenance Spec — v0.3, Active
 
-v0.2 extends v0.1 with higher-fidelity provenance capabilities while remaining fully backward compatible:
+v0.3 is the current provenance spec. It builds on v0.2's graph model, decision provenance, and interaction semantics with one breaking change:
+
+- **Multi-policy governance** — `governance` is now an array of policy references, supporting artifacts under multiple concurrent governance policies (e.g., an internal AI usage policy + PCI-DSS + HALOS)
+
+v0.2 introduced:
 
 - **Graph model** — represents provenance as Entities, Activities, and Relationships (aligned with W3C PROV concepts)
 - **Decision provenance** — first-class tracking of human decisions, including AI inputs, context, and rationale
@@ -59,7 +63,7 @@ v0.2 extends v0.1 with higher-fidelity provenance capabilities while remaining f
 - **Responsibility modeling** — lightweight roles and delegation on graph entities
 - **Policy evaluation traces** — records of automated or manual policy checks (results only, not enforcement)
 
-All v0.2 fields are optional. A v0.2 record without them is equivalent to v0.1. See [`spec/provenance/v0.2.md`](spec/provenance/v0.2.md).
+See [`spec/provenance/v0.3.md`](spec/provenance/v0.3.md). For the full v0.2 graph model details, see [`spec/provenance/v0.2.md`](spec/provenance/v0.2.md).
 
 ---
 
@@ -83,7 +87,7 @@ See [`mappings/cyclonedx-slsa.md`](mappings/cyclonedx-slsa.md) for embedding det
 
 ## Examples
 
-The [`examples/`](examples/) directory contains provenance records across eight professional domains — education, enterprise software, government policy, journalism, music production, humanitarian aid, critical infrastructure, and scientific research. Each includes a narrative companion explaining the collaboration scenario alongside a machine-readable v0.2 provenance record.
+The [`examples/`](examples/) directory contains provenance records across eight professional domains — education, enterprise software, government policy, journalism, music production, humanitarian aid, critical infrastructure, and scientific research. Each includes a narrative companion explaining the collaboration scenario alongside a machine-readable v0.3 provenance record.
 
 See the [examples index](examples/README.md) for the full catalog. To generate a new domain example using an AI assistant, use the [GENERATE-EXAMPLE.md](examples/GENERATE-EXAMPLE.md) agent prompt.
 
@@ -130,12 +134,14 @@ halos-spec/
 │   │   └── v1.0.md                          # DO NOT EDIT — generated from core.json
 │   ├── provenance/
 │   │   ├── v0.1.md                          # Active provenance spec
-│   │   └── v0.2.md                          # Graph model (active)
+│   │   ├── v0.2.md                          # Graph model (superseded by v0.3)
+│   │   └── v0.3.md                          # Multi-policy governance (active)
 │   └── schema/                              # JSON Schemas (Draft 2020-12)
 │       ├── core.schema.json
 │       ├── halos-profile.schema.json
 │       ├── halos-provenance-v0.1.schema.json
 │       ├── halos-provenance-v0.2.schema.json
+│       ├── halos-provenance-v0.3.schema.json
 │       ├── manifest.schema.json
 │       ├── changelog.schema.json
 │       └── extension.schema.json
@@ -192,8 +198,9 @@ halos-spec/
 | Document | Version | Status |
 |---|---|---|
 | HALOS Principles | v1.0 | Stable |
-| HALOS Provenance Spec | v0.1 | Active |
-| HALOS Provenance Model (graph) | v0.2 | Active |
+| HALOS Provenance Spec | v0.1 | Superseded |
+| HALOS Provenance Model (graph) | v0.2 | Superseded |
+| HALOS Provenance Spec (multi-policy governance) | v0.3 | Active |
 | HALOS Profile Schema | v1alpha1 | Active |
 
 ---

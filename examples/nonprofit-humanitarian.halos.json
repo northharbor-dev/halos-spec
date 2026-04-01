@@ -1,5 +1,5 @@
 {
-  "halos_version": "0.2",
+  "halos_version": "0.3",
   "artifact": {
     "id": "urn:humanitarian:turkey-eq-2026/distribution-plan-cycle-1",
     "type": "other",
@@ -28,11 +28,13 @@
       "notes": "Country director approved modified plan after confirming mountain track passability and medical supply sufficiency for elderly population"
     }
   ],
-  "governance": {
-    "policy": "HALOS",
-    "version": "1.0",
-    "url": "https://halos.northharbor.dev"
-  },
+  "governance": [
+    {
+      "policy": "HALOS",
+      "version": "1.0",
+      "url": "https://halos.northharbor.dev"
+    }
+  ],
   "decisions": [
     {
       "id": "urn:decision:resource-allocation-override",

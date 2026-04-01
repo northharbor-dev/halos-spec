@@ -1,5 +1,5 @@
 {
-  "halos_version": "0.2",
+  "halos_version": "0.3",
   "artifact": {
     "id": "urn:music:reef-doc/cue-14-bleached-v1",
     "type": "other",
@@ -34,11 +34,13 @@
       "notes": "Director approved after requesting 3-beat viola extension at scene transition"
     }
   ],
-  "governance": {
-    "policy": "HALOS",
-    "version": "1.0",
-    "url": "https://halos.northharbor.dev"
-  },
+  "governance": [
+    {
+      "policy": "HALOS",
+      "version": "1.0",
+      "url": "https://halos.northharbor.dev"
+    }
+  ],
   "decisions": [
     {
       "id": "urn:decision:cue14-harmonic-approach",

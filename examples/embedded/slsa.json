@@ -9,9 +9,9 @@
       }
     }
   ],
-  "predicateType": "https://halos.northharbor.dev/provenance/v0.1",
+  "predicateType": "https://halos.northharbor.dev/provenance/v0.3",
   "predicate": {
-    "halos_version": "0.1",
+    "halos_version": "0.3",
     "artifact": {
       "id": "pkg:npm/my-library@2.1.0",
       "type": "code",
@@ -39,11 +39,13 @@
         "notes": "Human reviewed and approved AI-generated code before merge"
       }
     ],
-    "governance": {
-      "policy": "HALOS",
-      "version": "1.0",
-      "url": "https://halos.northharbor.dev"
-    },
+    "governance": [
+      {
+        "policy": "HALOS",
+        "version": "1.0",
+        "url": "https://halos.northharbor.dev"
+      }
+    ],
     "lineage": [],
     "timestamp": "2026-03-21T14:05:00Z"
   },

@@ -1,5 +1,5 @@
 {
-  "halos_version": "0.2",
+  "halos_version": "0.3",
   "artifact": {
     "id": "urn:journalism:lakeshore-herald/meridian-investigation-v1",
     "type": "document",
@@ -46,11 +46,13 @@
       "notes": "Managing editor approved publication after clarifying sourcing behind violation count"
     }
   ],
-  "governance": {
-    "policy": "Lakeshore Herald Newsroom AI Policy",
-    "version": "2025",
-    "url": "https://lakeshoreherald.example/policies/ai-use"
-  },
+  "governance": [
+    {
+      "policy": "Lakeshore Herald Newsroom AI Policy",
+      "version": "2025",
+      "url": "https://lakeshoreherald.example/policies/ai-use"
+    }
+  ],
   "decisions": [
     {
       "id": "urn:decision:health-correlation-framing",

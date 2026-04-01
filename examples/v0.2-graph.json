@@ -1,5 +1,5 @@
 {
-  "halos_version": "0.2",
+  "halos_version": "0.3",
   "artifact": {
     "id": "urn:pkg:npm/auth-service@3.0.0",
     "type": "code",
@@ -29,11 +29,13 @@
       "notes": "Approved after verifying token rotation logic"
     }
   ],
-  "governance": {
-    "policy": "HALOS",
-    "version": "1.0",
-    "url": "https://halos.northharbor.dev"
-  },
+  "governance": [
+    {
+      "policy": "HALOS",
+      "version": "1.0",
+      "url": "https://halos.northharbor.dev"
+    }
+  ],
   "decisions": [
     {
       "id": "urn:decision:token-strategy",

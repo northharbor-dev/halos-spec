@@ -1,0 +1,451 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://halos.northharbor.dev/spec/schemas/halos-provenance-v0.3.schema.json",
+  "title": "HALOS Provenance Record (v0.3)",
+  "description": "Extends v0.2: governance field accepts an array of policy references to support artifacts under multiple concurrent governance policies",
+  "$comment": "v0.3 is active. The v0.x series is still evolving; breaking changes may occur between minor versions.",
+  "type": "object",
+  "required": ["halos_version", "artifact", "human_author", "ai_assistance", "timestamp"],
+  "properties": {
+    "halos_version": {
+      "type": "string",
+      "const": "0.3",
+      "description": "Version of the HALOS Provenance Spec this record conforms to"
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "A stable identifier for the artifact (URI, content hash, or versioned name)"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["code", "document", "dataset", "model", "design", "build", "other"],
+          "description": "Type of artifact"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of the artifact"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version of the artifact"
+        }
+      },
+      "additionalProperties": false
+    },
+    "human_author": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Display name of the accountable human author"
+        },
+        "identifier": {
+          "type": "string",
+          "description": "URI or handle identifying the author (e.g. GitHub username, ORCID, email)"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["originator", "reviewer", "editor", "contributor", "other"],
+          "description": "Role of the human author relative to this artifact"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ai_assistance": {
+      "type": "array",
+      "description": "AI contributions to this artifact. Empty array if no AI was used.",
+      "items": {
+        "type": "object",
+        "required": ["model", "role"],
+        "properties": {
+          "model": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Name or identifier of the AI model"
+          },
+          "provider": {
+            "type": "string",
+            "description": "Organization that provides the model"
+          },
+          "role": {
+            "type": "string",
+            "enum": ["generation", "drafting", "editing", "review", "assistance"],
+            "description": "How the AI contributed to the artifact"
+          },
+          "description": {
+            "type": "string",
+            "description": "Free-text description of the specific AI contribution"
+          },
+          "taskType": {
+            "type": "string",
+            "description": "The cognitive task the AI performed (e.g. classifying, researching, summarizing, predicting, extracting, orchestrating, presenting, reasoning, translating)"
+          },
+          "techniques": {
+            "type": "array",
+            "description": "Named algorithms, methods, or patterns the AI employed (e.g. retrieval-augmented-generation, chain-of-thought, monte-carlo-simulation, gradient-descent, ensemble-averaging)",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 datetime when this provenance record was created"
+    },
+    "review": {
+      "type": "array",
+      "description": "Human review steps applied to the artifact",
+      "items": {
+        "type": "object",
+        "required": ["reviewer", "type"],
+        "properties": {
+          "reviewer": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Name or identifier of the reviewer"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["approval", "peer-review", "editorial", "other"],
+            "description": "Type of review performed"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the review occurred"
+          },
+          "notes": {
+            "type": "string",
+            "description": "Summary of review findings or outcome"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "governance": {
+      "type": "array",
+      "description": "Governance policies under which this artifact was produced. An artifact may fall under multiple concurrent policies.",
+      "items": {
+        "type": "object",
+        "required": ["policy"],
+        "properties": {
+          "policy": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Name or identifier of the governance policy"
+          },
+          "version": {
+            "type": "string",
+            "description": "Version of the policy"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the policy document"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "lineage": {
+      "type": "array",
+      "description": "IDs of parent artifacts this artifact was derived from",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-text notes about provenance"
+    },
+    "graph": {
+      "type": "object",
+      "description": "Optional graph representation of provenance as entities, activities, and relationships",
+      "properties": {
+        "entities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "type", "label"],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Stable local identifier for this entity within the record"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["artifact", "person", "agent", "organization", "policy"]
+              },
+              "label": {
+                "type": "string",
+                "description": "Human-readable name"
+              },
+              "identifier": {
+                "type": "string",
+                "description": "External URI or handle"
+              },
+              "role": {
+                "type": "string",
+                "description": "Role in the context of this record (e.g. author, reviewer, approver, contributor, operator)"
+              },
+              "delegatedBy": {
+                "type": "string",
+                "description": "ID of the entity that delegated authority to this entity"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "activities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "type"],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Stable local identifier for this activity"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["create", "generate", "edit", "review", "approve", "derive", "decision", "suggest", "transform", "other"]
+              },
+              "startedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "endedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "description": {
+                "type": "string"
+              },
+              "taskType": {
+                "type": "string",
+                "description": "The cognitive task the AI performed in this activity (e.g. classifying, researching, summarizing, predicting, extracting, orchestrating, presenting, reasoning, translating)"
+              },
+              "techniques": {
+                "type": "array",
+                "description": "Named algorithms, methods, or patterns employed in this activity (e.g. retrieval-augmented-generation, chain-of-thought, monte-carlo-simulation)",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "interaction": {
+                "type": "object",
+                "description": "Human-AI interaction metadata for this activity",
+                "required": ["type"],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "description": "Nature of AI involvement (e.g. suggestion, generation, transformation, analysis, review)"
+                  },
+                  "humanResponse": {
+                    "type": "string",
+                    "description": "How the human responded (e.g. accepted, modified, rejected, partial, pending)"
+                  },
+                  "responseNotes": {
+                    "type": "string",
+                    "description": "Details about modifications or reasoning"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "relationships": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["type", "from", "to"],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "wasGeneratedBy",
+                  "wasAttributedTo",
+                  "used",
+                  "wasAssociatedWith",
+                  "wasDerivedFrom",
+                  "actedOnBehalfOf",
+                  "wasInformedBy",
+                  "hadRole",
+                  "authored_by",
+                  "reviewed_by",
+                  "approved_by",
+                  "generated_with",
+                  "derived_from",
+                  "influenced_by"
+                ]
+              },
+              "from": {
+                "type": "string",
+                "description": "ID of the source entity or activity"
+              },
+              "to": {
+                "type": "string",
+                "description": "ID of the target entity or activity"
+              },
+              "notes": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "decisions": {
+      "type": "array",
+      "description": "Decision records capturing human choices that shaped the artifact",
+      "items": {
+        "type": "object",
+        "required": ["id", "description", "responsible", "timestamp"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Stable identifier for the decision"
+          },
+          "description": {
+            "type": "string",
+            "description": "What was decided"
+          },
+          "responsible": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Name of the accountable human decision-maker"
+          },
+          "responsibleId": {
+            "type": "string",
+            "description": "External identifier for the decision-maker"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the decision was made"
+          },
+          "context": {
+            "type": "string",
+            "description": "Circumstances or constraints that framed the decision"
+          },
+          "aiInputs": {
+            "type": "array",
+            "description": "AI contributions that informed the decision",
+            "items": {
+              "type": "object",
+              "required": ["model", "contribution"],
+              "properties": {
+                "model": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "AI model name or identifier"
+                },
+                "provider": {
+                  "type": "string",
+                  "description": "Organization providing the model"
+                },
+                "contribution": {
+                  "type": "string",
+                  "description": "What the AI contributed to the decision"
+                },
+                "taskType": {
+                  "type": "string",
+                  "description": "The cognitive task the AI performed for this input (e.g. researching, summarizing, predicting, classifying)"
+                },
+                "techniques": {
+                  "type": "array",
+                  "description": "Named algorithms or methods used (e.g. retrieval-augmented-generation, monte-carlo-simulation)",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "rationale": {
+            "type": "string",
+            "description": "Why this decision was made"
+          },
+          "outcome": {
+            "type": "string",
+            "description": "Result of the decision (e.g. accepted, deferred, rejected)"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "policyEvaluations": {
+      "type": "array",
+      "description": "Records of policy evaluations performed against the artifact or process",
+      "items": {
+        "type": "object",
+        "required": ["id", "policy", "evaluator", "evaluatorType", "result"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Stable identifier for this evaluation"
+          },
+          "policy": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Name of the policy or standard evaluated against"
+          },
+          "policyVersion": {
+            "type": "string",
+            "description": "Version of the policy"
+          },
+          "evaluator": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Name of the person, tool, or service that performed the evaluation"
+          },
+          "evaluatorType": {
+            "type": "string",
+            "enum": ["human", "tool", "service"],
+            "description": "Type of evaluator"
+          },
+          "result": {
+            "type": "string",
+            "enum": ["pass", "fail", "warning", "error", "skipped"],
+            "description": "Outcome of the evaluation"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the evaluation was performed"
+          },
+          "notes": {
+            "type": "string",
+            "description": "Additional context or findings"
+          },
+          "details": {
+            "type": "object",
+            "description": "Tool-specific structured output (opaque to HALOS)"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

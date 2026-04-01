@@ -1,5 +1,5 @@
 {
-  "halos_version": "0.2",
+  "halos_version": "0.3",
   "artifact": {
     "id": "urn:edu:capstone/rivera-crispr-scd-2026",
     "type": "document",
@@ -28,11 +28,13 @@
       "notes": "Faculty advisor reviewed second draft and approved for final submission with minor revisions. Noted strength of off-target risk section and honest treatment of evidentiary gaps."
     }
   ],
-  "governance": {
-    "policy": "University AI Use Policy for Academic Work",
-    "version": "2025-2026",
-    "url": "https://university.example/policies/ai-academic-use"
-  },
+  "governance": [
+    {
+      "policy": "University AI Use Policy for Academic Work",
+      "version": "2025-2026",
+      "url": "https://university.example/policies/ai-academic-use"
+    }
+  ],
   "decisions": [
     {
       "id": "urn:decision:reject-unverifiable-citation",

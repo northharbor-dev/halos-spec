@@ -11,7 +11,7 @@ These examples demonstrate specific spec features and are validated by CI.
 | Example | Spec Version | Purpose |
 |---------|-------------|---------|
 | [minimal.json](minimal.json) | v0.1 | Minimal valid provenance record (CI-validated) |
-| [v0.2-graph.json](v0.2-graph.json) | v0.2 | Full graph model with decisions, interactions, and policy evaluations |
+| [v0.2-graph.json](v0.2-graph.json) | v0.3 | Full graph model with decisions, interactions, multi-policy governance, and policy evaluations |
 
 ---
 
@@ -19,7 +19,7 @@ These examples demonstrate specific spec features and are validated by CI.
 
 Each domain example includes a narrative companion (`.md`) explaining the scenario, collaboration process, and HALOS relevance alongside the machine-readable provenance record (`.halos.json`).
 
-All domain examples use the **v0.2** provenance model featuring graph entities, decision provenance, human-AI interaction semantics, and policy evaluation traces.
+All domain examples use the **v0.3** provenance model featuring graph entities, decision provenance, human-AI interaction semantics, multi-policy governance, and policy evaluation traces.
 
 | Domain | Lead | Key Decision | Files |
 |--------|------|-------------|-------|
@@ -43,7 +43,7 @@ All domain examples use the **v0.2** provenance model featuring graph entities, 
 6. Framework crosswalk (NIST AI RMF, ISO/IEC 42001, CycloneDX)
 
 **Provenance record (`.halos.json`):**
-- Full v0.2 record with graph, decisions, interactions, and policy evaluations
+- Full v0.3 record with graph, decisions, interactions, multi-policy governance, and policy evaluations
 - Realistic but entirely fictional scenarios, names, and organizations
 - All URLs use RFC 2606 reserved `.example` domains
 
@@ -51,7 +51,7 @@ All domain examples use the **v0.2** provenance model featuring graph entities, 
 
 ## Embedded Examples
 
-The [`embedded/`](embedded/) directory shows how HALOS provenance records integrate with existing supply chain standards. These are **v0.1** records demonstrating the embedding pattern described in the [provenance spec](../spec/provenance/v0.1.md#embedding) and detailed in the [CycloneDX/SLSA mapping](../mappings/cyclonedx-slsa.md).
+The [`embedded/`](embedded/) directory shows how HALOS provenance records integrate with existing supply chain standards. These are **v0.3** records demonstrating the embedding pattern described in the [provenance spec](../spec/provenance/v0.1.md#embedding) and detailed in the [CycloneDX/SLSA mapping](../mappings/cyclonedx-slsa.md).
 
 | Example | Standard | Pattern |
 |---------|----------|---------|
@@ -60,7 +60,7 @@ The [`embedded/`](embedded/) directory shows how HALOS provenance records integr
 
 These examples are intentionally minimal — they demonstrate embedding mechanics, not complex provenance. For richer provenance scenarios, see the domain examples above.
 
-> **Note:** Embedded examples are not validated by CI (their outer envelope formats are not HALOS schemas). The HALOS provenance records within them conform to the v0.1 schema.
+> **Note:** Embedded examples are not validated by CI (their outer envelope formats are not HALOS schemas). The HALOS provenance records within them conform to the v0.3 schema.
 
 ---
 
