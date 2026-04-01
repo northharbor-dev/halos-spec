@@ -1,0 +1,169 @@
+{
+  "$comment": "Domain catalog for HALOS provenance examples. Used by GENERATE-EXAMPLE.md and the /generate-example skill.",
+  "domains": [
+    {
+      "slug": "education-student-learning",
+      "name": "Education & Student Learning",
+      "status": "implemented",
+      "lead": "Mateo Rivera",
+      "leadRole": "undergraduate student",
+      "keyDecision": "Rejected AI-fabricated citation after verification failure",
+      "files": {
+        "narrative": "examples/education-student-learning.md",
+        "record": "examples/education-student-learning.halos.json"
+      },
+      "added": "2026-03-31"
+    },
+    {
+      "slug": "enterprise-software-development",
+      "name": "Enterprise Software Development",
+      "status": "implemented",
+      "lead": "Tomoko Hayashi",
+      "leadRole": "platform engineer",
+      "keyDecision": "Rejected AI-recommended CQRS; rewrote state machine from scratch",
+      "files": {
+        "narrative": "examples/enterprise-software-development.md",
+        "record": "examples/enterprise-software-development.halos.json"
+      },
+      "added": "2026-03-31"
+    },
+    {
+      "slug": "government-policy-legal",
+      "name": "Government Policy & Legal",
+      "status": "implemented",
+      "lead": "Fatima Al-Rashid",
+      "leadRole": "policy analyst",
+      "keyDecision": "Chose how to frame politically consequential housing supply finding",
+      "files": {
+        "narrative": "examples/government-policy-legal.md",
+        "record": "examples/government-policy-legal.halos.json"
+      },
+      "added": "2026-03-31"
+    },
+    {
+      "slug": "journalism-news-media",
+      "name": "Journalism & News Media",
+      "status": "implemented",
+      "lead": "Carlos Medina",
+      "leadRole": "investigative reporter",
+      "keyDecision": "Corrected AI-generated violation dataset before publication",
+      "files": {
+        "narrative": "examples/journalism-news-media.md",
+        "record": "examples/journalism-news-media.halos.json"
+      },
+      "added": "2026-03-31"
+    },
+    {
+      "slug": "music-creative-production",
+      "name": "Music & Creative Production",
+      "status": "implemented",
+      "lead": "Maya Reeves",
+      "leadRole": "composer",
+      "keyDecision": "Rejected AI harmonic sketch, kept only structural idea",
+      "files": {
+        "narrative": "examples/music-creative-production.md",
+        "record": "examples/music-creative-production.halos.json"
+      },
+      "added": "2026-03-31"
+    },
+    {
+      "slug": "nonprofit-humanitarian",
+      "name": "Nonprofit & Humanitarian",
+      "status": "implemented",
+      "lead": "Amara Diallo",
+      "leadRole": "field coordinator",
+      "keyDecision": "Overrode AI priority ranking based on ground-truth field report",
+      "files": {
+        "narrative": "examples/nonprofit-humanitarian.md",
+        "record": "examples/nonprofit-humanitarian.halos.json"
+      },
+      "added": "2026-03-31"
+    },
+    {
+      "slug": "realtime-critical-systems",
+      "name": "Real-time Critical Systems",
+      "status": "implemented",
+      "lead": "Luis Herrera, PE",
+      "leadRole": "control systems engineer",
+      "keyDecision": "Reduced AI-proposed dosing reduction, added safety logic AI omitted",
+      "files": {
+        "narrative": "examples/realtime-critical-systems.md",
+        "record": "examples/realtime-critical-systems.halos.json"
+      },
+      "added": "2026-03-31"
+    },
+    {
+      "slug": "scientific-research",
+      "name": "Scientific Research",
+      "status": "implemented",
+      "lead": "Dr. Nkechi Okonkwo",
+      "leadRole": "computational epidemiologist",
+      "keyDecision": "Excluded confounded feature the AI ranked as highly predictive",
+      "files": {
+        "narrative": "examples/scientific-research.md",
+        "record": "examples/scientific-research.halos.json"
+      },
+      "added": "2026-03-31"
+    },
+    {
+      "slug": "healthcare-clinical",
+      "name": "Healthcare / Clinical Decision Support",
+      "status": "available",
+      "description": "Clinical decision support, diagnostic assistance, treatment planning"
+    },
+    {
+      "slug": "legal-contract-review",
+      "name": "Legal / Contract Review",
+      "status": "available",
+      "description": "Contract analysis, legal research, regulatory compliance review"
+    },
+    {
+      "slug": "architecture-urban-planning",
+      "name": "Architecture / Urban Planning",
+      "status": "available",
+      "description": "Design analysis, zoning compliance, environmental impact assessment"
+    },
+    {
+      "slug": "agriculture-precision-farming",
+      "name": "Agriculture / Precision Farming",
+      "status": "available",
+      "description": "Crop management, yield prediction, resource optimization"
+    },
+    {
+      "slug": "financial-trading-risk",
+      "name": "Financial Trading / Risk Analysis",
+      "status": "available",
+      "description": "Algorithmic trading, portfolio risk, market analysis"
+    },
+    {
+      "slug": "cybersecurity-incident-response",
+      "name": "Cybersecurity / Incident Response",
+      "status": "available",
+      "description": "Threat detection, incident triage, forensic analysis"
+    },
+    {
+      "slug": "supply-chain-logistics",
+      "name": "Supply Chain / Logistics",
+      "status": "available",
+      "description": "Route optimization, demand forecasting, inventory management"
+    },
+    {
+      "slug": "manufacturing-quality-control",
+      "name": "Manufacturing / Quality Control",
+      "status": "available",
+      "description": "Defect detection, process optimization, predictive maintenance"
+    },
+    {
+      "slug": "pharmaceutical-drug-discovery",
+      "name": "Pharmaceutical / Drug Discovery",
+      "status": "available",
+      "description": "Compound screening, clinical trial design, adverse event analysis"
+    },
+    {
+      "slug": "environmental-climate-science",
+      "name": "Environmental Monitoring / Climate Science",
+      "status": "available",
+      "description": "Sensor data analysis, climate modeling, pollution tracking"
+    }
+  ]
+}

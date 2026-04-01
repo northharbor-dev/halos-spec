@@ -1,8 +1,18 @@
 # Plan 003: Example Generation Workflow
 
-**Status:** Draft
+**Status:** Complete (skill deferred)
 **Created:** 2026-03-31
+**Completed:** 2026-03-31
 **Author:** Bob Hong
+
+---
+
+## Resolved Decisions
+
+1. **`domains.json` location** — `examples/domains.json`. Metadata about examples lives with examples.
+2. **Generation provenance location** — `examples/provenance/`. Separate from spec-level provenance in `spec/provenance/records/`.
+3. **PR workflow** — Stage and instruct the user. No `gh pr create` — we can't assume the user has the gh CLI installed.
+4. **Claude Code skill** — Deferred. Plan is to create a `/generate-example` skill that loads the MD. Blocked by `.claude/` directory write permissions during initial implementation.
 
 ---
 

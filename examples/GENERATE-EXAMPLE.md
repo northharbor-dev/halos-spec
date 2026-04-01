@@ -1,14 +1,20 @@
 # Generate a HALOS Domain Example
 
-This is an agent-executable prompt. Point an AI assistant at this file to generate a new domain example for the HALOS provenance specification.
+This is an interactive agent prompt for generating new domain examples for the HALOS provenance specification. It can be invoked directly or via the `/generate-example` Claude Code skill.
 
 ---
 
-## Instructions
+## Step 1: Select a domain
 
-You are generating a new domain example for the HALOS specification. Each example demonstrates how HALOS provenance records capture human-AI collaboration in a specific professional domain.
+Read `examples/domains.json` and present the user with available domains (those with `"status": "available"`).
 
-### What you need
+Display them as a numbered list with name and description. Ask the user to pick one, or propose a new domain not in the catalog.
+
+If the user proposes a new domain, confirm the name, slug, and a brief description before proceeding.
+
+---
+
+## Step 2: Read the spec and references
 
 Fetch and read the following files before generating:
 
@@ -18,13 +24,15 @@ Fetch and read the following files before generating:
 4. **Terminology:** `spec/terminology.md` — use canonical terms
 5. **Reference example (narrative):** `examples/enterprise-software-development.md` — follow this structure
 6. **Reference example (record):** `examples/enterprise-software-development.halos.json` — follow this JSON structure
-7. **Existing examples index:** `examples/README.md` — check which domains are already covered
+7. **Domain catalog:** `examples/domains.json` — check existing names to avoid reuse
 
-### What you produce
+---
 
-Two files in the `examples/` directory:
+## Step 3: Generate the example
 
-#### 1. Narrative document (`{domain-slug}.md`)
+Produce two files in the `examples/` directory:
+
+### 3a. Narrative document (`{domain-slug}.md`)
 
 Structure:
 
@@ -71,7 +79,7 @@ Structure:
 - CycloneDX (optional — how HALOS complements if relevant)
 ```
 
-#### 2. Provenance record (`{domain-slug}.halos.json`)
+### 3b. Provenance record (`{domain-slug}.halos.json`)
 
 A valid v0.3 HALOS provenance record containing:
 
@@ -88,7 +96,7 @@ A valid v0.3 HALOS provenance record containing:
 - All person names must be fictional and diverse in gender, cultural origin, and professional background
 - All organizations must be fictional
 - All URLs must use `.example` domains (e.g., `github.example.com`, `org.example`)
-- Do not reuse names from existing examples (check `examples/README.md`)
+- Do not reuse names from existing examples (check `examples/domains.json` for names already used)
 - Real tools and standards (Anthropic, Snyk, OWASP, etc.) may be referenced in their actual capacity
 
 **Quality requirements:**
@@ -108,24 +116,29 @@ A valid v0.3 HALOS provenance record containing:
 - Interaction types: `suggestion`, `generation`, `transformation`, `analysis`, `review`
 - Human responses: `accepted`, `modified`, `rejected`, `partial`, `pending`
 
-### After completion
+---
 
-1. Present both files for human review before committing
-2. Verify the `.halos.json` validates against the schema
-3. Update `examples/README.md` to add the new example to the domain examples table
-4. Summarize: domain covered, lead character, key decision, any notable aspects
+## Step 4: Generate self-provenance record
+
+Create a provenance record for the generation process itself in `examples/provenance/{domain-slug}-generation.halos.json`.
+
+This is a real (not fictional) HALOS record documenting the human-AI collaboration that produced the example:
+
+- **`human_author`:** the person who invoked the generation (ask for their name and identifier if not known)
+- **`ai_assistance`:** the model that generated the example, role: `generation`, taskType: `scaffolding`
+- **`artifact`:** the example files that were created
+- **`governance`:** `[{ "policy": "HALOS", "version": "1.0", "url": "https://halos.northharbor.dev" }]`
+- **`decisions`:** domain selection and any modifications the human made to the AI output
+- **`notes`:** "Self-provenance record for example generation. Created by GENERATE-EXAMPLE.md workflow."
 
 ---
 
-## Suggested domains not yet covered
+## Step 5: Update the catalog and stage
 
-- Healthcare / clinical decision support
-- Legal / contract review
-- Architecture / urban planning
-- Agriculture / precision farming
-- Financial trading / risk analysis
-- Cybersecurity / incident response
-- Supply chain / logistics
-- Manufacturing / quality control
-- Pharmaceutical / drug discovery
-- Environmental monitoring / climate science
+1. **Update `examples/domains.json`** — set the domain's status to `"implemented"`, fill in `lead`, `leadRole`, `keyDecision`, `files`, and `added` fields
+2. **Update `examples/README.md`** — add the new example to the domain examples table, maintaining alphabetical order by domain
+3. **Validate** the `.halos.json` against `spec/schema/halos-provenance-v0.3.schema.json`
+4. **Stage all new and modified files** with `git add`
+5. **Summarize** what was created: domain, lead character, key decision, files produced
+
+Tell the user the files are staged and ready. They can review with `git diff --cached`, commit, and open a PR when satisfied.

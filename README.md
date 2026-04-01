@@ -152,10 +152,12 @@ halos-spec/
 │
 ├── examples/                                # Provenance record examples
 │   ├── README.md                            # Index of all examples
-│   ├── GENERATE-EXAMPLE.md                  # Agent prompt for creating new domain examples
+│   ├── GENERATE-EXAMPLE.md                  # Interactive agent prompt for creating new domain examples
+│   ├── domains.json                         # Domain catalog (implemented + available)
 │   ├── minimal.json                         # v0.1 minimal record — CI-validated
-│   ├── v0.2-graph.json                      # v0.2 with graph, decisions, interactions
+│   ├── v0.2-graph.json                      # v0.3 with graph, decisions, interactions
 │   ├── {domain}.md + {domain}.halos.json    # 8 domain examples (narrative + record)
+│   ├── provenance/                          # Self-provenance records for example generation
 │   └── embedded/                            # Embedded in other standards
 │       ├── cyclonedx.json                   # HALOS inside a CycloneDX SBOM
 │       └── slsa.json                        # HALOS as a SLSA predicate
